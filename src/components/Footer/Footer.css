@@ -1,0 +1,56 @@
+.footer {
+  align-self: end;
+  margin: 0 calc(10 * 100vw / 320) 0;
+  padding-bottom: 10px;
+}
+
+.footer__text {
+  margin: 0;
+  padding: 0;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #8b8b8b;
+}
+.footer__text_border {
+  padding: 0 0 21px 0;
+  border-bottom: 1px solid #424242;
+}
+
+.footer__ul {
+  margin: 30px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__li {
+  text-align: center;
+  margin: 0 0 12px 0;
+  padding: 0;
+  display: flex; /* убираем отступы над ссылками */
+  justify-content: center;
+}
+.footer__li:last-of-type {
+  margin-bottom: 0;
+}
+
+.footer__li-text {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+.footer__li-text:hover {
+  opacity: 0.6;
+}

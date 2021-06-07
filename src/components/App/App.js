@@ -1,20 +1,22 @@
 import { Route, Switch, Redirect } from "react-router";
 
+import "./App.css";
+
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Profile from "../Profile/Profile";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function App() {
   return (
     <>
       <div className="body">
-        <div>body</div>
-
         <div className="page">
-          <div>page</div>
+          <Header />
 
           <Switch>
             <Route exact path="/" render={() => <Main />} />
@@ -59,10 +61,10 @@ function App() {
           component={Main}
         /> */}
 
-            {/* <Route path="*">
-          <Redirect to="/" />
-        </Route> */}
+            <Route path="*">{/* <Redirect to="/" /> */}</Route>
           </Switch>
+
+          <Footer />
         </div>
       </div>
     </>
