@@ -1,0 +1,77 @@
+.about-project {
+  margin: 0;
+  padding: 70px calc(18 * 100vw / 320) 140px;
+}
+
+.about-project__title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+
+  margin: 0 0 60px;
+  padding: 0 0 28px;
+  border-bottom: 1px solid #dadada;
+}
+
+.about-project__subtitle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+
+  margin: 0;
+  padding: 0;
+}
+
+.about-project__text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 16px;
+  color: #ffffff;
+
+  margin: 16px 0 56px;
+  padding: 0;
+}
+.about-project__text:last-of-type {
+  margin: 16px 0 60px;
+}
+
+.about-project__duration {
+  display: grid;
+  grid-template: 35px auto / 100fr 184fr;
+  justify-content: center;
+  row-gap: 10px;
+}
+
+.about-project__duration__text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: #a0a0a0;
+
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-project__duration__text_bgc_green {
+  background-color: #3ddc84;
+  color: #000000;
+}
+.about-project__duration__text_bgc_grey {
+  background-color: #303030;
+  color: #ffffff;
+}
