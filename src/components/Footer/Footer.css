@@ -31,7 +31,8 @@
   text-align: center;
   margin: 0 0 12px 0;
   padding: 0;
-  display: flex; /* убираем отступы над ссылками */
+  /* убираем отступы над ссылками */
+  display: flex;
   justify-content: center;
 }
 .footer__li:last-of-type {

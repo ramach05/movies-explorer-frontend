@@ -1,8 +1,9 @@
 .header {
+  background-color: #073042;
   display: grid;
   grid-template: auto / repeat(2, 1fr) auto;
   align-items: center;
-  margin: 18px calc(14 * 100vw / 320) 70px;
+  padding: 18px calc(14 * 100vw / 320) 88px;
 }
 
 .header__logo {
