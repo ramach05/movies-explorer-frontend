@@ -18,7 +18,7 @@ function AboutMe() {
         ушёл с постоянной работы.
       </p>
       <nav>
-        <ul className="about-me__nav__ul">
+        <ul className="about-me__list">
           <li>
             <a
               className="about-me__link"
