@@ -1,0 +1,87 @@
+.about-me {
+  margin: 0;
+  padding: 0 calc(18 * 100vw / 320) 69px;
+  display: grid;
+}
+
+.about-me__title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+
+  margin: 0 0 60px;
+  padding: 0 0 28px;
+  border-bottom: 1px solid #dadada;
+}
+
+.about-me__avatar {
+  border-radius: 10px;
+  object-position: center;
+  object-fit: cover;
+  min-width: 292px;
+  min-height: 352px;
+  height: auto;
+  width: 100%;
+  max-width: 450px;
+  justify-self: center;
+  margin: 0 0 40px;
+}
+
+.about-me__subtitle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.about-me__text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 16px;
+  color: #ffffff;
+
+  margin: 0;
+  padding: 0;
+}
+.about-me__text_inter-medium {
+  font-weight: 500;
+  margin: 0 0 20px;
+}
+
+.about-me__nav__ul {
+  display: flex;
+  margin: 40px 0 56px;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.about-me__link {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+
+  text-decoration: none;
+  margin: 0 26px 0 0;
+  padding: 0;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+.about-me__link:hover {
+  opacity: 0.6;
+}
