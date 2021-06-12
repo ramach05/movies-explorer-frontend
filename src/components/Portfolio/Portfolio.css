@@ -57,8 +57,30 @@
   background-image: url(../../images/svg/portfolio-link-icon.svg);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 100%;
   width: 18px;
   height: 28px;
-  display: inline-block;
+  display: inline-grid;
+  align-self: center;
 }
 
+@media screen and (min-width: 768px) {
+  .portfolio {
+    padding: 0 calc(50 * 100vw / 768) 169px;
+  }
+
+  .portfolio__title {
+    font-size: 18px;
+    margin: 0 0 50px;
+  }
+
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+
+  .portfolio__link__icon {
+    width: 20px;
+    background-size: 100%;
+  }
+}

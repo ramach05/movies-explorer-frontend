@@ -41,8 +41,9 @@
   letter-spacing: -0.04em;
   color: #ffffff;
 
-  margin: 0 0 50px;
+  margin: 0 auto 50px;
   padding: 0;
+  max-width: 460px;
 }
 
 .techs__grid-container {
@@ -72,4 +73,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .techs {
+    padding: 0 calc(18 * 100vw / 320) 180px;
+  }
+
+  .techs__title {
+    font-size: 22px;
+    line-height: 27px;
+    padding: 0 0 23px;
+    margin: 0 0 80px;
+    letter-spacing: 0;
+  }
+
+  .techs__subtitle {
+    font-size: 50px;
+    line-height: 58px;
+    margin: 0 0 22px;
+  }
+
+  .techs__text {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 auto 83px;
+  }
 }

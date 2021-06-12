@@ -37,6 +37,8 @@
 
   margin: 0 0 80px;
   padding: 0;
+  max-width: 260px;
+  justify-self: center;
 }
 
 .promo__button {
@@ -62,4 +64,25 @@
 }
 .promo__button:hover {
   opacity: 0.6;
+}
+
+@media screen and (min-width: 768px) {
+  .promo {
+    background-size: 310px 304px;
+    padding: calc(304px + 48px) calc(18 * 100vw / 320) 0;
+  }
+
+  .promo__title {
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: 0;
+  }
+
+  .promo__subtitle {
+    margin: 0 0 92px;
+  }
+
+  .promo__button {
+    margin: 0 0 76px;
+  }
 }

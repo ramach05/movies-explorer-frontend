@@ -3,11 +3,11 @@ import "./Footer.css";
 function Footer() {
   return (
     <div className="footer">
-      <h2 className="footer__text footer__text_border">
+      <h2 className="footer__text footer__text_title">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </h2>
 
-      <nav>
+      <nav className="footer__nav">
         <ul className="footer__ul">
           <li className="footer__li">
             <a
@@ -41,7 +41,9 @@ function Footer() {
           </li>
         </ul>
       </nav>
-      <p className="footer__text">&copy;{new Date().getFullYear()}</p>
+      <p className="footer__text footer__text_date">
+        &copy; {new Date().getFullYear()}
+      </p>
     </div>
   );
 }
