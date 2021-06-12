@@ -1,5 +1,6 @@
 import "./AboutMe.css";
 import Avatar from "../../images/about-me-avatar.jpeg";
+import { getAge } from "../../utils/utils";
 
 function AboutMe() {
   return (
@@ -8,7 +9,7 @@ function AboutMe() {
       <img src={Avatar} alt="аватар" className="about-me__avatar" />
       <h3 className="about-me__subtitle">Роман</h3>
       <p className="about-me__text about-me__text_inter-medium">
-        Фронтенд-разработчик, 30 лет
+        Фронтенд-разработчик, {getAge("1994/09/10")}
       </p>
       <p className="about-me__text">
         Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня

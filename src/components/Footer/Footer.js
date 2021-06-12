@@ -41,7 +41,7 @@ function Footer() {
           </li>
         </ul>
       </nav>
-      <p className="footer__text">©{new Date().getFullYear()}</p>
+      <p className="footer__text">&copy;{new Date().getFullYear()}</p>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 .portfolio {
   margin: 0;
-  padding: 0 calc(18 * 100vw / 320) 149px;
+  padding: 0 calc(14 * 100vw / 320) 149px;
   display: grid;
 }
 

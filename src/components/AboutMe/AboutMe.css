@@ -1,6 +1,6 @@
 .about-me {
   margin: 0;
-  padding: 0 calc(18 * 100vw / 320) 69px;
+  padding: 0 calc(14 * 100vw / 320);
   display: grid;
 }
 
@@ -62,7 +62,7 @@
 
 .about-me__list {
   display: flex;
-  margin: 40px 0 56px;
+  margin: 40px 0 70px;
   padding: 0;
   text-decoration: none;
   list-style: none;

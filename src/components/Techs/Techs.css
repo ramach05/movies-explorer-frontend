@@ -50,6 +50,7 @@
   grid-template: auto / repeat(auto-fit, 84px);
   grid-gap: 10px;
   justify-content: center;
+  padding: 0 7px;
 }
 
 .techs__grid-container__item {
