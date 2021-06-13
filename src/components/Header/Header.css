@@ -1,7 +1,7 @@
 .header {
   background-color: #073042;
   display: grid;
-  grid-template: auto / repeat(2, 1fr) 54px;
+  grid-template: auto / auto 1fr 54px;
   align-items: center;
   padding: 18px calc(14 * 100vw / 320) 88px;
 }
@@ -58,7 +58,7 @@
 
 @media screen and (min-width: 768px) {
   .header {
-    grid-template: auto / repeat(2, 1fr) 76px;
+    grid-template: auto / auto 1fr 76px;
     padding: 18px calc(30 * 100vw / 768) 158px;
   }
 
@@ -69,5 +69,16 @@
 
   .header__link {
     font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    grid-template: auto / auto 1fr 76px;
+    padding: 21px calc(70 * 100vw / 1280) 92px;
+  }
+
+  .header__link {
+    margin: 0 calc(30 * 100vw / 1280) 0 0;
   }
 }

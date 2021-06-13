@@ -84,3 +84,14 @@
     background-size: 100%;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .portfolio {
+    padding: 0 calc(70 * 100vw / 1280) 204px;
+  }
+
+  .portfolio__link {
+    font-size: 30px;
+    line-height: 50px;
+  }
+}
