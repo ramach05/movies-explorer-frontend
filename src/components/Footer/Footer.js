@@ -1,4 +1,5 @@
-import "./Footer.css";
+import { React } from 'react';
+import './Footer.css';
 
 function Footer() {
   return (
@@ -42,7 +43,9 @@ function Footer() {
         </ul>
       </nav>
       <p className="footer__text footer__text_date">
-        &copy; {new Date().getFullYear()}
+        &copy;
+        {' '}
+        {new Date().getFullYear()}
       </p>
     </div>
   );

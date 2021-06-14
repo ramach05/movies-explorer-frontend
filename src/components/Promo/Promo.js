@@ -1,12 +1,13 @@
-import { useHistory } from "react-router";
+import { React } from 'react';
+import { useHistory } from 'react-router';
 
-import "./Promo.css";
+import './Promo.css';
 
 function Promo() {
   const history = useHistory();
 
   function handlePromoButton() {
-    history.push("/signin");
+    history.push('/signin');
   }
 
   return (

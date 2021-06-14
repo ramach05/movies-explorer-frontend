@@ -1,4 +1,5 @@
-import "./Portfolio.css";
+import { React } from 'react';
+import './Portfolio.css';
 
 function Portfolio() {
   return (
@@ -14,7 +15,9 @@ function Portfolio() {
               target="_blank"
               rel="noreferrer"
             >
-              Статичный сайт <span className="portfolio__link__icon"></span>
+              Статичный сайт
+              {' '}
+              <span className="portfolio__link__icon" />
             </a>
           </li>
           <li className="portfolio__list__item">
@@ -24,7 +27,9 @@ function Portfolio() {
               target="_blank"
               rel="noreferrer"
             >
-              Адаптивный сайт <span className="portfolio__link__icon"></span>
+              Адаптивный сайт
+              {' '}
+              <span className="portfolio__link__icon" />
             </a>
           </li>
           <li className="portfolio__list__item">
@@ -34,8 +39,9 @@ function Portfolio() {
               target="_blank"
               rel="noreferrer"
             >
-              Одностраничное приложение{" "}
-              <span className="portfolio__link__icon"></span>
+              Одностраничное приложение
+              {' '}
+              <span className="portfolio__link__icon" />
             </a>
           </li>
         </ul>
