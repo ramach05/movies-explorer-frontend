@@ -16,6 +16,6 @@ module.exports = {
 
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], // ошибки jsx в js файлах
-    'react/prop-types': 0,
+    'react/prop-types': 0, // определение типов для свойств компонентов
   },
 };

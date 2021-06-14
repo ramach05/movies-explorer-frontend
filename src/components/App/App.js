@@ -6,12 +6,17 @@ import './App.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Navigation from '../Navigation/Navigation';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Authentication from '../Authentication/Authentication';
+import Authentification from '../Authentification/Authentification';
+import AboutMe from '../AboutMe/AboutMe';
+import AboutProject from '../AboutProject/AboutProject';
+import Preloader from '../Preloader/Preloader';
+import Promo from '../Promo/Promo';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,9 +52,11 @@ function App() {
                   exact
                   path="/signin"
                   render={() => (
-                    <Authentication
+                    <Authentification
+                      isLoginRoute={isLoginRoute}
+                      setIsLoginRoute={setIsLoginRoute}
+                      setIsRegisterRoute={setIsRegisterRoute}
                       isLoggedIn={isLoggedIn}
-                      isRegisterRoute={isRegisterRoute}
                     />
                   )}
                 />
@@ -57,11 +64,11 @@ function App() {
                   exact
                   path="/signup"
                   render={() => (
-                    <Authentication
-                      isLoggedIn={isLoggedIn}
+                    <Authentification
                       isRegisterRoute={isRegisterRoute}
                       setIsLoginRoute={setIsLoginRoute}
                       setIsRegisterRoute={setIsRegisterRoute}
+                      isLoggedIn={isLoggedIn}
                     />
                   )}
                 />
