@@ -11,11 +11,12 @@ import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Authentication from '../Authentication/Authentication';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isRegisterRoute, setIsRegisterRoute] = useState(true);
   const [isLoginRoute, setIsLoginRoute] = useState(true);
+  const [isRegisterRoute, setIsRegisterRoute] = useState(true);
   const [isMainRoute, setIsMainRoute] = useState(true);
 
   return (
@@ -42,8 +43,30 @@ function App() {
           {(!isLoggedIn || isRegisterRoute || isLoginRoute) && (
             <>
               <Switch>
-                <Route exact path="/signin" render={() => <Login />} />
-                <Route exact path="/signup" render={() => <Register />} />
+                <Route
+                  exact
+                  path="/signin"
+                  render={() => (
+                    <Authentication
+                      isLoggedIn={isLoggedIn}
+                      isRegisterRoute={isRegisterRoute}
+                      setIsLoginRoute={setIsLoginRoute}
+                      setIsRegisterRoute={setIsRegisterRoute}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/signup"
+                  render={() => (
+                    <Authentication
+                      isLoggedIn={isLoggedIn}
+                      isRegisterRoute={isRegisterRoute}
+                      setIsLoginRoute={setIsLoginRoute}
+                      setIsRegisterRoute={setIsRegisterRoute}
+                    />
+                  )}
+                />
               </Switch>
             </>
           )}
