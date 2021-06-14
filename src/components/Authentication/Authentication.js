@@ -7,11 +7,8 @@ import { HeaderLogo } from '../../utils/utils';
 function Authentication({ isLoginRoute, isRegisterRoute }) {
   return (
     <section className="authentication">
-      <img
-        src={HeaderLogo}
-        alt="logo"
-        className="authentication__logo"
-      />
+
+      <img src={HeaderLogo} alt="logo" className="authentication__logo" />
 
       <h1 className="authentication__title">
         {isRegisterRoute ? 'Добро пожаловать!' : 'Рады видеть!'}
@@ -40,7 +37,9 @@ function Authentication({ isLoginRoute, isRegisterRoute }) {
         </button>
       </form>
 
-      <p className="authentication__subtitle">{isRegisterRoute ? 'Уже зарегистрированы?' : 'Ещё не зарегистрированы?'}</p>
+      <p className="authentication__subtitle">
+        {isRegisterRoute ? 'Уже зарегистрированы?' : 'Ещё не зарегистрированы?'}
+      </p>
 
       {isRegisterRoute ? (
         <Link to="/signin" className="authentication__link">
@@ -51,7 +50,6 @@ function Authentication({ isLoginRoute, isRegisterRoute }) {
           Регистрация
         </Link>
       )}
-
     </section>
   );
 }

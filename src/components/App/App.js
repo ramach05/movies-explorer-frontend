@@ -50,8 +50,6 @@ function App() {
                     <Authentication
                       isLoggedIn={isLoggedIn}
                       isRegisterRoute={isRegisterRoute}
-                      setIsLoginRoute={setIsLoginRoute}
-                      setIsRegisterRoute={setIsRegisterRoute}
                     />
                   )}
                 />
