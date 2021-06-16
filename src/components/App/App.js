@@ -42,6 +42,10 @@ function App() {
                     render={() => <SavedMovies />}
                   />
                   <Route exact path="/profile" render={() => <Profile />} />
+                </Switch>
+                <Footer />
+
+                <Switch>
                   <Route
                     exact
                     path="/signin"
@@ -60,7 +64,6 @@ function App() {
                     <NotFoundPage />
                   </Route>
                 </Switch>
-                <Footer />
               </>
             ) : (
               <>
