@@ -8,13 +8,14 @@
   min-height: 100vh;
 }
 
-.authentification__logo {
-  margin: 56px 0 50px;
+.authentification__logo__wrapper {
+  margin: 56px auto 50px;
 }
-.authentification__logo_hover {
+
+.authentification__logo-hover {
   transition: opacity 0.2s ease;
 }
-.authentification__logo_hover:hover {
+.authentification__logo-hover:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -34,7 +35,6 @@
 
 .authentification__form {
   display: grid;
-  grid-template: repeat(9, auto) 1fr / 1fr;
   align-content: start;
   width: 100%;
   max-width: 396px;
@@ -147,9 +147,9 @@
     padding: 0 calc(186 * 100vw / 768) 0;
   }
 
-  .authentification__logo {
+  .authentification__logo__wrapper {
     margin: 232px 0 40px;
-    justify-self: flex-start;
+    justify-self: start;
   }
 
   .authentification__title {
@@ -179,7 +179,4 @@
     font-size: 14px;
     line-height: 17px;
   }
-}
-
-@media screen and (min-width: 1280px) {
 }

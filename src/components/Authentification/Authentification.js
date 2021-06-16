@@ -5,22 +5,50 @@ import './Authentification.css';
 import { HeaderLogo } from '../../utils/utils';
 
 function Authentification({
-  isLoginRoute, isRegisterRoute, setIsLoginRoute, setIsRegisterRoute, isLoggedIn,
+  isLoginRoute,
+  isRegisterRoute,
+  setIsLoginRoute,
+  setIsRegisterRoute,
+  setIsMainRoute,
+  isLogged,
 }) {
+  const clg = () => {
+    console.log(4242);
+  };
+
   function handleAuthentificationLink() {
-    return !isLoginRoute
-      ? setIsRegisterRoute(false) && setIsLoginRoute(true)
-      : setIsRegisterRoute(true) && setIsLoginRoute(false);
+    if (isRegisterRoute) {
+      setIsRegisterRoute(false);
+      setIsLoginRoute(true);
+    } else {
+      setIsLoginRoute(false);
+      setIsRegisterRoute(true);
+    }
+  }
+
+  function handleHeaderLogo() {
+    setIsMainRoute(true);
+    setIsRegisterRoute(false);
+    setIsLoginRoute(false);
   }
 
   return (
     <main className="authentification">
-
-      {isLoggedIn ? (
-        <Link to="/">
-          <img src={HeaderLogo} alt="logo" className="authentification__logo authentification__logo_hover" />
+      {isLogged ? (
+        <Link
+          to="/"
+          onClick={handleHeaderLogo}
+          className="authentification__logo__wrapper"
+        >
+          <img
+            src={HeaderLogo}
+            alt="logo"
+            className="authentification__logo-hover"
+          />
         </Link>
-      ) : <img src={HeaderLogo} alt="logo" className="authentification__logo" />}
+      ) : (
+        <img src={HeaderLogo} alt="logo" />
+      )}
 
       <h1 className="authentification__title">
         {isRegisterRoute ? 'Добро пожаловать!' : 'Рады видеть!'}
@@ -44,6 +72,7 @@ function Authentification({
         <p className="authentification__input-name">E-mail</p>
         <input
           type="email"
+          autoComplete="on"
           className="authentification__input"
           name="register-input-email"
         />
@@ -54,6 +83,7 @@ function Authentification({
         <p className="authentification__input-name">Пароль</p>
         <input
           type="password"
+          autoComplete="on"
           className="authentification__input"
           name="register-input-password"
         />
@@ -68,20 +98,29 @@ function Authentification({
 
       <div className="authentification__container">
         <p className="authentification__subtitle">
-          {isRegisterRoute ? 'Уже зарегистрированы?' : 'Ещё не зарегистрированы?'}
+          {isRegisterRoute
+            ? 'Уже зарегистрированы?'
+            : 'Ещё не зарегистрированы?'}
         </p>
 
         {isRegisterRoute ? (
-          <Link to="/signin" className="authentification__link" onClick={handleAuthentificationLink}>
+          <Link
+            to="/signin"
+            className="authentification__link"
+            onClick={handleAuthentificationLink}
+          >
             Войти
           </Link>
         ) : (
-          <Link to="/signup" className="authentification__link" onClick={handleAuthentificationLink}>
+          <Link
+            to="/signup"
+            className="authentification__link"
+            onClick={handleAuthentificationLink}
+          >
             Регистрация
           </Link>
         )}
       </div>
-
     </main>
   );
 }

@@ -1,21 +1,27 @@
 module.exports = {
   env: {
-    es6: true,
+    commonjs: true,
+    node: true,
     browser: true,
-
+    es6: true,
+    jest: true,
   },
+
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+
+  plugins: [],
 
   extends: ['airbnb', 'airbnb/hooks'],
 
-  plugins: [
-    'import',
-    'jsx-a11y',
-    'react',
-    'react-hooks',
-  ],
-
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], // ошибки jsx в js файлах
-    'react/prop-types': 0, // определение типов для свойств компонентов
+    'react/jsx-filename-extension': 0,
+    'react/prop-types': 0,
+    'no-unused-vars': 1,
   },
 };

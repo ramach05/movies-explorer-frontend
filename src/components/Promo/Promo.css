@@ -76,6 +76,7 @@
     font-size: 40px;
     line-height: 50px;
     letter-spacing: 0;
+    max-width: 900px;
   }
 
   .promo__subtitle {

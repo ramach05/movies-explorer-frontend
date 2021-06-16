@@ -9,6 +9,12 @@ import HederLogo from '../../images/svg/header-logo.svg';
 function Header() {
   const history = useHistory();
 
+  function handleHeaderLogo() {
+  }
+
+  function handleHeaderLink() {
+  }
+
   function handleHeaderButton() {
     history.push('/signin');
   }

@@ -7,7 +7,7 @@ function Promo() {
   const history = useHistory();
 
   function handlePromoButton() {
-    history.push('/signin');
+    history.push('/');
   }
 
   return (
