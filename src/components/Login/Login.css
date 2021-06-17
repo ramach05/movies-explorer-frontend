@@ -13,6 +13,7 @@
 }
 
 .login__logo-hover {
+  display: block;
   transition: opacity 0.2s ease;
 }
 .login__logo-hover:hover {

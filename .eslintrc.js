@@ -23,5 +23,9 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     'no-unused-vars': 1,
+    'react/self-closing-comp': ['error', {
+      component: true,
+      html: false,
+    }],
   },
 };

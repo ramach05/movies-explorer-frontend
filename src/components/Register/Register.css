@@ -13,6 +13,7 @@
 }
 
 .register__logo-hover {
+  display: block;
   transition: opacity 0.2s ease;
 }
 .register__logo-hover:hover {

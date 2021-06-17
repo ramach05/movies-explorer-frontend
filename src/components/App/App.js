@@ -1,5 +1,6 @@
-import { React, useState } from 'react';
-import { Route, Switch } from 'react-router';
+/* eslint-disable max-len */
+import { React, useEffect, useState } from 'react';
+import { Route, Switch, useLocation } from 'react-router';
 
 import './App.css';
 
@@ -18,12 +19,22 @@ import AboutProject from '../AboutProject/AboutProject';
 import Preloader from '../Preloader/Preloader';
 import Promo from '../Promo/Promo';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import NavTab from '../NavTab/NavTab';
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
-  const [isLoginRoute, setIsLoginRoute] = useState(false);
-  const [isRegisterRoute, setIsRegisterRoute] = useState(false);
-  const [isMainRoute, setIsMainRoute] = useState(true);
+  const [isLogged, setIsLogged] = useState(true);
+  const [isAuthentificationRoute, setIsAuthentificationRoute] = useState(false);
+  const location = useLocation();
+
+  let AuthentificationRoute;
+
+  if (location.pathname !== '/signin' && location.pathname !== '/signup') {
+    AuthentificationRoute = false;
+  } else {
+    AuthentificationRoute = true;
+  }
+
+  console.log('AuthentificationRoute :>> ', AuthentificationRoute);
 
   return (
     <>
@@ -32,59 +43,24 @@ function App() {
           {isLogged
             ? (
               <>
-                <Header />
+                {!AuthentificationRoute ? <Header /> : null}
                 <Switch>
                   <Route exact path="/" render={() => <Main />} />
                   <Route exact path="/movies" render={() => <Movies />} />
-                  <Route
-                    exact
-                    path="/saved-movies"
-                    render={() => <SavedMovies />}
-                  />
+                  <Route exact path="/saved-movies" render={() => <SavedMovies />} />
                   <Route exact path="/profile" render={() => <Profile />} />
+                  <Route exact path="/signin" render={() => (<Login isLogged={isLogged} />)} />
+                  <Route exact path="/signup" render={() => (<Register isLogged={isLogged} />)} />
+                  <Route path="*" render={() => <NotFoundPage />} />
                 </Switch>
-                <Footer />
-
-                <Switch>
-                  <Route
-                    exact
-                    path="/signin"
-                    render={() => (
-                      <Login isLogged={isLogged} />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/signup"
-                    render={() => (
-                      <Register isLogged={isLogged} />
-                    )}
-                  />
-                  <Route path="*">
-                    <NotFoundPage />
-                  </Route>
-                </Switch>
+                {!AuthentificationRoute ? <Footer /> : null}
               </>
             ) : (
               <>
                 <Switch>
-                  <Route
-                    exact
-                    path="/signin"
-                    render={() => (
-                      <Login isLogged={isLogged} />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/signup"
-                    render={() => (
-                      <Register isLogged={isLogged} />
-                    )}
-                  />
-                  <Route path="*">
-                    <NotFoundPage />
-                  </Route>
+                  <Route exact path="/signin" render={() => (<Login isLogged={isLogged} />)} />
+                  <Route exact path="/signup" render={() => (<Register isLogged={isLogged} />)} />
+                  <Route path="*" render={() => <NotFoundPage />} />
                 </Switch>
               </>
             )}
