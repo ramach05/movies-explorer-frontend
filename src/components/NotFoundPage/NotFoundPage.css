@@ -1,7 +1,13 @@
 .not-found-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #202020;
+
   display: grid;
   grid-template: 50% auto 1fr / 1fr;
-  min-height: 100vh;
   justify-items: center;
   align-items: flex-end;
 }

@@ -1,0 +1,6 @@
+.movies {
+  /* align-self: end; */
+  padding: 0 calc(10 * 100vw / 320) 10px;
+  margin: 0;
+  display: grid;
+}

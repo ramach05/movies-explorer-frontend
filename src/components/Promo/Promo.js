@@ -7,7 +7,7 @@ function Promo() {
   const history = useHistory();
 
   function handlePromoButton() {
-    history.push('/');
+    history.push('/movies');
   }
 
   return (

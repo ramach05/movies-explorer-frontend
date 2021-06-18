@@ -1,39 +1,57 @@
 import { React } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './Navigation.css';
 
-function Navigation() {
-  const handleCloseNavigation = () => { };
+function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
+  const history = useHistory();
 
-  const handleAccountButton = () => {};
+  const handleCloseNavigation = () => {
+    setIsOpenNavigation(false);
+  };
+
+  const handleAccountButton = () => {
+    history.push('/profile');
+    setIsOpenNavigation(false);
+  };
 
   return (
-    <article className="navigation">
+    <article className={!isOpenNavigation ? 'navigation' : 'navigation navigation_open'}>
       <div className="navigation__container">
         <button
           type="button"
-        // className="navigation__close-button"
+          className="navigation__close-button"
           onClick={handleCloseNavigation}
         >
-          424242
         </button>
 
-        <nav>
+        <nav className="navigation__nav">
           <ul className="navigation__link-wrapper">
-            <li>
-              <Link to="/" className="navigation__link">
-                Назад
+            <li className="navigation__link__wrapper">
+              <Link
+                to="/"
+                className="navigation__link"
+                onClick={handleCloseNavigation}
+              >
+                Главная
               </Link>
             </li>
-            <li>
-              <Link to="/" className="navigation__link">
-                Назад
+            <li className="navigation__link__wrapper">
+              <Link
+                to="/movies"
+                className="navigation__link"
+                onClick={handleCloseNavigation}
+              >
+                Фильмы
               </Link>
             </li>
-            <li>
-              <Link to="/" className="navigation__link">
-                Назад
+            <li className="navigation__link__wrapper">
+              <Link
+                to="/saved-movies"
+                onClick={handleCloseNavigation}
+                className="navigation__link"
+              >
+                Сохранённые фильмы
               </Link>
             </li>
           </ul>

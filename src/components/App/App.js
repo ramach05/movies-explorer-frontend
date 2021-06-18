@@ -23,18 +23,10 @@ import NavTab from '../NavTab/NavTab';
 
 function App() {
   const [isLogged, setIsLogged] = useState(true);
-  const [isAuthentificationRoute, setIsAuthentificationRoute] = useState(false);
+  const [isOpenNavigation, setIsOpenNavigation] = useState(false);
   const location = useLocation();
 
-  let AuthentificationRoute;
-
-  if (location.pathname !== '/signin' && location.pathname !== '/signup') {
-    AuthentificationRoute = false;
-  } else {
-    AuthentificationRoute = true;
-  }
-
-  console.log('AuthentificationRoute :>> ', AuthentificationRoute);
+  const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
 
   return (
     <>
@@ -43,7 +35,7 @@ function App() {
           {isLogged
             ? (
               <>
-                {!AuthentificationRoute ? <Header /> : null}
+                {!authentificationRoute ? <Header setIsOpenNavigation={setIsOpenNavigation} /> : null}
                 <Switch>
                   <Route exact path="/" render={() => <Main />} />
                   <Route exact path="/movies" render={() => <Movies />} />
@@ -53,7 +45,11 @@ function App() {
                   <Route exact path="/signup" render={() => (<Register isLogged={isLogged} />)} />
                   <Route path="*" render={() => <NotFoundPage />} />
                 </Switch>
-                {!AuthentificationRoute ? <Footer /> : null}
+                {!authentificationRoute ? <Footer /> : null}
+                <Navigation
+                  isOpenNavigation={isOpenNavigation}
+                  setIsOpenNavigation={setIsOpenNavigation}
+                />
               </>
             ) : (
               <>

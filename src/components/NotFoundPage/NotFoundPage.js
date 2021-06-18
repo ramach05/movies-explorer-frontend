@@ -5,7 +5,7 @@ import './NotFoundPage.css';
 
 function NotFoundPage() {
   const history = useHistory();
-  console.log('history :>> ', history);
+  // console.log('history :>> ', history);
 
   return (
     <main className="not-found-page">
