@@ -2,9 +2,13 @@
   background-color: #073042;
   display: grid;
   grid-template: auto / auto 1fr;
-  align-items: center;
+  align-items: flex-start;
   justify-items: flex-end;
-  padding: 18px calc(14 * 100vw / 320) 88px;
+  padding: 18px calc(14 * 100vw / 320) 93px;
+}
+
+.header__burger-bg {
+  background-color: #202020;
 }
 
 .header__logo {
@@ -65,6 +69,9 @@
 
 .header__burger {
   background: url(../../images/svg/burger-logo.svg) no-repeat;
+  background-size: 40px 43px;
+  background-size: cover;
+  background-position-y: -3px;
   width: 40px;
   height: 43px;
   border: none;
@@ -79,7 +86,7 @@
 
 @media screen and (min-width: 768px) {
   .header {
-    padding: 18px calc(30 * 100vw / 768) 158px;
+    padding: 18px calc(30 * 100vw / 768) 93px;
   }
 
   .header__button {
@@ -90,14 +97,23 @@
   .header__link {
     font-size: 12px;
   }
+
+  .header__burger {
+    background-size: 54px 52px;
+    background-position: -9px -8px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .header {
-    padding: 21px calc(70 * 100vw / 1280) 92px;
+    padding: 18px calc(70 * 100vw / 1280) 77px;
   }
 
   .header__link {
     margin: 0 calc(30 * 100vw / 1280) 0 0;
+  }
+
+  .header__burger {
+    display: none;
   }
 }

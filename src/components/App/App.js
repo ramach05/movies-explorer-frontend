@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import { Route, Switch, useLocation } from 'react-router';
 
 import './App.css';
@@ -13,13 +13,7 @@ import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-// import Authentification from '../Authentification/Authentification';
-import AboutMe from '../AboutMe/AboutMe';
-import AboutProject from '../AboutProject/AboutProject';
-import Preloader from '../Preloader/Preloader';
-import Promo from '../Promo/Promo';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import NavTab from '../NavTab/NavTab';
 
 function App() {
   const [isLogged, setIsLogged] = useState(true);
@@ -27,6 +21,7 @@ function App() {
   const location = useLocation();
 
   const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
+  const menuRoute = ['/movies', '/saved-movies', '/profile'].includes(location.pathname);
 
   return (
     <>
@@ -35,7 +30,18 @@ function App() {
           {isLogged
             ? (
               <>
-                {!authentificationRoute ? <Header setIsOpenNavigation={setIsOpenNavigation} /> : null}
+                {!authentificationRoute ? (
+                  <Header
+                    setIsOpenNavigation={setIsOpenNavigation}
+                    menuRoute={menuRoute}
+                  />
+                ) : null}
+                <Navigation
+                  isOpenNavigation={isOpenNavigation}
+                  setIsOpenNavigation={setIsOpenNavigation}
+                  menuRoute={menuRoute}
+                />
+
                 <Switch>
                   <Route exact path="/" render={() => <Main />} />
                   <Route exact path="/movies" render={() => <Movies />} />
@@ -45,11 +51,8 @@ function App() {
                   <Route exact path="/signup" render={() => (<Register isLogged={isLogged} />)} />
                   <Route path="*" render={() => <NotFoundPage />} />
                 </Switch>
+
                 {!authentificationRoute ? <Footer /> : null}
-                <Navigation
-                  isOpenNavigation={isOpenNavigation}
-                  setIsOpenNavigation={setIsOpenNavigation}
-                />
               </>
             ) : (
               <>

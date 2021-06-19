@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import './NotFoundPage.css';
 
 function NotFoundPage() {
-  const history = useHistory();
+  // const history = useHistory();
   // console.log('history :>> ', history);
 
   return (

@@ -1,16 +1,11 @@
 import { Link, useHistory, useLocation } from 'react-router-dom';
-// import { useHistory } from "react-router";
-
 import { React } from 'react';
-import './Header.css';
 
+import './Header.css';
 import HederLogo from '../../images/svg/header-logo.svg';
 
-function Header({ setIsOpenNavigation }) {
+function Header({ setIsOpenNavigation, menuRoute }) {
   const history = useHistory();
-  const location = useLocation();
-
-  const burgerMenuRoute = ['/movies', '/saved-movies', '/profile'].includes(location.pathname);
 
   function handleHeaderButton() {
     history.push('/signin');
@@ -20,12 +15,13 @@ function Header({ setIsOpenNavigation }) {
   }
 
   return (
-    <div className="header">
+    <div className={!menuRoute ? 'header' : 'header header__burger-bg'}>
       <Link to="/">
         <img src={HederLogo} alt="logo" className="header__logo" />
       </Link>
+
       <nav className="header__nav">
-        {!burgerMenuRoute ? (
+        {!menuRoute ? (
           <>
             <Link to="/signup" className="header__link">
               Регистрация

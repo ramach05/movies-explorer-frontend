@@ -1,9 +1,9 @@
 import { React } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import './Navigation.css';
 
-function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
+function Navigation({ isOpenNavigation, setIsOpenNavigation, menuRoute }) {
   const history = useHistory();
 
   const handleCloseNavigation = () => {
@@ -15,8 +15,9 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
     setIsOpenNavigation(false);
   };
 
+  if (!menuRoute) { return null; }
   return (
-    <article className={!isOpenNavigation ? 'navigation' : 'navigation navigation_open'}>
+    <aside className={!isOpenNavigation ? 'navigation' : 'navigation navigation_open'}>
       <div className="navigation__container">
         <button
           type="button"
@@ -26,8 +27,8 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
         </button>
 
         <nav className="navigation__nav">
-          <ul className="navigation__link-wrapper">
-            <li className="navigation__link__wrapper">
+          <ul className="navigation__link-container">
+            <li className="navigation__link-wrapper">
               <Link
                 to="/"
                 className="navigation__link"
@@ -36,7 +37,7 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
                 Главная
               </Link>
             </li>
-            <li className="navigation__link__wrapper">
+            <li className="navigation__link-wrapper">
               <Link
                 to="/movies"
                 className="navigation__link"
@@ -45,7 +46,7 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
                 Фильмы
               </Link>
             </li>
-            <li className="navigation__link__wrapper">
+            <li className="navigation__link-wrapper">
               <Link
                 to="/saved-movies"
                 onClick={handleCloseNavigation}
@@ -66,8 +67,7 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
           </button>
         </nav>
       </div>
-    </article>
-
+    </aside>
   );
 }
 

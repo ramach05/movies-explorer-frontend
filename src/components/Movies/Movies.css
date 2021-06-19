@@ -1,6 +1,18 @@
 .movies {
-  /* align-self: end; */
-  padding: 0 calc(10 * 100vw / 320) 10px;
+  padding: 0 calc(10 * 100vw / 320) 159px;
   margin: 0;
   display: grid;
+  grid-template: auto 1fr / 1fr;
+}
+
+@media screen and (min-width: 768px) {
+  .movies {
+    padding: 0 calc(30 * 100vw / 768) 49px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .movies {
+    padding: 0 calc(70 * 100vw / 1280) 70px;
+  }
 }
