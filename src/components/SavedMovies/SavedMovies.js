@@ -1,13 +1,13 @@
 import { React } from 'react';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 function SavedMovies() {
   return (
-    <>
-      <div>SavedMovies</div>
-
-      {/* <MoviesCardList />
-      <MoviesCard /> */}
-    </>
+    <main className="movies">
+      <SearchForm />
+      <MoviesCardList />
+    </main>
   );
 }
 

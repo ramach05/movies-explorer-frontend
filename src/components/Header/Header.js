@@ -1,4 +1,4 @@
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { React } from 'react';
 
 import './Header.css';

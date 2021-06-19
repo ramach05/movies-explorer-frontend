@@ -12,6 +12,7 @@
   display: grid;
   grid-template-columns: 1fr;
   justify-content: end;
+  z-index: 55;
 }
 
 .navigation__container {
@@ -193,10 +194,9 @@
   .navigation__link-wrapper {
     margin: 0 16px 0 0;
   }
-    .navigation__link-wrapper:first-child{
+  .navigation__link-wrapper:first-child {
     display: none;
   }
-
 
   .navigation__link {
     font-size: 13px;

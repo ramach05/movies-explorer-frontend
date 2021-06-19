@@ -65,7 +65,7 @@
   height: 12px;
   background: transparent;
   transition: opacity 0.2s ease;
-  background: url(../../images/svg/movies-card-dislike.svg) no-repeat;
+  background: url(../../images/svg/movies-card-dislike.svg) no-repeat center;
 }
 .movies-card__like:hover {
   opacity: 0.6;
@@ -73,6 +73,9 @@
 }
 .movies-card__like_active {
   background: url(../../images/svg/movies-card-like.svg) no-repeat;
+}
+.movies-card__delete {
+  background: url(../../images/svg/movies-card-delete.svg) no-repeat center;
 }
 
 @media screen and (min-width: 768px) {
