@@ -20,6 +20,7 @@ function App() {
   const location = useLocation();
 
   const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
+  const profileRoute = ['/profile'].includes(location.pathname);
   const menuRoute = ['/movies', '/saved-movies', '/profile'].includes(location.pathname);
 
   return (
@@ -51,7 +52,7 @@ function App() {
                   <Route path="*" render={() => <NotFoundPage />} />
                 </Switch>
 
-                {!authentificationRoute ? <Footer /> : null}
+                {(!authentificationRoute && !profileRoute) ? <Footer /> : null}
               </>
             ) : (
               <>

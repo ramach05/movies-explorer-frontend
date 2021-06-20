@@ -17,6 +17,7 @@
 }
 .header__logo:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 .header__nav {

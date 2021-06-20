@@ -27,5 +27,7 @@ module.exports = {
       component: true,
       html: false,
     }],
+    'jsx-a11y/label-has-associated-control': 0,
   },
+
 };
