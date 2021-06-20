@@ -1,12 +1,9 @@
 import { React } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './NotFoundPage.css';
 
 function NotFoundPage() {
-  // const history = useHistory();
-  // console.log('history :>> ', history);
-
   return (
     <main className="not-found-page">
       <h1 className="not-found-page__title">404</h1>
