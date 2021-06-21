@@ -18,11 +18,11 @@
 }
 .login__logo-hover:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 
 .login__title {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -43,7 +43,7 @@
 }
 
 .login__input-name {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
@@ -55,7 +55,7 @@
 }
 
 .login__input {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -71,7 +71,7 @@
 }
 
 .login__input-error {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
@@ -83,7 +83,7 @@
 }
 
 .login__button-submit {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -102,7 +102,7 @@
 }
 .login__button-submit:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 
 .login__container {
@@ -112,7 +112,7 @@
 }
 
 .login__subtitle {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -125,7 +125,7 @@
 }
 
 .login__link {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

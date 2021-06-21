@@ -34,6 +34,7 @@ function Register({ isLogged }) {
         <p className="register__input-name">Имя</p>
         <input
           type="text"
+          required
           className="register__input"
           name="register-input-text"
         />
@@ -44,6 +45,7 @@ function Register({ isLogged }) {
         <p className="register__input-name">E-mail</p>
         <input
           type="email"
+          required
           autoComplete="on"
           className="register__input"
           name="register-input-email"
@@ -55,6 +57,7 @@ function Register({ isLogged }) {
         <p className="register__input-name">Пароль</p>
         <input
           type="password"
+          required
           autoComplete="on"
           className="register__input"
           name="register-input-password"

@@ -33,7 +33,7 @@
   width: 25px;
   height: 25px;
   border: none;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
   margin: 15px 25px 100px 0;
   padding: 0;
   justify-self: end;
@@ -41,7 +41,7 @@
 }
 .navigation__close-button:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 
 .navigation__nav {
@@ -63,7 +63,7 @@
 }
 
 .navigation__link {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -79,7 +79,7 @@
 }
 .navigation__link:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 .navigation__link::before {
   content: "";
@@ -110,7 +110,7 @@
 }
 .navigation__account-button:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 .navigation__account-button::before {
   content: "";
@@ -129,7 +129,7 @@
 }
 
 .navigation__account-button__text {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;

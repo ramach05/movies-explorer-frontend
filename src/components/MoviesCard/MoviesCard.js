@@ -44,7 +44,7 @@ function MoviesCard() {
           type="button"
           aria-label="card delete-button"
           className="movies-card__like movies-card__delete"
-          onClick={handleCardLike}
+          onClick={handleCardDelete}
         >
         </button>
       )}
