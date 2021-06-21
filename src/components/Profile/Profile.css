@@ -91,7 +91,7 @@
 }
 .profile__form-submit:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 .profile__exit-button {
@@ -111,7 +111,7 @@
 }
 .profile__exit-button:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

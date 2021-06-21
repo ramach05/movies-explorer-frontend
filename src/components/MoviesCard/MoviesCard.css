@@ -69,7 +69,7 @@
 }
 .movies-card__like:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 .movies-card__like_active {
   background: url(../../images/svg/movies-card-like.svg) no-repeat;
