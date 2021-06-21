@@ -34,6 +34,7 @@ function Login({ isLogged }) {
         <p className="login__input-name">E-mail</p>
         <input
           type="email"
+          required
           autoComplete="on"
           className="login__input"
           name="register-input-email"
@@ -45,6 +46,7 @@ function Login({ isLogged }) {
         <p className="login__input-name">Пароль</p>
         <input
           type="password"
+          required
           autoComplete="on"
           className="login__input"
           name="register-input-password"

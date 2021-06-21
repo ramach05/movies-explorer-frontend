@@ -18,11 +18,11 @@
 }
 .register__logo-hover:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 
 .register__title {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -43,7 +43,7 @@
 }
 
 .register__input-name {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
@@ -55,7 +55,7 @@
 }
 
 .register__input {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -71,7 +71,7 @@
 }
 
 .register__input-error {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
@@ -83,7 +83,7 @@
 }
 
 .register__button-submit {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -102,7 +102,7 @@
 }
 .register__button-submit:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 
 .register__container {
@@ -112,7 +112,7 @@
 }
 
 .register__subtitle {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -125,7 +125,7 @@
 }
 
 .register__link {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

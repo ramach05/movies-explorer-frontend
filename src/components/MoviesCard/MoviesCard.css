@@ -32,7 +32,7 @@
 }
 
 .movies-card__text__title {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -44,7 +44,7 @@
 }
 
 .movies-card__text__duration {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 11px;
@@ -69,7 +69,7 @@
 }
 .movies-card__like:hover {
   opacity: 0.6;
-  cursor: pointer;
+  cursor: poInter, sans-serif;
 }
 .movies-card__like_active {
   background: url(../../images/svg/movies-card-like.svg) no-repeat;

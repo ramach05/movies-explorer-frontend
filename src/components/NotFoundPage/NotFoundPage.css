@@ -13,7 +13,7 @@
 }
 
 .not-found-page__title {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 80px;
@@ -26,7 +26,7 @@
 }
 
 .not-found-page__text {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -39,7 +39,7 @@
 }
 
 .not-found-page__link {
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
