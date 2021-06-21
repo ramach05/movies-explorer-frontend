@@ -18,7 +18,7 @@
 }
 .login__logo-hover:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 .login__title {
@@ -102,7 +102,7 @@
 }
 .login__button-submit:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 .login__container {

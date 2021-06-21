@@ -45,7 +45,7 @@
 }
 .movies-card-list__button:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

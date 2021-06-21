@@ -33,7 +33,7 @@
   width: 25px;
   height: 25px;
   border: none;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
   margin: 15px 25px 100px 0;
   padding: 0;
   justify-self: end;
@@ -41,7 +41,7 @@
 }
 .navigation__close-button:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 .navigation__nav {
@@ -79,7 +79,7 @@
 }
 .navigation__link:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 .navigation__link::before {
   content: "";
@@ -110,7 +110,7 @@
 }
 .navigation__account-button:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 .navigation__account-button::before {
   content: "";

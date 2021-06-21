@@ -18,7 +18,7 @@
 }
 .register__logo-hover:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 .register__title {
@@ -102,7 +102,7 @@
 }
 .register__button-submit:hover {
   opacity: 0.6;
-  cursor: poInter, sans-serif;
+  cursor: pointer;
 }
 
 .register__container {
