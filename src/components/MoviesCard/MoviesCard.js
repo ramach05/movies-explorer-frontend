@@ -2,9 +2,8 @@ import { React, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './MoviesCard.css';
-import Picture from '../../images/pic.jpg';
 
-function MoviesCard() {
+function MoviesCard({ card }) {
   const [cardLike, setCardLike] = useState(false);
   const location = useLocation();
 
@@ -18,17 +17,22 @@ function MoviesCard() {
 
   return (
     <li className="movies-card">
-      <div className="movies-card__pic-wrapper">
+      <a
+        href={card.trailerLink}
+        target="_blank"
+        rel="noreferrer"
+        className="movies-card__pic-wrapper"
+      >
         <img
-          src={Picture}
+          src={card.imageUrl}
           alt="movies-card pic"
           className="movies-card__pic"
         />
-      </div>
+      </a>
 
       <div className="movies-card__text">
-        <p className="movies-card__text__title">33 слова о дизайне</p>
-        <p className="movies-card__text__duration">1ч 42м</p>
+        <p className="movies-card__text__title">{card.nameRU}</p>
+        <p className="movies-card__text__duration">{card.duration}</p>
       </div>
 
       {!savedMoviesRoute ? (

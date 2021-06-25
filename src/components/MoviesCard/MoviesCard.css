@@ -5,6 +5,12 @@
 
   display: grid;
   grid-template: auto / 1fr auto;
+
+  transition: background 0.2s ease;
+}
+.movies-card:hover {
+  background: rgba(47, 47, 47, 0.6);
+  cursor: auto;
 }
 
 .movies-card__pic-wrapper {
