@@ -1,4 +1,35 @@
-// export const MAIN_URL = 'https://api.movies-explorer-roman.nomoredomains.icu/';
+const handleResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(new Error(`ОШИБКА: ${res.status}`));
+};
+
+class Api {
+  constructor(config) {
+    this._baseUrl = config.baseUrl;
+    this._headers = config.headers;
+  }
+
+  getMovies() {
+    return fetch(`${this._baseUrl}`, {
+      method: 'GET',
+      headers: this._headers,
+    }).then(handleResponse);
+  }
+}
+
+const MAIN_URL = 'https://api.movies-explorer-roman.nomoredomains.icu/';
+
+const apiMain = new Api({
+  baseUrl: MAIN_URL,
+  headers: {
+    // authorization: localStorage.getItem('token'),
+    'Content-Type': 'application/json; charset=UTF-8',
+  },
+});
+
+export default apiMain;
 
 const a = [{
   id: 1,

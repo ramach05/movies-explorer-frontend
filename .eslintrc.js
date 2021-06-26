@@ -30,6 +30,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 0,
     'no-underscore-dangle': 0,
     'no-debugger': 1,
+    'global-require': 1,
   },
 
 };

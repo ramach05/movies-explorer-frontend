@@ -34,7 +34,7 @@
   height: 25px;
   border: none;
   cursor: pointer;
-  margin: 15px 25px 100px 0;
+  margin: 25px 23px 100px 0;
   padding: 0;
   justify-self: end;
   transition: opacity 0.2s ease;
@@ -153,6 +153,9 @@
   .navigation__container {
     width: 520px;
     margin-left: auto;
+  }
+  .navigation__close-button {
+    margin: 25px 40px 100px 0;
   }
 }
 

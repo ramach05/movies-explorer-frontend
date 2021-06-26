@@ -4,13 +4,13 @@ const handleResponse = (res) => {
   } return Promise.reject(new Error(`ОШИБКА: ${res.status}`));
 };
 
-export class Api {
+class Api {
   constructor(config) {
     this._baseUrl = config.baseUrl;
     this._headers = config.headers;
   }
 
-  getInitialCards() {
+  getInitialMovies() {
     return fetch(`${this._baseUrl}`, {
       method: 'GET',
       headers: this._headers,
@@ -18,12 +18,14 @@ export class Api {
   }
 }
 
-export const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 
-export const api = new Api({
+const apiMovies = new Api({
   baseUrl: MOVIES_URL,
   headers: {
     // authorization: localStorage.getItem('token'),
     'Content-Type': 'application/json; charset=UTF-8',
   },
 });
+
+export default apiMovies;

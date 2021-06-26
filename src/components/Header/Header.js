@@ -2,7 +2,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { React } from 'react';
 
 import './Header.css';
-import HederLogo from '../../images/svg/header-logo.svg';
+import HeaderLogo from '../../images/svg/header-logo.svg';
 
 function Header({ setIsOpenNavigation, menuRoute }) {
   const history = useHistory();
@@ -17,7 +17,7 @@ function Header({ setIsOpenNavigation, menuRoute }) {
   return (
     <div className={!menuRoute ? 'header' : 'header header__burger-bg'}>
       <Link to="/">
-        <img src={HederLogo} alt="logo" className="header__logo" />
+        <img src={HeaderLogo} alt="logo" className="header__logo" />
       </Link>
 
       <nav className="header__nav">

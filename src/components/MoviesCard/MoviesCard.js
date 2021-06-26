@@ -1,16 +1,20 @@
 import { React, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useAppContext } from '../../utils/AppContext';
 
 import './MoviesCard.css';
 
 function MoviesCard({ card }) {
+  const { savedMovies, setSavedMovies } = useAppContext();
   const [cardLike, setCardLike] = useState(false);
   const location = useLocation();
 
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
-  const handleCardLike = () => {
+  const handleCardLike = (e) => {
     setCardLike(!cardLike);
+    setSavedMovies([...savedMovies, e.target.closest('.movies-card')]);
+    localStorage.setItem('savedMovies', savedMovies);
   };
 
   const handleCardDelete = () => {};

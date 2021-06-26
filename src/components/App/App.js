@@ -13,6 +13,7 @@ import Profile from '../Profile/Profile';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { AppContext } from '../../utils/AppContext';
 
 function App() {
   const [isLogged, setIsLogged] = useState(true);
@@ -24,7 +25,7 @@ function App() {
   const menuRoute = ['/movies', '/saved-movies', '/profile'].includes(location.pathname);
 
   return (
-    <>
+    <AppContext>
       <div className="body">
         <div className="page">
           {isLogged
@@ -65,7 +66,7 @@ function App() {
             )}
         </div>
       </div>
-    </>
+    </AppContext>
   );
 }
 
