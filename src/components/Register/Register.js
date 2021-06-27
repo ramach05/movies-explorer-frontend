@@ -2,20 +2,22 @@ import {
   React, useState, useRef, useEffect,
 } from 'react';
 import { Link } from 'react-router-dom';
+import { HeaderLogo } from '../../utils/utils';
 
 import './Register.css';
-import { HeaderLogo } from '../../utils/utils';
 
 function Register({ isLogged }) {
   const formRef = useRef();
+  const inputNameRef = useRef();
+  const inputEmailRef = useRef();
   const inputPasswordRef = useRef();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isInputNameValid, setIsInputNameValid] = useState(false);
   const [isInputEmailValid, setIsInputEmailValid] = useState(false);
   const [isInputPasswordValid, setIsInputPasswordValid] = useState(false);
-  const [isInputNameError, setIsInputNameError] = useState(false);
-  const [isInputEmailError, setIsInputEmailError] = useState(false);
-  const [isInputPasswordError, setIsInputPasswordError] = useState(false);
+  const [isInputNameError, setIsInputNameError] = useState('');
+  const [isInputEmailError, setIsInputEmailError] = useState('');
+  const [isInputPasswordError, setIsInputPasswordError] = useState('');
 
   useEffect(() => {
     if (!isInputNameValid || !isInputEmailValid || !isInputPasswordValid) {
@@ -30,32 +32,36 @@ function Register({ isLogged }) {
     if (name === 'register-input-name') {
       if (!validity.valid) {
         setIsInputNameValid(false);
-        setIsInputNameError(true);
+        setIsInputNameError(inputNameRef.current.validationMessage);
       } else {
         setIsInputNameValid(true);
-        setIsInputNameError(false);
+        setIsInputNameError('');
       }
     } else if (name === 'register-input-email') {
       if (!validity.valid) {
         setIsInputEmailValid(false);
-        setIsInputEmailError(true);
+        setIsInputEmailError(inputEmailRef.current.validationMessage);
       } else {
         setIsInputEmailValid(true);
-        setIsInputEmailError(false);
+        setIsInputEmailError('');
       }
     } else if (name === 'register-input-password') {
       if (!validity.valid) {
         setIsInputPasswordValid(false);
-        setIsInputPasswordError(true);
-        console.log(isInputPasswordError);
-        console.log('inputPasswordRef.current.validationMessage :>> ', inputPasswordRef.current.validationMessage);
+        setIsInputPasswordError(inputPasswordRef.current.validationMessage);
       } else {
         setIsInputPasswordValid(true);
-        setIsInputPasswordError(false);
+        setIsInputPasswordError('');
       }
-    } else {
-      console.log('else42');
     }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    formRef.current.reset();
+    setIsInputNameValid(false);
+    setIsInputEmailValid(false);
+    setIsInputPasswordValid(false);
   }
 
   return (
@@ -83,7 +89,11 @@ function Register({ isLogged }) {
         Добро пожаловать!
       </h1>
 
-      <form className="register__form" ref={formRef}>
+      <form
+        className="register__form"
+        ref={formRef}
+        onSubmit={handleSubmit}
+      >
         <p className="register__input-name">Имя</p>
         <input
           type="text"
@@ -93,10 +103,11 @@ function Register({ isLogged }) {
           minLength="2"
           maxLength="30"
           pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
+          ref={inputNameRef}
           onChange={handleChange}
         />
         <span className="register__input-error">
-          {!isInputNameError ? '' : formRef.current['register-input-name'].validationMessage}
+          {isInputNameError && `${isInputNameError}`}
         </span>
 
         <p className="register__input-name">E-mail</p>
@@ -107,10 +118,11 @@ function Register({ isLogged }) {
           className="register__input"
           name="register-input-email"
           maxLength="30"
+          ref={inputEmailRef}
           onChange={handleChange}
         />
         <span className="register__input-error">
-          {!isInputEmailError ? '' : formRef.current['register-input-email'].validationMessage}
+          {isInputEmailError && `${isInputEmailError}`}
         </span>
 
         <p className="register__input-name">Пароль</p>
@@ -126,7 +138,7 @@ function Register({ isLogged }) {
           onChange={handleChange}
         />
         <span className="register__input-error">
-          {!isInputPasswordError ? '' : inputPasswordRef.current.validationMessage}
+          {isInputPasswordError && `${isInputPasswordError}`}
         </span>
 
         <button

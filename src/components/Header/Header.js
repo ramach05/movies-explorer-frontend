@@ -2,7 +2,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { React } from 'react';
 
 import './Header.css';
-import HeaderLogo from '../../images/svg/header-logo.svg';
+import { HeaderLogo } from '../../utils/utils';
 
 function Header({ setIsOpenNavigation, menuRoute }) {
   const history = useHistory();
