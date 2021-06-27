@@ -8,15 +8,15 @@
   min-height: 100vh;
 }
 
-.register__logo__wrapper {
+.register__logo-wrapper {
   margin: 56px auto 50px;
 }
 
-.register__logo-hover {
+.register__logo-link {
   display: block;
   transition: opacity 0.2s ease;
 }
-.register__logo-hover:hover {
+.register__logo-link:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -82,6 +82,9 @@
   padding: 0;
   min-height: 24px;
 }
+.register__input-error_button {
+  text-align: center;
+}
 
 .register__button-submit {
   font-family: Inter, sans-serif;
@@ -92,7 +95,7 @@
   text-align: center;
   color: #ffffff;
 
-  margin: 0;
+  margin: 0 0 6px;
   padding: 0;
   align-self: flex-end;
   background: #4285f4;
@@ -160,7 +163,7 @@
     margin: 0 auto;
   }
 
-  .register__logo__wrapper {
+  .register__logo-wrapper {
     margin: 20% 0 40px;
     justify-self: start;
   }
@@ -179,7 +182,7 @@
     font-size: 14px;
     line-height: 17px;
     max-width: 396px;
-    margin: 0 auto;
+    margin: 0 auto 6px;
     width: 100%;
   }
 

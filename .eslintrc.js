@@ -31,6 +31,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-debugger': 1,
     'global-require': 1,
+    'prefer-promise-reject-errors': 0,
   },
 
 };

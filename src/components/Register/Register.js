@@ -2,6 +2,7 @@ import {
   React, useState, useRef, useEffect,
 } from 'react';
 import { Link } from 'react-router-dom';
+import apiMain from '../../utils/MainApi';
 import { HeaderLogo } from '../../utils/utils';
 
 import './Register.css';
@@ -11,16 +12,18 @@ function Register({ isLogged }) {
   const inputNameRef = useRef();
   const inputEmailRef = useRef();
   const inputPasswordRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [buttonError, setButtonError] = useState('');
   const [isInputNameValid, setIsInputNameValid] = useState(false);
   const [isInputEmailValid, setIsInputEmailValid] = useState(false);
   const [isInputPasswordValid, setIsInputPasswordValid] = useState(false);
-  const [isInputNameError, setIsInputNameError] = useState('');
-  const [isInputEmailError, setIsInputEmailError] = useState('');
-  const [isInputPasswordError, setIsInputPasswordError] = useState('');
+  const [inputNameError, setInputNameError] = useState('');
+  const [inputEmailError, setInputEmailError] = useState('');
+  const [inputPasswordError, setInputPasswordError] = useState('');
 
   useEffect(() => {
-    if (!isInputNameValid || !isInputEmailValid || !isInputPasswordValid) {
+    if (!formRef.current.checkValidity()) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
@@ -32,68 +35,71 @@ function Register({ isLogged }) {
     if (name === 'register-input-name') {
       if (!validity.valid) {
         setIsInputNameValid(false);
-        setIsInputNameError(inputNameRef.current.validationMessage);
+        setInputNameError(inputNameRef.current.validationMessage);
       } else {
         setIsInputNameValid(true);
-        setIsInputNameError('');
+        setInputNameError('');
       }
     } else if (name === 'register-input-email') {
       if (!validity.valid) {
+        console.log('e.target.validity :>> ', e.target.validity);
         setIsInputEmailValid(false);
-        setIsInputEmailError(inputEmailRef.current.validationMessage);
+        setInputEmailError(inputEmailRef.current.validationMessage);
       } else {
         setIsInputEmailValid(true);
-        setIsInputEmailError('');
+        setInputEmailError('');
       }
     } else if (name === 'register-input-password') {
       if (!validity.valid) {
         setIsInputPasswordValid(false);
-        setIsInputPasswordError(inputPasswordRef.current.validationMessage);
+        setInputPasswordError(inputPasswordRef.current.validationMessage);
       } else {
         setIsInputPasswordValid(true);
-        setIsInputPasswordError('');
+        setInputPasswordError('');
       }
     }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    formRef.current.reset();
-    setIsInputNameValid(false);
-    setIsInputEmailValid(false);
-    setIsInputPasswordValid(false);
+    setIsButtonDisabled(true);
+    setIsLoading(true);
+
+    apiMain
+      .createUser({
+        name: inputNameRef.current.value,
+        email: inputEmailRef.current.value,
+        password: inputPasswordRef.current.value,
+      })
+      .then(() => {
+        formRef.current.reset();
+        setIsInputNameValid(false);
+        setIsInputEmailValid(false);
+        setIsInputPasswordValid(false);
+        setButtonError('');
+      })
+      .catch((err) => {
+        setButtonError(err);
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   return (
     <main className="register">
       {isLogged ? (
-        <Link
-          to="/"
-          className="register__logo__wrapper"
-        >
-          <img
-            src={HeaderLogo}
-            alt="logo"
-            className="register__logo-hover"
-          />
+        <Link to="/" className="register__logo-wrapper">
+          <img src={HeaderLogo} alt="logo" className="register__logo-link" />
         </Link>
       ) : (
-        <img
-          src={HeaderLogo}
-          alt="logo"
-          className="register__logo__wrapper"
-        />
+        <img src={HeaderLogo} alt="logo" className="register__logo-wrapper" />
       )}
 
-      <h1 className="register__title">
-        Добро пожаловать!
-      </h1>
+      <h1 className="register__title">Добро пожаловать!</h1>
 
-      <form
-        className="register__form"
-        ref={formRef}
-        onSubmit={handleSubmit}
-      >
+      <form className="register__form" ref={formRef} onSubmit={handleSubmit}>
         <p className="register__input-name">Имя</p>
         <input
           type="text"
@@ -107,7 +113,7 @@ function Register({ isLogged }) {
           onChange={handleChange}
         />
         <span className="register__input-error">
-          {isInputNameError && `${isInputNameError}`}
+          {inputNameError && `${inputNameError}`}
         </span>
 
         <p className="register__input-name">E-mail</p>
@@ -118,11 +124,12 @@ function Register({ isLogged }) {
           className="register__input"
           name="register-input-email"
           maxLength="30"
+          pattern='^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
           ref={inputEmailRef}
           onChange={handleChange}
         />
         <span className="register__input-error">
-          {isInputEmailError && `${isInputEmailError}`}
+          {inputEmailError && `${inputEmailError}`}
         </span>
 
         <p className="register__input-name">Пароль</p>
@@ -138,30 +145,31 @@ function Register({ isLogged }) {
           onChange={handleChange}
         />
         <span className="register__input-error">
-          {isInputPasswordError && `${isInputPasswordError}`}
+          {inputPasswordError && `${inputPasswordError}`}
         </span>
 
         <button
           type="submit"
-          className={!isButtonDisabled ? 'register__button-submit' : 'register__button-submit register__button-submit_disabled'}
+          className={
+            !isButtonDisabled
+              ? 'register__button-submit'
+              : 'register__button-submit register__button-submit_disabled'
+          }
           disabled={isButtonDisabled}
         >
-          Зарегистрироваться
+          {!isLoading ? 'Зарегистрироваться' : 'Регистрация...'}
         </button>
+        <span className="register__input-error register__input-error_button">
+          {buttonError && `${buttonError}`}
+        </span>
       </form>
 
       <div className="register__container">
-        <p className="register__subtitle">
-          Уже зарегистрированы?
-        </p>
+        <p className="register__subtitle">Уже зарегистрированы?</p>
 
-        <Link
-          to="/signin"
-          className="register__link"
-        >
+        <Link to="/signin" className="register__link">
           Войти
         </Link>
-
       </div>
     </main>
   );

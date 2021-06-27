@@ -2,7 +2,7 @@ const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(new Error(`ОШИБКА: ${res.status}`));
+  return Promise.reject(`ОШИБКА: ${res.status}`);
 };
 
 class Api {
@@ -17,14 +17,23 @@ class Api {
       headers: this._headers,
     }).then(handleResponse);
   }
+
+  createUser({ name, password, email }) {
+    return fetch(`${this._baseUrl}/signup`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({ name, password, email }),
+    }).then(handleResponse);
+  }
 }
 
-const MAIN_URL = 'https://api.movies-explorer-roman.nomoredomains.icu/';
+const MAIN_URL = 'https://api.movies-explorer-roman.nomoredomains.icu';
 
 const apiMain = new Api({
   baseUrl: MAIN_URL,
   headers: {
     // authorization: localStorage.getItem('token'),
+    Accept: 'application/json',
     'Content-Type': 'application/json; charset=UTF-8',
   },
 });

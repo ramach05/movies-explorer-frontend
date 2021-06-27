@@ -1,7 +1,6 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
 
-import './Login.css';
 import { HeaderLogo } from '../../utils/utils';
 
 function Login({ isLogged }) {
@@ -13,19 +12,19 @@ function Login({ isLogged }) {
       {isLogged ? (
         <Link
           to="/"
-          className="register__logo__wrapper"
+          className="register__logo-wrapper"
         >
           <img
             src={HeaderLogo}
             alt="logo"
-            className="register__logo-hover"
+            className="register__logo-link"
           />
         </Link>
       ) : (
         <img
           src={HeaderLogo}
           alt="logo"
-          className="register__logo__wrapper"
+          className="register__logo-wrapper"
         />
       )}
 
