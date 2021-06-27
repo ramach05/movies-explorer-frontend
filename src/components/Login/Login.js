@@ -5,17 +5,20 @@ import './Login.css';
 import { HeaderLogo } from '../../utils/utils';
 
 function Login({ isLogged }) {
+  function handleSubmit() {
+  }
+
   return (
-    <main className="login">
+    <main className="register">
       {isLogged ? (
         <Link
           to="/"
-          className="login__logo__wrapper"
+          className="register__logo__wrapper"
         >
           <img
             src={HeaderLogo}
             alt="logo"
-            className="login__logo-hover"
+            className="register__logo-hover"
           />
         </Link>
       ) : (
@@ -26,48 +29,48 @@ function Login({ isLogged }) {
         />
       )}
 
-      <h1 className="login__title">
+      <h1 className="register__title">
         Рады видеть!
       </h1>
 
-      <form className="login__form" name="register-form">
-        <p className="login__input-name">E-mail</p>
+      <form className="register__form" onSubmit={handleSubmit}>
+        <p className="register__input-name">E-mail</p>
         <input
           type="email"
           required
           autoComplete="on"
-          className="login__input"
-          name="login-input-email"
+          className="register__input"
+          name="register-input-email"
         />
-        <span className="login__input-error">
+        <span className="register__input-error">
           Что-то пошло не так...
         </span>
 
-        <p className="login__input-name">Пароль</p>
+        <p className="register__input-name">Пароль</p>
         <input
           type="password"
           required
           autoComplete="on"
-          className="login__input"
-          name="login-input-password"
+          className="register__input"
+          name="register-input-password"
         />
-        <span className="login__input-error">
+        <span className="register__input-error">
           Что-то пошло не так...
         </span>
 
-        <button type="submit" className="login__button-submit">
+        <button type="submit" className="register__button-submit">
           Войти
         </button>
       </form>
 
-      <div className="login__container">
-        <p className="login__subtitle">
+      <div className="register__container">
+        <p className="register__subtitle">
           Ещё не зарегистрированы?
         </p>
 
         <Link
           to="/signup"
-          className="login__link"
+          className="register__link"
         >
           Регистрация
         </Link>
