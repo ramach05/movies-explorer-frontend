@@ -37,7 +37,7 @@ function Login({ isLogged }) {
           required
           autoComplete="on"
           className="login__input"
-          name="register-input-email"
+          name="login-input-email"
         />
         <span className="login__input-error">
           Что-то пошло не так...
@@ -49,7 +49,7 @@ function Login({ isLogged }) {
           required
           autoComplete="on"
           className="login__input"
-          name="register-input-password"
+          name="login-input-password"
         />
         <span className="login__input-error">
           Что-то пошло не так...
