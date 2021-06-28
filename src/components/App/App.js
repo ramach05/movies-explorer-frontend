@@ -37,6 +37,7 @@ function App() {
                     menuRoute={menuRoute}
                   />
                 ) : null}
+
                 <Navigation
                   isOpenNavigation={isOpenNavigation}
                   setIsOpenNavigation={setIsOpenNavigation}
@@ -48,8 +49,26 @@ function App() {
                   <Route exact path="/movies" render={() => <Movies />} />
                   <Route exact path="/saved-movies" render={() => <SavedMovies />} />
                   <Route exact path="/profile" render={() => <Profile />} />
-                  <Route exact path="/signin" render={() => (<Login isLogged={isLogged} />)} />
-                  <Route exact path="/signup" render={() => (<Register isLogged={isLogged} />)} />
+                  <Route
+                    exact
+                    path="/signin"
+                    render={() => (
+                      <Login
+                        isLogged={isLogged}
+                        setIsLogged={setIsLogged}
+                      />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/signup"
+                    render={() => (
+                      <Register
+                        isLogged={isLogged}
+                        setIsLogged={setIsLogged}
+                      />
+                    )}
+                  />
                   <Route path="*" render={() => <NotFoundPage />} />
                 </Switch>
 
@@ -58,8 +77,26 @@ function App() {
             ) : (
               <>
                 <Switch>
-                  <Route exact path="/signin" render={() => (<Login isLogged={isLogged} />)} />
-                  <Route exact path="/signup" render={() => (<Register isLogged={isLogged} />)} />
+                  <Route
+                    exact
+                    path="/signin"
+                    render={() => (
+                      <Login
+                        isLogged={isLogged}
+                        setIsLogged={setIsLogged}
+                      />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/signup"
+                    render={() => (
+                      <Register
+                        isLogged={isLogged}
+                        setIsLogged={setIsLogged}
+                      />
+                    )}
+                  />
                   <Route path="*" render={() => <NotFoundPage />} />
                 </Switch>
               </>

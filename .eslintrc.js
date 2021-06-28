@@ -32,6 +32,7 @@ module.exports = {
     'no-debugger': 1,
     'global-require': 1,
     'prefer-promise-reject-errors': 0,
+    'import/prefer-default-export': 1,
   },
 
 };

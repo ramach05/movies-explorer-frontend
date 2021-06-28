@@ -14,7 +14,7 @@ function MoviesCard({ card }) {
   const handleCardLike = (e) => {
     setCardLike(!cardLike);
     setSavedMovies([...savedMovies, e.target.closest('.movies-card')]);
-    localStorage.setItem('savedMovies', savedMovies);
+    // localStorage.setItem('savedMovies', savedMovies);
   };
 
   const handleCardDelete = () => {};

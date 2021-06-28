@@ -1,13 +1,14 @@
 import {
   React, useState, useRef, useEffect,
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import apiMain from '../../utils/MainApi';
 import { HeaderLogo } from '../../utils/utils';
 
 import './Register.css';
 
-function Register({ isLogged }) {
+function Register({ isLogged, setIsLogged }) {
+  const history = useHistory();
   const formRef = useRef();
   const inputNameRef = useRef();
   const inputEmailRef = useRef();
@@ -42,7 +43,6 @@ function Register({ isLogged }) {
       }
     } else if (name === 'register-input-email') {
       if (!validity.valid) {
-        console.log('e.target.validity :>> ', e.target.validity);
         setIsInputEmailValid(false);
         setInputEmailError(inputEmailRef.current.validationMessage);
       } else {
@@ -71,19 +71,38 @@ function Register({ isLogged }) {
         email: inputEmailRef.current.value,
         password: inputPasswordRef.current.value,
       })
-      .then(() => {
-        formRef.current.reset();
-        setIsInputNameValid(false);
-        setIsInputEmailValid(false);
-        setIsInputPasswordValid(false);
-        setButtonError('');
+      .then((res) => {
+        // formRef.current.reset();
+        // setIsInputNameValid(false);
+        // setIsInputEmailValid(false);
+        // setIsInputPasswordValid(false);
+        // setButtonError('');
+
+        apiMain
+          .login({
+            email: res.email,
+            password: res.password,
+          })
+          .then((data) => {
+            if (data.token) {
+              localStorage.setItem('token', data.token);
+              setIsLogged(true);
+              history.push('/movies');
+            }
+            return data;
+          })
+          .catch((err) => {
+            setButtonError(err);
+            console.log(err);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
       })
       .catch((err) => {
         setButtonError(err);
-        console.log(err);
-      })
-      .finally(() => {
         setIsLoading(false);
+        console.log(err);
       });
   }
 
@@ -99,7 +118,11 @@ function Register({ isLogged }) {
 
       <h1 className="register__title">Добро пожаловать!</h1>
 
-      <form className="register__form" ref={formRef} onSubmit={handleSubmit}>
+      <form
+        className="register__form"
+        ref={formRef}
+        onSubmit={handleSubmit}
+      >
         <p className="register__input-name">Имя</p>
         <input
           type="text"
