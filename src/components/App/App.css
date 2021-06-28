@@ -5,6 +5,11 @@
   /* box-shadow: 0px 0px 0px 1px red; */
 }
 
+html {
+  /* для плавной прокрутки */
+  scroll-behavior: smooth;
+}
+
 .body {
   background-color: #202020;
   color: #ffffff;

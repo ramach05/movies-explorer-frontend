@@ -44,25 +44,24 @@ function App() {
               />
 
               <Switch>
-                <Route exact path="/" render={() => <Main />} />
+                <Route path="/" render={() => <Main />} />
                 <Route exact path="/movies" render={() => <Movies />} />
                 <Route exact path="/saved-movies" render={() => <SavedMovies />} />
                 <Route exact path="/profile" render={() => <Profile />} />
                 <Route
                   exact
                   path="/signin"
-                  render={() => (
-                    <Login />
-                  )}
+                  render={() => (<Login />)}
                 />
                 <Route
                   exact
                   path="/signup"
-                  render={() => (
-                    <Register />
-                  )}
+                  render={() => (<Register />)}
                 />
-                <Route path="*" render={() => <NotFoundPage />} />
+                <Route
+                  path="*"
+                  render={() => <NotFoundPage />}
+                />
               </Switch>
 
               {(!authentificationRoute && !profileRoute) ? <Footer /> : null}
@@ -81,18 +80,17 @@ function App() {
                 <Route
                   exact
                   path="/signin"
-                  render={() => (
-                    <Login />
-                  )}
+                  render={() => (<Login />)}
                 />
                 <Route
                   exact
                   path="/signup"
-                  render={() => (
-                    <Register />
-                  )}
+                  render={() => (<Register />)}
                 />
-                <Route path="*" render={() => <NotFoundPage />} />
+                <Route
+                  path="*"
+                  render={() => <NotFoundPage />}
+                />
               </Switch>
 
               { !authentificationRoute ? <Footer /> : null }

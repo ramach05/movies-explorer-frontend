@@ -1,15 +1,8 @@
 import { React } from 'react';
-import { useHistory } from 'react-router';
 
 import './Promo.css';
 
 function Promo() {
-  const history = useHistory();
-
-  function handlePromoButton() {
-    history.push('/movies');
-  }
-
   return (
     <section className="promo">
       <div className="promo__container">
@@ -19,13 +12,12 @@ function Promo() {
         <p className="promo__subtitle">
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
-        <button
-          type="button"
+        <a
+          href="#about-project"
           className="promo__button"
-          onClick={handlePromoButton}
         >
           Узнать больше
-        </button>
+        </a>
       </div>
     </section>
   );
