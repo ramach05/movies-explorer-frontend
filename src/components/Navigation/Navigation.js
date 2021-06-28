@@ -1,9 +1,11 @@
 import { React } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useAppContext } from '../../utils/AppContext';
 
 import './Navigation.css';
 
-function Navigation({ isOpenNavigation, setIsOpenNavigation, menuRoute }) {
+function Navigation({ isOpenNavigation, setIsOpenNavigation }) {
+  const { isLogged, setIsLogged } = useAppContext();
   const history = useHistory();
 
   const handleCloseNavigation = () => {
@@ -15,7 +17,9 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation, menuRoute }) {
     setIsOpenNavigation(false);
   };
 
-  if (!menuRoute) { return null; }
+  if (!isLogged) {
+    return null;
+  }
   return (
     <aside className={!isOpenNavigation ? 'navigation' : 'navigation navigation_open'}>
       <div className="navigation__container">

@@ -4,11 +4,16 @@ import { HashRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './components/App/App';
+import { AppContext } from './utils/AppContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-      <App />
+
+      <AppContext>
+        <App />
+      </AppContext>
+
     </HashRouter>
   </React.StrictMode>,
   document.getElementById('root'),
@@ -19,4 +24,4 @@ ReactDOM.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 
 // import reportWebVitals from "./reportWebVitals";
-// reportWebVitals();
+// import { AppContext } from './utils/AppContext';

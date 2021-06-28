@@ -3,8 +3,10 @@ import { React } from 'react';
 
 import './Header.css';
 import { HeaderLogo } from '../../utils/utils';
+import { useAppContext } from '../../utils/AppContext';
 
 function Header({ setIsOpenNavigation, menuRoute }) {
+  const { isLogged, setIsLogged } = useAppContext();
   const history = useHistory();
 
   function handleHeaderButton() {
@@ -21,7 +23,7 @@ function Header({ setIsOpenNavigation, menuRoute }) {
       </Link>
 
       <nav className="header__nav">
-        {!menuRoute ? (
+        {!isLogged ? (
           <>
             <Link to="/signup" className="header__link">
               Регистрация

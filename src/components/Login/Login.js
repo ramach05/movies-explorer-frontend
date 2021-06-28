@@ -7,8 +7,10 @@ import apiMain from '../../utils/MainApi';
 
 import { HeaderLogo } from '../../utils/utils';
 
-function Login({ isLogged, setIsLogged }) {
-  const { currentUser, setCurrentUser } = useAppContext();
+function Login() {
+  const {
+    isLogged, setIsLogged, currentUser, setCurrentUser,
+  } = useAppContext();
   const history = useHistory();
   const formRef = useRef();
   const inputEmailRef = useRef();

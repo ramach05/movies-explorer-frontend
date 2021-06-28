@@ -2,12 +2,14 @@ import {
   React, useState, useRef, useEffect,
 } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useAppContext } from '../../utils/AppContext';
 import apiMain from '../../utils/MainApi';
 import { HeaderLogo } from '../../utils/utils';
 
 import './Register.css';
 
-function Register({ isLogged, setIsLogged }) {
+function Register() {
+  const { isLogged, setIsLogged } = useAppContext();
   const history = useHistory();
   const formRef = useRef();
   const inputNameRef = useRef();
