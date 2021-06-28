@@ -99,24 +99,16 @@ function Login() {
 
   return (
     <main className="register">
-      {isLogged ? (
-        <Link
-          to="/"
-          className="register__logo-wrapper"
-        >
-          <img
-            src={HeaderLogo}
-            alt="logo"
-            className="register__logo-link"
-          />
-        </Link>
-      ) : (
+      <Link
+        to="/"
+        className="register__logo-wrapper"
+      >
         <img
           src={HeaderLogo}
           alt="logo"
-          className="register__logo-wrapper"
+          className="register__logo-link"
         />
-      )}
+      </Link>
 
       <h1 className="register__title">
         Рады видеть!

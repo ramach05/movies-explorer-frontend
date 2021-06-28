@@ -8,7 +8,9 @@ import { useAppContext } from '../../utils/AppContext';
 import apiMain from '../../utils/MainApi';
 
 function Profile() {
-  const { currentUser, setCurrentUser } = useAppContext();
+  const {
+    isLogged, setIsLogged, currentUser, setCurrentUser,
+  } = useAppContext();
   const formRef = useRef();
   const history = useHistory();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -99,6 +101,7 @@ function Profile() {
   function handleSingOut(e) {
     e.preventDefault();
     localStorage.removeItem('token');
+    setIsLogged(false);
     history.push('/');
   }
 

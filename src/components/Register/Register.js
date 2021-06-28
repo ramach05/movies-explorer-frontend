@@ -106,13 +106,9 @@ function Register() {
 
   return (
     <main className="register">
-      {isLogged ? (
-        <Link to="/" className="register__logo-wrapper">
-          <img src={HeaderLogo} alt="logo" className="register__logo-link" />
-        </Link>
-      ) : (
-        <img src={HeaderLogo} alt="logo" className="register__logo-wrapper" />
-      )}
+      <Link to="/" className="register__logo-wrapper">
+        <img src={HeaderLogo} alt="logo" className="register__logo-link" />
+      </Link>
 
       <h1 className="register__title">Добро пожаловать!</h1>
 

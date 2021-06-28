@@ -18,9 +18,15 @@ function Header({ setIsOpenNavigation, menuRoute }) {
 
   return (
     <div className={!menuRoute ? 'header' : 'header header__burger-bg'}>
-      <Link to="/">
-        <img src={HeaderLogo} alt="logo" className="header__logo" />
-      </Link>
+      {!menuRoute
+        ? (
+          <img src={HeaderLogo} alt="logo" className="header__logo header__logo_disable" />
+        )
+        : (
+          <Link to="/">
+            <img src={HeaderLogo} alt="logo" className="header__logo" />
+          </Link>
+        )}
 
       <nav className="header__nav">
         {!isLogged ? (

@@ -69,7 +69,15 @@ function App() {
             </>
           ) : (
             <>
+              { !authentificationRoute ? (
+                <Header
+                  setIsOpenNavigation={setIsOpenNavigation}
+                  menuRoute={menuRoute}
+                />
+              ) : null }
+
               <Switch>
+                <Route exact path="/" render={() => <Main />} />
                 <Route
                   exact
                   path="/signin"
@@ -86,6 +94,8 @@ function App() {
                 />
                 <Route path="*" render={() => <NotFoundPage />} />
               </Switch>
+
+              { !authentificationRoute ? <Footer /> : null }
             </>
           )}
       </div>
