@@ -8,6 +8,7 @@ import apiMain from '../../utils/MainApi';
 import { HeaderLogo } from '../../utils/utils';
 
 function Login({ isLogged, setIsLogged }) {
+  const { currentUser, setCurrentUser } = useAppContext();
   const history = useHistory();
   const formRef = useRef();
   const inputEmailRef = useRef();
@@ -20,8 +21,6 @@ function Login({ isLogged, setIsLogged }) {
   const [inputEmailError, setInputEmailError] = useState('');
   const [inputPasswordError, setInputPasswordError] = useState('');
 
-  const { currentUser, setCurrentUser } = useAppContext();
-
   useEffect(() => {
     if (!formRef.current.checkValidity()) {
       setIsButtonDisabled(true);
@@ -32,6 +31,8 @@ function Login({ isLogged, setIsLogged }) {
 
   function handleChange(e) {
     const { name, validity } = e.target;
+    setIsButtonDisabled(false);
+
     if (name === 'login-input-email') {
       if (!validity.valid) {
         setIsInputEmailValid(false);

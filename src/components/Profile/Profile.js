@@ -3,11 +3,18 @@ import {
 } from 'react';
 
 import './Profile.css';
+import { useHistory } from 'react-router-dom';
 import { useAppContext } from '../../utils/AppContext';
+import apiMain from '../../utils/MainApi';
 
 function Profile() {
   const { currentUser, setCurrentUser } = useAppContext();
+  const formRef = useRef();
+  const history = useHistory();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isButtonUpdate, setIsButtonUpdate] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [inputValue, setInputValue] = useState({
     name: currentUser.name,
     email: currentUser.email,
@@ -16,20 +23,23 @@ function Profile() {
     name: false,
     email: false,
   });
-  const formRef = useRef();
 
   useEffect(() => {
     if (!formRef.current.checkValidity()) {
-      console.log('not valid');
       setIsButtonDisabled(true);
     } else {
-      console.log('valid');
       setIsButtonDisabled(false);
     }
   }, [inputValid]);
 
+  useEffect(() => {
+    setIsButtonDisabled(true);
+  }, []);
+
   function handleChange(e) {
     const { name, validity, value } = e.target;
+    setIsButtonUpdate(false);
+
     if (name === 'profile-input-name') {
       setInputValue({
         ...inputValue,
@@ -67,13 +77,29 @@ function Profile() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('Submit');
-    // setCurrentUser
+    setIsButtonDisabled(true);
+    setIsButtonUpdate(true);
+    setIsLoading(true);
+
+    apiMain.updateUserProfile({
+      name: inputValue.name,
+      email: inputValue.email,
+    })
+      .then((res) => {
+        setCurrentUser(res.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleSingOut(e) {
     e.preventDefault();
-    console.log('SingOut');
+    localStorage.removeItem('token');
+    history.push('/');
   }
 
   return (
@@ -89,6 +115,7 @@ function Profile() {
           <li className="profile__li">
             <input
               type="text"
+              required
               value={inputValue.name}
               id="profile-input-name"
               name="profile-input-name"
@@ -103,6 +130,7 @@ function Profile() {
           <li className="profile__li">
             <input
               type="email"
+              required
               value={inputValue.email}
               id="profile-input-email"
               name="profile-input-email"
@@ -124,7 +152,10 @@ function Profile() {
           }
           disabled={isButtonDisabled}
         >
-          Редактировать
+          {!isButtonUpdate
+            ? 'Редактировать'
+            : !isLoading
+              ? 'Сохранено!' : 'Сохранение...'}
         </button>
       </form>
 

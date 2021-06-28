@@ -44,6 +44,14 @@ class Api {
       body: JSON.stringify({ password, email }),
     }).then(handleResponse);
   }
+
+  updateUserProfile({ name, email }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({ name, email }),
+    }).then(handleResponse);
+  }
 }
 
 const MAIN_URL = 'https://api.movies-explorer-roman.nomoredomains.icu';
