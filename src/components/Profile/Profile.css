@@ -93,6 +93,13 @@
   opacity: 0.6;
   cursor: pointer;
 }
+.profile__form-submit_disabled{
+  color: #ffffff6c;
+}
+.profile__form-submit_disabled:hover {
+  opacity: 1;
+  cursor: auto;
+}
 
 .profile__exit-button {
   font-family: Inter, sans-serif;

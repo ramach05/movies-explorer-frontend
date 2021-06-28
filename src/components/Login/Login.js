@@ -2,6 +2,7 @@ import {
   React, useRef, useState, useEffect,
 } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useAppContext } from '../../utils/AppContext';
 import apiMain from '../../utils/MainApi';
 
 import { HeaderLogo } from '../../utils/utils';
@@ -18,6 +19,8 @@ function Login({ isLogged, setIsLogged }) {
   const [isInputPasswordValid, setIsInputPasswordValid] = useState(false);
   const [inputEmailError, setInputEmailError] = useState('');
   const [inputPasswordError, setInputPasswordError] = useState('');
+
+  const { currentUser, setCurrentUser } = useAppContext();
 
   useEffect(() => {
     if (!formRef.current.checkValidity()) {
@@ -62,15 +65,31 @@ function Login({ isLogged, setIsLogged }) {
         if (res.token) {
           localStorage.setItem('token', res.token);
           setIsLogged(true);
-          history.push('/movies');
         }
         return res;
       })
-      .catch((err) => {
-        setButtonError(err);
-        console.log(err);
+      .then(() => {
+        apiMain.updateHeaders();
       })
-      .finally(() => {
+      .then(() => {
+        apiMain.getMe()
+          .then((data) => {
+            setCurrentUser(data.user);
+          })
+          .then(() => {
+            history.push('/movies');
+          })
+          .catch((err) => {
+            setButtonError(err);
+            console.log(err);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        setButtonError(err);
         setIsLoading(false);
       });
   }

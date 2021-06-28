@@ -36,15 +36,16 @@ function MoviesCardList() {
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    apiMain.getMovies()
-      .then((cardsFromApi) => {
-        setSavedMovies([...cardsFromApi]);
-      })
-      .catch((err) => console.log(err));
-  }, [setSavedMovies]);
+  // useEffect(() => {
+  //   apiMain.getMovies()
+  //     .then((cardsFromApi) => {
+  //       setSavedMovies([...cardsFromApi]);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [setSavedMovies]);
 
-  const handleMoreButton = () => { };
+  const handleMoreButton = () => {
+  };
 
   return (
     <article className="movies-card-list">

@@ -72,12 +72,6 @@ function Register({ isLogged, setIsLogged }) {
         password: inputPasswordRef.current.value,
       })
       .then((res) => {
-        // formRef.current.reset();
-        // setIsInputNameValid(false);
-        // setIsInputEmailValid(false);
-        // setIsInputPasswordValid(false);
-        // setButtonError('');
-
         apiMain
           .login({
             email: res.email,
@@ -87,9 +81,11 @@ function Register({ isLogged, setIsLogged }) {
             if (data.token) {
               localStorage.setItem('token', data.token);
               setIsLogged(true);
-              history.push('/movies');
             }
             return data;
+          })
+          .then(() => {
+            history.push('/movies');
           })
           .catch((err) => {
             setButtonError(err);
@@ -100,9 +96,9 @@ function Register({ isLogged, setIsLogged }) {
           });
       })
       .catch((err) => {
+        console.log(err);
         setButtonError(err);
         setIsLoading(false);
-        console.log(err);
       });
   }
 

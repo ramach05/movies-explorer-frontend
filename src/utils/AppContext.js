@@ -4,10 +4,11 @@ const context = React.createContext({});
 
 export const AppContext = ({ children }) => {
   const [savedMovies, setSavedMovies] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   return (
     <context.Provider value={{
-      savedMovies, setSavedMovies,
+      savedMovies, setSavedMovies, currentUser, setCurrentUser,
     }}
     >
       {children}
