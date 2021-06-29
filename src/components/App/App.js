@@ -44,27 +44,32 @@ function App() {
               />
 
               <Switch>
+                <Route
+                  exact
+                  path="/movies"
+                  render={() => <Movies />}
+                />
+                <Route
+                  exact
+                  path="/saved-movies"
+                  render={() => <SavedMovies />}
+                />
+                <Route
+                  exact
+                  path="/profile"
+                  render={() => <Profile />}
+                />
+
                 <Route path="/" render={() => <Main />} />
-                <Route exact path="/movies" render={() => <Movies />} />
-                <Route exact path="/saved-movies" render={() => <SavedMovies />} />
-                <Route exact path="/profile" render={() => <Profile />} />
-                <Route
-                  exact
-                  path="/signin"
-                  render={() => (<Login />)}
-                />
-                <Route
-                  exact
-                  path="/signup"
-                  render={() => (<Register />)}
-                />
+                <Route exact path="/about-project" render={() => <Main />} />
+
                 <Route
                   path="*"
                   render={() => <NotFoundPage />}
                 />
               </Switch>
 
-              {(!authentificationRoute && !profileRoute) ? <Footer /> : null}
+              {!profileRoute ? <Footer /> : null}
             </>
           ) : (
             <>
@@ -77,6 +82,8 @@ function App() {
 
               <Switch>
                 <Route exact path="/" render={() => <Main />} />
+                <Route exact path="/about-project" render={() => <Main />} />
+
                 <Route
                   exact
                   path="/signin"
@@ -87,6 +94,7 @@ function App() {
                   path="/signup"
                   render={() => (<Register />)}
                 />
+
                 <Route
                   path="*"
                   render={() => <NotFoundPage />}

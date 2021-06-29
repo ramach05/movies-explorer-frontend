@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 const context = React.createContext({});
 
 export const AppContext = ({ children }) => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
 

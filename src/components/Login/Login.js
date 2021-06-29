@@ -67,7 +67,6 @@ function Login() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem('token', res.token);
-          setIsLogged(true);
         }
         return res;
       })
@@ -80,6 +79,7 @@ function Login() {
             setCurrentUser(data.user);
           })
           .then(() => {
+            setIsLogged(true);
             history.push('/movies');
           })
           .catch((err) => {
