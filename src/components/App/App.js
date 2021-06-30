@@ -41,13 +41,9 @@ function App() {
               <Navigation
                 isOpenNavigation={isOpenNavigation}
                 setIsOpenNavigation={setIsOpenNavigation}
-                // menuRoute={menuRoute}
               />
 
               <Switch>
-                <Route path="/" render={() => <Main />} />
-                <Route exact path="/about-project" render={() => <Main />} />
-
                 <Route
                   exact
                   path="/movies"
@@ -64,10 +60,13 @@ function App() {
                   render={() => <Profile />}
                 />
 
-                {/* <Route
+                <Route path="/" render={() => <Main />} />
+                <Route exact path="/about-project" render={() => <Main />} />
+
+                <Route
                   path="*"
                   render={() => <NotFoundPage />}
-                /> */}
+                />
               </Switch>
 
               {!profileRoute ? <Footer /> : null}
