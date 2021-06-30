@@ -9,8 +9,9 @@ import { useAppContext } from '../../utils/AppContext';
 
 function MoviesCardList() {
   const location = useLocation();
-  const [movies, setMovies] = useState([]);
-  const { savedMovies, setSavedMovies } = useAppContext([]);
+  const {
+    movies, setMovies, savedMovies, setSavedMovies, filteredMovies, setFilteredMovies,
+  } = useAppContext([]);
   // const [getSavedCards, setGetSavedCards] = useState(localStorage.getItem('savedMovies'));
 
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
@@ -18,7 +19,7 @@ function MoviesCardList() {
   useEffect(() => {
     apiMovies.getInitialMovies()
       .then((cardsFromApi) => {
-        const renderCards = cardsFromApi.map((card) => ({
+        const renderedCards = cardsFromApi.map((card) => ({
           id: card.id,
           nameRU: card.nameRU,
           nameEN: card.nameEN,
@@ -31,10 +32,10 @@ function MoviesCardList() {
           imageUrl: `https://api.nomoreparties.co${card.image.url}`,
         }));
 
-        setMovies([...renderCards]);
+        setMovies([...renderedCards]);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [setMovies]);
 
   // useEffect(() => {
   //   apiMain.getMovies()
@@ -44,23 +45,39 @@ function MoviesCardList() {
   //     .catch((err) => console.log(err));
   // }, [setSavedMovies]);
 
-  const handleMoreButton = () => {
+  const handleMoreButton = (e) => {
+    e.preventDefault();
   };
+
+  function renderCards() {
+    if (!savedMoviesRoute) {
+      if (filteredMovies.length !== 0) {
+        return filteredMovies.map((movie) => (
+          <MoviesCard
+            key={movie.id}
+            card={movie}
+          />
+        ));
+      }
+      return movies.map((movie) => (
+        <MoviesCard
+          key={movie.id}
+          card={movie}
+        />
+      ));
+    }
+    return savedMovies.map((movie) => (
+      <MoviesCard
+        key={movie.id}
+        card={movie}
+      />
+    ));
+  }
 
   return (
     <article className="movies-card-list">
       <ul className="movies-card-list__ul">
-        {!savedMoviesRoute ? (movies.map((movie) => (
-          <MoviesCard
-            key={movie.id}
-            card={movie}
-          />
-        ))) : (savedMovies.map((movie) => (
-          <MoviesCard
-            key={movie.id}
-            card={movie}
-          />
-        )))}
+        {renderCards()}
       </ul>
 
       <div className="movies-card-list__button-wrapper">

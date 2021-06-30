@@ -1,21 +1,43 @@
 import { React, useRef, useState } from 'react';
+import { useAppContext } from '../../utils/AppContext';
+import apiMovies from '../../utils/MoviesApi';
 
 import './SearchForm.css';
 
 function SearchForm() {
+  const {
+    movies, setMovies, filteredMovies,
+    setFilteredMovies,
+  } = useAppContext([]);
   const [inputValue, setInputValue] = useState('');
   const formRef = useRef();
+  const inputRef = useRef();
+  const checkboxRef = useRef();
+
+  function filterCards(cards) {
+    const filteredCards = cards.filter((card) => card.nameRU.includes(inputRef.current.value));
+
+    if (!checkboxRef.current.checked) {
+      setFilteredMovies(filteredCards);
+    } else {
+      const filteredCardsByTime = filteredCards.filter((card) => card.duration <= 40);
+      setFilteredMovies(filteredCardsByTime);
+    }
+  }
 
   function handleSubmit(e) {
-    console.log('formRef.current[search-form-checkbox].checked :>> ', formRef.current['search-form-checkbox'].checked); // eslint-disable-line no-proto
-
     e.preventDefault();
     if (inputValue !== '') {
-      formRef.current['search-form-input'].placeholder = 'Фильм';
-      setInputValue('');
-      formRef.current.reset();
-    } else {
-      formRef.current['search-form-input'].placeholder = 'Нужно ввести ключевое слово';
+      inputRef.current.placeholder = 'Фильм';
+      filterCards(movies);
+    } else if (inputValue === '') {
+      inputRef.current.placeholder = 'Нужно ввести ключевое слово';
+
+      if (!checkboxRef.current.checked) {
+        setFilteredMovies([]);
+      } else {
+        filterCards(movies);
+      }
     }
   }
 
@@ -34,6 +56,7 @@ function SearchForm() {
           name="search-form-input"
           onChange={handleChangeInput}
           value={inputValue}
+          ref={inputRef}
         />
         <button
           type="submit"
@@ -48,6 +71,7 @@ function SearchForm() {
           type="checkbox"
           id="search-form-checkbox"
           name="search-form-checkbox"
+          ref={checkboxRef}
         />
         <span className="search-form__checkbox-switch">
         </span>
