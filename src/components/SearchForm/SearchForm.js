@@ -7,11 +7,13 @@ function SearchForm() {
   const formRef = useRef();
 
   function handleSubmit(e) {
+    console.log('formRef.current[search-form-checkbox].checked :>> ', formRef.current['search-form-checkbox'].checked); // eslint-disable-line no-proto
+
     e.preventDefault();
     if (inputValue !== '') {
-      // formRef.current.reset();
-      // setInputValue('');
       formRef.current['search-form-input'].placeholder = 'Фильм';
+      setInputValue('');
+      formRef.current.reset();
     } else {
       formRef.current['search-form-input'].placeholder = 'Нужно ввести ключевое слово';
     }
@@ -19,9 +21,6 @@ function SearchForm() {
 
   function handleChangeInput(e) {
     setInputValue(e.target.value);
-
-    console.log('e.target :>> ', e.target);
-    // console.log('inputRef.current.checked :>> ', inputRef.current.checked);
   }
 
   return (
@@ -49,7 +48,6 @@ function SearchForm() {
           type="checkbox"
           id="search-form-checkbox"
           name="search-form-checkbox"
-          onChange={handleChangeInput}
         />
         <span className="search-form__checkbox-switch">
         </span>

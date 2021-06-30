@@ -44,6 +44,9 @@ function App() {
               />
 
               <Switch>
+                <Route exact path="/" render={() => <Main />} />
+                <Route exact path="/about-project" render={() => <Main />} />
+
                 <Route
                   exact
                   path="/movies"
@@ -59,9 +62,6 @@ function App() {
                   path="/profile"
                   render={() => <Profile />}
                 />
-
-                <Route path="/" render={() => <Main />} />
-                <Route exact path="/about-project" render={() => <Main />} />
 
                 <Route
                   path="*"

@@ -15,7 +15,7 @@ const ProtectedRoute = ({
   const { isLogged, setIsLogged } = useAppContext();
 
   if (!isLogged) {
-    if (menuRoute && profileRoute) {
+    if (menuRoute || profileRoute) {
       return <Redirect to="/" />;
     } if (authentificationRoute) {
       <Switch>

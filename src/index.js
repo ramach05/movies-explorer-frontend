@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './components/App/App';
@@ -8,13 +8,13 @@ import { AppContext } from './utils/AppContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
 
       <AppContext>
         <App />
       </AppContext>
 
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
