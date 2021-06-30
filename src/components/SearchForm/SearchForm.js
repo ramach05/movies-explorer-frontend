@@ -15,7 +15,8 @@ function SearchForm() {
   const checkboxRef = useRef();
 
   function filterCards(cards) {
-    const filteredCards = cards.filter((card) => card.nameRU.includes(inputRef.current.value));
+    const filteredCards = cards.filter((card) => card.nameRU.toLowerCase()
+      .includes(inputRef.current.value.toLowerCase()));
 
     if (!checkboxRef.current.checked) {
       setFilteredMovies(filteredCards);
@@ -34,7 +35,7 @@ function SearchForm() {
       inputRef.current.placeholder = 'Нужно ввести ключевое слово';
 
       if (!checkboxRef.current.checked) {
-        setFilteredMovies([]);
+        setFilteredMovies(false);
       } else {
         filterCards(movies);
       }

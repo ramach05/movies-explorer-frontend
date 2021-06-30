@@ -21,6 +21,8 @@ function MoviesCardList() {
   } = useAppContext([]);
   // const [getSavedCards, setGetSavedCards] = useState(localStorage.getItem('savedMovies'));
 
+  console.log('movies :>> ', movies);
+
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
   useEffect(() => {
@@ -61,7 +63,7 @@ function MoviesCardList() {
 
   function renderCards() {
     if (!savedMoviesRoute) {
-      if (filteredMovies.length !== 0) {
+      if (filteredMovies) {
         return filteredMovies.map((movie) => (
           <MoviesCard
             key={movie.id}
