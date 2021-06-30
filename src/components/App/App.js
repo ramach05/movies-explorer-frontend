@@ -99,6 +99,7 @@ function App() {
                 <ProtectedRoute
                   component={Main}
                   menuRoute={menuRoute}
+                  profileRoute={profileRoute}
                 />
               </Switch>
 

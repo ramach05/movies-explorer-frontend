@@ -4,11 +4,11 @@ import { useAppContext } from '../../utils/AppContext';
 
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
-const ProtectedRoute = ({ component: Component, menuRoute }) => {
+const ProtectedRoute = ({ component: Component, menuRoute, profileRoute }) => {
   const { isLogged, setIsLogged } = useAppContext();
 
   if (!isLogged) {
-    if (menuRoute) {
+    if (menuRoute && profileRoute) {
       return <Redirect to="/" />;
     } return <NotFoundPage />;
   }
