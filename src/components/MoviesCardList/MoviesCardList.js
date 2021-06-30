@@ -10,13 +10,22 @@ import { useAppContext } from '../../utils/AppContext';
 function MoviesCardList() {
   const location = useLocation();
   const {
-    movies, setMovies, savedMovies, setSavedMovies, filteredMovies, setFilteredMovies,
+    isLoadingMovies,
+    setIsLoadingMovies,
+    movies,
+    setMovies,
+    savedMovies,
+    setSavedMovies,
+    filteredMovies,
+    setFilteredMovies,
   } = useAppContext([]);
   // const [getSavedCards, setGetSavedCards] = useState(localStorage.getItem('savedMovies'));
 
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
   useEffect(() => {
+    setIsLoadingMovies(true);
+
     apiMovies.getInitialMovies()
       .then((cardsFromApi) => {
         const renderedCards = cardsFromApi.map((card) => ({
@@ -33,9 +42,10 @@ function MoviesCardList() {
         }));
 
         setMovies([...renderedCards]);
+        setIsLoadingMovies(false);
       })
       .catch((err) => console.log(err));
-  }, [setMovies]);
+  }, [setIsLoadingMovies, setMovies]);
 
   // useEffect(() => {
   //   apiMain.getMovies()
@@ -81,13 +91,17 @@ function MoviesCardList() {
       </ul>
 
       <div className="movies-card-list__button-wrapper">
-        <button
-          type="button"
-          className="movies-card-list__button"
-          onClick={handleMoreButton}
-        >
-          Ещё
-        </button>
+        {(movies.length !== 0) ? (
+          <button
+            type="button"
+            className="movies-card-list__button"
+            onClick={handleMoreButton}
+          >
+            Ещё
+          </button>
+        )
+          : null}
+
       </div>
     </article>
   );

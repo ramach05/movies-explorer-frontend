@@ -4,6 +4,7 @@ const context = React.createContext({});
 
 export const AppContext = ({ children }) => {
   const [isLogged, setIsLogged] = useState(true);
+  const [isLoadingMovies, setIsLoadingMovies] = useState(false);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -13,6 +14,9 @@ export const AppContext = ({ children }) => {
     <context.Provider value={{
       isLogged,
       setIsLogged,
+
+      isLoadingMovies,
+      setIsLoadingMovies,
 
       movies,
       setMovies,
