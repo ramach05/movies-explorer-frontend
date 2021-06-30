@@ -14,6 +14,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import { useAppContext } from '../../utils/AppContext';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const { isLogged, setIsLogged } = useAppContext();
@@ -44,6 +45,9 @@ function App() {
               />
 
               <Switch>
+                <Route path="/" render={() => <Main />} />
+                <Route exact path="/about-project" render={() => <Main />} />
+
                 <Route
                   exact
                   path="/movies"
@@ -60,13 +64,10 @@ function App() {
                   render={() => <Profile />}
                 />
 
-                <Route path="/" render={() => <Main />} />
-                <Route exact path="/about-project" render={() => <Main />} />
-
-                <Route
+                {/* <Route
                   path="*"
                   render={() => <NotFoundPage />}
-                />
+                /> */}
               </Switch>
 
               {!profileRoute ? <Footer /> : null}
@@ -95,9 +96,9 @@ function App() {
                   render={() => (<Register />)}
                 />
 
-                <Route
-                  path="*"
-                  render={() => <NotFoundPage />}
+                <ProtectedRoute
+                  component={Main}
+                  menuRoute={menuRoute}
                 />
               </Switch>
 
