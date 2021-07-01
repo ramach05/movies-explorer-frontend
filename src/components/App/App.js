@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Route, Switch, useLocation } from 'react-router';
 
 import './App.css';
@@ -15,15 +15,49 @@ import Footer from '../Footer/Footer';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import { useAppContext } from '../../utils/AppContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import apiMain from '../../utils/MainApi';
 
 function App() {
-  const { isLogged, setIsLogged } = useAppContext();
+  const {
+    isLogged, setIsLogged, currentUser, setCurrentUser,
+  } = useAppContext();
   const [isOpenNavigation, setIsOpenNavigation] = useState(false);
   const location = useLocation();
 
   const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
   const profileRoute = ['/profile'].includes(location.pathname);
   const menuRoute = ['/movies', '/saved-movies', '/profile'].includes(location.pathname);
+
+  useEffect(() => {
+    apiMain.updateHeaders();
+
+    apiMain.getMe()
+      .then((myData) => {
+        setCurrentUser(myData.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isLogged]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (localStorage.getItem('token')) {
+      apiMain.checkToken({ token })
+        .then((data) => {
+          apiMain.updateHeaders();
+          if (data.user._id === currentUser._id) {
+            setIsLogged(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLogged(false);
+          localStorage.removeItem('token');
+        });
+    }
+  }, [isLogged, currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="body">

@@ -52,6 +52,17 @@ class Api {
       body: JSON.stringify({ name, email }),
     }).then(handleResponse);
   }
+
+  checkToken({ token }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: this._headers,
+      authorization: `Bearer ${token}`,
+
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(`ОШИБКА: ${res.status}`)))
+      .then((data) => data);
+  }
 }
 
 const MAIN_URL = 'https://api.movies-explorer-roman.nomoredomains.icu';
@@ -61,7 +72,7 @@ const apiMain = new Api({
   headers: {
     authorization: localStorage.getItem('token'),
     Accept: 'application/json',
-    'Content-Type': 'application/json; charset=UTF-8',
+    'Content-Type': 'application/json',
   },
 });
 

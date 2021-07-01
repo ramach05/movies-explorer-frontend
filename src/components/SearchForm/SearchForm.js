@@ -1,6 +1,5 @@
 import { React, useRef, useState } from 'react';
 import { useAppContext } from '../../utils/AppContext';
-import apiMovies from '../../utils/MoviesApi';
 
 import './SearchForm.css';
 

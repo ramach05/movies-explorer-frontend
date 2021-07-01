@@ -35,5 +35,4 @@ module.exports = {
     'import/prefer-default-export': 1,
     'no-nested-ternary': 0,
   },
-
 };
