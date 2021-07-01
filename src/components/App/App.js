@@ -38,15 +38,16 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [isLogged]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isLogged, setCurrentUser]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (localStorage.getItem('token')) {
+      apiMain.updateHeaders();
+
       apiMain.checkToken({ token })
         .then((data) => {
-          apiMain.updateHeaders();
           if (data.user._id === currentUser._id) {
             setIsLogged(true);
           }
@@ -57,7 +58,7 @@ function App() {
           localStorage.removeItem('token');
         });
     }
-  }, [isLogged, currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isLogged, currentUser, setIsLogged]);
 
   return (
     <div className="body">

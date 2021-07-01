@@ -33,6 +33,7 @@ module.exports = {
     'global-require': 1,
     'prefer-promise-reject-errors': 0,
     'import/prefer-default-export': 1,
+    'react-hooks/exhaustive-deps': 1,
     'no-nested-ternary': 0,
   },
 };
