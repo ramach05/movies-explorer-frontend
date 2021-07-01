@@ -35,5 +35,6 @@ module.exports = {
     'import/prefer-default-export': 1,
     'react-hooks/exhaustive-deps': 1,
     'no-nested-ternary': 0,
+    'max-len': 1,
   },
 };
