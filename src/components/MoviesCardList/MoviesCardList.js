@@ -20,8 +20,9 @@ function MoviesCardList() {
     setFilteredMovies,
   } = useAppContext([]);
   // const [getSavedCards, setGetSavedCards] = useState(localStorage.getItem('savedMovies'));
-
-  console.log('movies :>> ', movies);
+  const [isMoreButton, setIsMoreButton] = useState(true);
+  const [initialСardsCount, setInitialСardsCount] = useState(0);
+  const [cardsCount, setCardsCount] = useState(3); // начальное количество карт на странице = 3
 
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
@@ -30,7 +31,9 @@ function MoviesCardList() {
 
     apiMovies.getInitialMovies()
       .then((cardsFromApi) => {
-        const renderedCards = cardsFromApi.map((card) => ({
+        const requiredAmountCards = cardsFromApi.slice(initialСardsCount, cardsCount);
+
+        const renderedCardFromApi = requiredAmountCards.map((card) => ({
           id: card.id,
           nameRU: card.nameRU,
           nameEN: card.nameEN,
@@ -43,22 +46,22 @@ function MoviesCardList() {
           imageUrl: `https://api.nomoreparties.co${card.image.url}`,
         }));
 
-        setMovies([...renderedCards]);
+        setMovies([...movies, ...renderedCardFromApi]);
+
+        if (movies.length === cardsFromApi.length) {
+          setIsMoreButton(false);
+        }
+      })
+      .then(() => {
         setIsLoadingMovies(false);
       })
       .catch((err) => console.log(err));
-  }, [setIsLoadingMovies, setMovies]);
-
-  // useEffect(() => {
-  //   apiMain.getMovies()
-  //     .then((cardsFromApi) => {
-  //       setSavedMovies([...cardsFromApi]);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [setSavedMovies]);
+  }, [cardsCount, initialСardsCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleMoreButton = (e) => {
     e.preventDefault();
+    setInitialСardsCount(initialСardsCount + 3);
+    setCardsCount(cardsCount + 3);
   };
 
   function renderCards() {
@@ -93,15 +96,17 @@ function MoviesCardList() {
       </ul>
 
       <div className="movies-card-list__button-wrapper">
-        {(movies.length !== 0) ? (
-          <button
-            type="button"
-            className="movies-card-list__button"
-            onClick={handleMoreButton}
-          >
-            Ещё
-          </button>
-        )
+        {(movies.length !== 0)
+          ? isMoreButton
+            ? (
+              <button
+                type="button"
+                className="movies-card-list__button"
+                onClick={handleMoreButton}
+              >
+                Ещё
+              </button>
+            ) : null
           : null}
 
       </div>
