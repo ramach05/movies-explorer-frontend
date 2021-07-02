@@ -103,6 +103,7 @@
 
   .about-me__container {
     grid-template: auto / 1fr auto;
+    column-gap: 20px;
   }
 
   .about-me__avatar {

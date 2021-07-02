@@ -16,7 +16,6 @@ function Portfolio() {
               rel="noreferrer"
             >
               Статичный сайт
-              {' '}
               <span className="portfolio__link__icon" />
             </a>
           </li>
@@ -28,19 +27,17 @@ function Portfolio() {
               rel="noreferrer"
             >
               Адаптивный сайт
-              {' '}
               <span className="portfolio__link__icon" />
             </a>
           </li>
           <li className="portfolio__list__item">
             <a
               className="portfolio__link"
-              href="https://"
+              href="https://github.com/ramach05/react-mesto-api-full"
               target="_blank"
               rel="noreferrer"
             >
               Одностраничное приложение
-              {' '}
               <span className="portfolio__link__icon" />
             </a>
           </li>

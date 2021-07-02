@@ -46,7 +46,7 @@ function MoviesCardList() {
           imageUrl: `https://api.nomoreparties.co${card.image.url}`,
         }));
 
-        setMovies([...movies, ...renderedCardFromApi]);
+        setMovies((prevMovies) => [...prevMovies, ...renderedCardFromApi]);
 
         if (movies.length === cardsFromApi.length) {
           setIsMoreButton(false);

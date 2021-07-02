@@ -24,7 +24,7 @@ function AboutMe() {
               <li>
                 <a
                   className="about-me__link"
-                  href="https://"
+                  href="https://www.facebook.com/ramach05"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -34,7 +34,7 @@ function AboutMe() {
               <li>
                 <a
                   className="about-me__link"
-                  href="https://"
+                  href="https://github.com/ramach05"
                   target="_blank"
                   rel="noreferrer"
                 >
