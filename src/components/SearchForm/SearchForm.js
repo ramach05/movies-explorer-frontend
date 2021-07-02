@@ -25,7 +25,7 @@ function SearchForm() {
     }
   }
 
-  function handleSubmit(e) {
+  function handleSubmitSearchForm(e) {
     e.preventDefault();
     if (inputValue !== '') {
       inputRef.current.placeholder = 'Фильм';
@@ -58,10 +58,11 @@ function SearchForm() {
           value={inputValue}
           ref={inputRef}
         />
+
         <button
           type="submit"
           className="search-form__input__button"
-          onClick={handleSubmit}
+          onClick={handleSubmitSearchForm}
         >
         </button>
       </div>

@@ -89,6 +89,33 @@ function MoviesCardList() {
     ));
   }
 
+  function renderMoreButton() {
+    if (movies.length !== 0 && isMoreButton && !savedMoviesRoute) {
+      if (isLoadingMovies) {
+        return (
+          <button
+            type="button"
+            className="movies-card-list__button movies-card-list__button_disabled"
+            onClick={handleMoreButton}
+            disabled
+          >
+            Ещё
+          </button>
+        );
+      }
+      return (
+        <button
+          type="button"
+          className="movies-card-list__button"
+          onClick={handleMoreButton}
+        >
+          Ещё
+        </button>
+      );
+    }
+    return null;
+  }
+
   return (
     <article className="movies-card-list">
       <ul className="movies-card-list__ul">
@@ -96,19 +123,7 @@ function MoviesCardList() {
       </ul>
 
       <div className="movies-card-list__button-wrapper">
-        {(movies.length !== 0)
-          ? isMoreButton
-            ? (
-              <button
-                type="button"
-                className="movies-card-list__button"
-                onClick={handleMoreButton}
-              >
-                Ещё
-              </button>
-            ) : null
-          : null}
-
+        {renderMoreButton()}
       </div>
     </article>
   );

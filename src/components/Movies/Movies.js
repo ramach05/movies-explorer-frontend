@@ -14,7 +14,7 @@ function Movies() {
       <SearchForm />
       <MoviesCardList />
 
-      {!isLoadingMovies ? null : <Preloader />}
+      {isLoadingMovies && <Preloader />}
 
     </main>
   );
