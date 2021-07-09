@@ -22,6 +22,36 @@ class Api {
     }).then(handleResponse);
   }
 
+  createMovie({
+    country, director, duration, year, description,
+    image, trailer, thumbnail, movieId, nameRU, nameEN,
+  }) {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailer,
+        thumbnail,
+        movieId,
+        nameRU,
+        nameEN,
+      }),
+    }).then(handleResponse);
+  }
+
+  deleteMovie(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(handleResponse);
+  }
+
   getMe() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',

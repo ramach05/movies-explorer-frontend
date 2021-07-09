@@ -27,10 +27,24 @@ function MoviesCardList() {
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
   useEffect(() => {
+    apiMain.getMovies()
+      .then((res) => {
+        console.log('res :>> ', res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
     setIsLoadingMovies(true);
 
     apiMovies.getInitialMovies()
       .then((cardsFromApi) => {
+        console.log('cardsFromApi :>> ', cardsFromApi);
+
+        // console.log(JSON.stringify(cardsFromApi));
+
+        // localStorage.setItem('movies', JSON.stringify(cardsFromApi));
+
         const requiredAmountCards = cardsFromApi.slice(initialСardsCount, cardsCount);
 
         const renderedCardFromApi = requiredAmountCards.map((card) => ({
@@ -42,8 +56,9 @@ function MoviesCardList() {
           year: card.year,
           duration: card.duration,
           description: card.description,
-          trailerLink: card.trailerLink,
-          imageUrl: `https://api.nomoreparties.co${card.image.url}`,
+          trailer: card.trailerLink,
+          image: `https://api.nomoreparties.co${card.image.url}`,
+          thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
         }));
 
         setMovies((prevMovies) => [...prevMovies, ...renderedCardFromApi]);

@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Route, Switch, useLocation } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import './App.css';
 
@@ -21,8 +22,13 @@ function App() {
   const {
     isLogged, setIsLogged, currentUser, setCurrentUser,
   } = useAppContext();
+  const [isCheckToken, setIsCheckToken] = useState(false);
   const [isOpenNavigation, setIsOpenNavigation] = useState(false);
   const location = useLocation();
+  const history = useHistory();
+
+  console.log('isLogged :>> ', isLogged);
+  console.log('isCheckToken :>> ', isCheckToken);
 
   const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
   const profileRoute = ['/profile'].includes(location.pathname);
@@ -49,20 +55,33 @@ function App() {
       apiMain.checkToken({ token })
         .then((data) => {
           if (data.user._id === currentUser._id) {
-            setIsLogged(true);
+            (async () => {
+              await setIsLogged(true);
+              setIsCheckToken(true);
+            })();
           }
         })
         .catch((err) => {
           console.log(err);
           setIsLogged(false);
+          setIsCheckToken(true);
           localStorage.removeItem('token');
         });
+    } else {
+      setIsCheckToken(true);
     }
-  }, [isLogged, currentUser, setIsLogged]);
+  }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
+  // useEffect(() => {
+  //   if (isLogged) {
+  //     history.go(-1);
+  //   }
+  // }, [isLogged]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return isCheckToken ? (
     <div className="body">
       <div className="page">
+
         {isLogged
           ? (
             <>
@@ -140,9 +159,13 @@ function App() {
               { !authentificationRoute ? <Footer /> : null }
             </>
           )}
+
       </div>
     </div>
-  );
+  )
+    : (
+      <div>Loading</div>
+    );
 }
 
 export default App;

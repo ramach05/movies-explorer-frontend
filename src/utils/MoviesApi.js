@@ -23,7 +23,6 @@ const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 const apiMovies = new Api({
   baseUrl: MOVIES_URL,
   headers: {
-    // authorization: localStorage.getItem('token'),
     'Content-Type': 'application/json; charset=UTF-8',
   },
 });

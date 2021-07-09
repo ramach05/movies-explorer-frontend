@@ -26,6 +26,9 @@ function Profile() {
     email: false,
   });
 
+  console.log('currentUser :>> ', currentUser);
+  console.log('inputValue :>> ', inputValue);
+
   useEffect(() => {
     if (!formRef.current.checkValidity()) {
       setIsButtonDisabled(true);
@@ -88,7 +91,7 @@ function Profile() {
       email: inputValue.email,
     })
       .then((res) => {
-        setCurrentUser(res.user);
+        setCurrentUser(res.updateUser);
       })
       .catch((err) => {
         console.log(err);
