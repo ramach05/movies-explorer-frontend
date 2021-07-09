@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../../utils/AppContext';
 import apiMain from '../../utils/MainApi';
@@ -19,11 +19,22 @@ function MoviesCard({ card }) {
     image, trailer, thumbnail, id, nameRU, nameEN,
   } = card;
 
+  // console.log('card :>> ', card);
+
   const handleCardSave = (e) => {
     if (e.target.classList.value.includes('active')) {
       console.log('includes');
 
       setCardLike(false);
+
+      apiMain.deleteMovie(id)
+        .then((result) => {
+          console.log('result :>> ', result);
+        })
+        .catch((err) => {
+          console.log(err);
+          setCardLike(true);
+        });
     } else {
       console.log('dont includes');
 
@@ -50,15 +61,30 @@ function MoviesCard({ card }) {
           setCardLike(false);
         });
 
-      // apiMain.deleteMovie();
+      console.log('card :>> ', card);
 
       // localStorage.setItem('savedMovies', savedMovies);
     }
   };
 
   const handleCardDelete = () => {
+    const stringCardsFromApi = localStorage.getItem('movies');
+    const jsonCardsFromApi = JSON.parse(stringCardsFromApi);
+
     setCardLike(false);
-    // apiMain.deleteMovie();
+
+    // savedMovies.map((movie) => {
+
+    // });
+
+    // apiMain.deleteMovie(id)
+    //   .then((result) => {
+    //     console.log('result :>> ', result);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setCardLike(true);
+    //   });
   };
 
   return (

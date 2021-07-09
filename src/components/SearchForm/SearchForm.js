@@ -5,7 +5,8 @@ import './SearchForm.css';
 
 function SearchForm() {
   const {
-    movies, setMovies, filteredMovies,
+    movies, setMovies, savedMovies,
+    setSavedMovies, filteredMovies,
     setFilteredMovies,
   } = useAppContext([]);
   const [inputValue, setInputValue] = useState('');

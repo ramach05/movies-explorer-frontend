@@ -17,6 +17,7 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import { useAppContext } from '../../utils/AppContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import apiMain from '../../utils/MainApi';
+import Preloader from '../Preloader/Preloader';
 
 function App() {
   const {
@@ -27,8 +28,8 @@ function App() {
   const location = useLocation();
   const history = useHistory();
 
-  console.log('isLogged :>> ', isLogged);
-  console.log('isCheckToken :>> ', isCheckToken);
+  // console.log('isLogged :>> ', isLogged);
+  // console.log('isCheckToken :>> ', isCheckToken);
 
   const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
   const profileRoute = ['/profile'].includes(location.pathname);
@@ -55,10 +56,8 @@ function App() {
       apiMain.checkToken({ token })
         .then((data) => {
           if (data.user._id === currentUser._id) {
-            (async () => {
-              await setIsLogged(true);
-              setIsCheckToken(true);
-            })();
+            setIsLogged(true);
+            setIsCheckToken(true);
           }
         })
         .catch((err) => {
@@ -71,12 +70,6 @@ function App() {
       setIsCheckToken(true);
     }
   }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // useEffect(() => {
-  //   if (isLogged) {
-  //     history.go(-1);
-  //   }
-  // }, [isLogged]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return isCheckToken ? (
     <div className="body">
@@ -164,7 +157,9 @@ function App() {
     </div>
   )
     : (
-      <div>Loading</div>
+      <div className="initial-preloader">
+        <Preloader />
+      </div>
     );
 }
 

@@ -23,3 +23,12 @@ html {
   align-content: flex-start;
   min-height: 100vh;
 }
+
+.initial-preloader {
+  background: #202020;
+  height: 100vh;
+  display: grid;
+}
+.initial-preloader .preloader {
+  padding: 0;
+}

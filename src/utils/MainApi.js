@@ -16,7 +16,7 @@ class Api {
   }
 
   getMovies() {
-    return fetch(`${this._baseUrl}`, {
+    return fetch(`${this._baseUrl}/movies`, {
       method: 'GET',
       headers: this._headers,
     }).then(handleResponse);

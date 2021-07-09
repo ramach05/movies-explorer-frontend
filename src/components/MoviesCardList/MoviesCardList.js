@@ -26,24 +26,30 @@ function MoviesCardList() {
 
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
+  // console.log('savedMovies :>> ', savedMovies);
+
   useEffect(() => {
     apiMain.getMovies()
       .then((res) => {
-        console.log('res :>> ', res);
+        // console.log('res :>> ', res);
+        setSavedMovies(res.movies);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [setSavedMovies]);
 
   useEffect(() => {
     setIsLoadingMovies(true);
 
     apiMovies.getInitialMovies()
       .then((cardsFromApi) => {
-        console.log('cardsFromApi :>> ', cardsFromApi);
+        // console.log('cardsFromApi :>> ', cardsFromApi);
 
-        // console.log(JSON.stringify(cardsFromApi));
+        const stringCardsFromApi = JSON.stringify(cardsFromApi);
+        localStorage.setItem('movies', stringCardsFromApi);
 
-        // localStorage.setItem('movies', JSON.stringify(cardsFromApi));
+        const json = JSON.parse(stringCardsFromApi);
+
+        // console.log('JSON.parse :>> ', JSON.parse(localStorage.getItem('movies')));
 
         const requiredAmountCards = cardsFromApi.slice(initialСardsCount, cardsCount);
 
