@@ -28,9 +28,6 @@ function App() {
   const location = useLocation();
   const history = useHistory();
 
-  // console.log('isLogged :>> ', isLogged);
-  // console.log('isCheckToken :>> ', isCheckToken);
-
   const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
   const profileRoute = ['/profile'].includes(location.pathname);
   const menuRoute = ['/movies', '/saved-movies', '/profile'].includes(location.pathname);

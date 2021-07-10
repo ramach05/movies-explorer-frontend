@@ -6,8 +6,6 @@ import apiMain from '../../utils/MainApi';
 import './MoviesCard.css';
 
 function MoviesCard({ card }) {
-  // console.log('card :>> ', card);
-
   const { savedMovies, setSavedMovies } = useAppContext();
   const [cardLike, setCardLike] = useState(false);
   const location = useLocation();
@@ -22,9 +20,6 @@ function MoviesCard({ card }) {
   const stringCardsFromApi = localStorage.getItem('movies');
   const jsonCardsFromApi = JSON.parse(stringCardsFromApi);
 
-  // console.log('savedMovies :>> ', savedMovies);
-  // console.log('jsonCardsFromApi :>> ', jsonCardsFromApi);
-
   useEffect(() => {
     if (savedMovies.some((movie) => movie.movieId === card.id)) {
       setCardLike(true);
@@ -33,8 +28,6 @@ function MoviesCard({ card }) {
 
   function handleCardDelete() {
     setCardLike(false);
-
-    console.log('card :>> ', card);
 
     if (savedMoviesRoute) {
       apiMain.deleteMovie(card._id)

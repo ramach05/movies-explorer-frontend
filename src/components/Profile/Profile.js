@@ -26,9 +26,6 @@ function Profile() {
     email: false,
   });
 
-  console.log('currentUser :>> ', currentUser);
-  console.log('inputValue :>> ', inputValue);
-
   useEffect(() => {
     if (!formRef.current.checkValidity()) {
       setIsButtonDisabled(true);

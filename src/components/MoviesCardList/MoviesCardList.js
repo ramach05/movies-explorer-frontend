@@ -19,7 +19,6 @@ function MoviesCardList() {
     filteredMovies,
     setFilteredMovies,
   } = useAppContext();
-  // const [isUpdateSavedMovies, setIsUpdateSavedMovies] = useState(false);
   const [isMoreButton, setIsMoreButton] = useState(true);
   const [initialСardsCount, setInitialСardsCount] = useState(0);
   const [cardsCount, setCardsCount] = useState(3); // начальное количество карт на странице = 3
@@ -27,12 +26,6 @@ function MoviesCardList() {
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
   useEffect(() => {
-    setMovies([]);
-  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    console.log(1);
-
     apiMain.getMovies()
       .then((res) => {
         setSavedMovies(res.movies);
@@ -41,8 +34,10 @@ function MoviesCardList() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    console.log(2);
+    setMovies([]);
+  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
     setIsLoadingMovies(true);
 
     apiMovies.getInitialMovies()
@@ -86,8 +81,6 @@ function MoviesCardList() {
   function renderCards() {
     if (!savedMoviesRoute) {
       if (filteredMovies) {
-        // console.log('filteredMovies :>> ', filteredMovies);
-
         return filteredMovies.map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -105,14 +98,14 @@ function MoviesCardList() {
     if (filteredMovies) {
       return filteredMovies.map((movie) => (
         <MoviesCard
-          key={movie.id}
+          key={movie._id}
           card={movie}
         />
       ));
     }
     return savedMovies.map((movie) => (
       <MoviesCard
-        key={movie.id}
+        key={movie._id}
         card={movie}
       />
     ));
