@@ -20,6 +20,8 @@ function SearchForm() {
   const location = useLocation();
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
+  // console.log('filteredMovies :>> ', filteredMovies);
+
   useEffect(() => {
     setFilteredMovies(false);
   }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps

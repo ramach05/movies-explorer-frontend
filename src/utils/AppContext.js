@@ -7,7 +7,7 @@ export const AppContext = ({ children }) => {
   const [isLoadingMovies, setIsLoadingMovies] = useState(false);
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState(false);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
 
   return (

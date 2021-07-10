@@ -27,6 +27,10 @@ function MoviesCardList() {
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
   useEffect(() => {
+    setMovies([]);
+  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     console.log(1);
 
     apiMain.getMovies()
@@ -43,8 +47,7 @@ function MoviesCardList() {
 
     apiMovies.getInitialMovies()
       .then((cardsFromApi) => {
-        const stringCardsFromApi = JSON.stringify(cardsFromApi);
-        localStorage.setItem('movies', stringCardsFromApi);
+        localStorage.setItem('movies', JSON.stringify(cardsFromApi));
 
         const requiredAmountCards = cardsFromApi.slice(initialСardsCount, cardsCount);
 
@@ -83,6 +86,8 @@ function MoviesCardList() {
   function renderCards() {
     if (!savedMoviesRoute) {
       if (filteredMovies) {
+        // console.log('filteredMovies :>> ', filteredMovies);
+
         return filteredMovies.map((movie) => (
           <MoviesCard
             key={movie.id}
