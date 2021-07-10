@@ -97,6 +97,14 @@ function MoviesCardList() {
         />
       ));
     }
+    if (filteredMovies) {
+      return filteredMovies.map((movie) => (
+        <MoviesCard
+          key={movie.id}
+          card={movie}
+        />
+      ));
+    }
     return savedMovies.map((movie) => (
       <MoviesCard
         key={movie.id}

@@ -1,7 +1,10 @@
-import { React, useRef, useState } from 'react';
-import { useAppContext } from '../../utils/AppContext';
+import {
+  React, useRef, useState, useEffect,
+} from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './SearchForm.css';
+import { useAppContext } from '../../utils/AppContext';
 
 function SearchForm() {
   const {
@@ -13,6 +16,13 @@ function SearchForm() {
   const formRef = useRef();
   const inputRef = useRef();
   const checkboxRef = useRef();
+
+  const location = useLocation();
+  const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
+
+  useEffect(() => {
+    setFilteredMovies(false);
+  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function filterCards(cards) {
     const filteredCards = cards.filter((card) => card.nameRU.toLowerCase()
@@ -30,14 +40,21 @@ function SearchForm() {
     e.preventDefault();
     if (inputValue !== '') {
       inputRef.current.placeholder = 'Фильм';
-      filterCards(movies);
+
+      if (!savedMoviesRoute) {
+        filterCards(movies);
+      } else {
+        filterCards(savedMovies);
+      }
     } else if (inputValue === '') {
       inputRef.current.placeholder = 'Нужно ввести ключевое слово';
 
       if (!checkboxRef.current.checked) {
         setFilteredMovies(false);
-      } else {
+      } else if (!savedMoviesRoute) {
         filterCards(movies);
+      } else {
+        filterCards(savedMovies);
       }
     }
   }
