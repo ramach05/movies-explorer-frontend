@@ -18,38 +18,33 @@ function MoviesCardList() {
     setSavedMovies,
     filteredMovies,
     setFilteredMovies,
-  } = useAppContext([]);
-  // const [getSavedCards, setGetSavedCards] = useState(localStorage.getItem('savedMovies'));
+  } = useAppContext();
+  // const [isUpdateSavedMovies, setIsUpdateSavedMovies] = useState(false);
   const [isMoreButton, setIsMoreButton] = useState(true);
   const [initialСardsCount, setInitialСardsCount] = useState(0);
   const [cardsCount, setCardsCount] = useState(3); // начальное количество карт на странице = 3
 
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
-  // console.log('savedMovies :>> ', savedMovies);
-
   useEffect(() => {
+    console.log(1);
+
     apiMain.getMovies()
       .then((res) => {
-        // console.log('res :>> ', res);
         setSavedMovies(res.movies);
       })
       .catch((err) => console.log(err));
-  }, [setSavedMovies]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    console.log(2);
+
     setIsLoadingMovies(true);
 
     apiMovies.getInitialMovies()
       .then((cardsFromApi) => {
-        // console.log('cardsFromApi :>> ', cardsFromApi);
-
         const stringCardsFromApi = JSON.stringify(cardsFromApi);
         localStorage.setItem('movies', stringCardsFromApi);
-
-        const json = JSON.parse(stringCardsFromApi);
-
-        // console.log('JSON.parse :>> ', JSON.parse(localStorage.getItem('movies')));
 
         const requiredAmountCards = cardsFromApi.slice(initialСardsCount, cardsCount);
 
@@ -79,11 +74,11 @@ function MoviesCardList() {
       .catch((err) => console.log(err));
   }, [cardsCount, initialСardsCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleMoreButton = (e) => {
+  function handleMoreButton(e) {
     e.preventDefault();
     setInitialСardsCount(initialСardsCount + 3);
     setCardsCount(cardsCount + 3);
-  };
+  }
 
   function renderCards() {
     if (!savedMoviesRoute) {

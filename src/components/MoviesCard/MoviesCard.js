@@ -19,24 +19,60 @@ function MoviesCard({ card }) {
     image, trailer, thumbnail, id, nameRU, nameEN,
   } = card;
 
-  // console.log('card :>> ', card);
+  const stringCardsFromApi = localStorage.getItem('movies');
+  const jsonCardsFromApi = JSON.parse(stringCardsFromApi);
 
-  const handleCardSave = (e) => {
-    if (e.target.classList.value.includes('active')) {
-      console.log('includes');
+  // console.log('savedMovies :>> ', savedMovies);
+  // console.log('jsonCardsFromApi :>> ', jsonCardsFromApi);
 
-      setCardLike(false);
+  useEffect(() => {
+    if (savedMovies.some((movie) => movie.movieId === card.id)) {
+      setCardLike(true);
+    }
+  }, [card.id, savedMovies]);
 
-      apiMain.deleteMovie(id)
-        .then((result) => {
-          console.log('result :>> ', result);
+  function handleCardDelete() {
+    setCardLike(false);
+
+    console.log('card :>> ', card);
+
+    if (savedMoviesRoute) {
+      apiMain.deleteMovie(card._id)
+        .then(() => {
+          apiMain.getMovies()
+            .then((result) => {
+              setSavedMovies(result.movies);
+            })
+            .catch((err) => console.log(err));
         })
         .catch((err) => {
           console.log(err);
           setCardLike(true);
         });
     } else {
-      console.log('dont includes');
+      savedMovies.map((movie) => {
+        if (card.id === movie.movieId) {
+          apiMain.deleteMovie(movie._id)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+              setCardLike(true);
+            });
+        }
+        return movie;
+      });
+    }
+  }
+
+  function handleCardSave(e) {
+    if (e.target.classList.value.includes('active')) {
+      console.log('includ');
+
+      handleCardDelete();
+    } else {
+      console.log('dont includ');
 
       setCardLike(true);
 
@@ -54,38 +90,14 @@ function MoviesCard({ card }) {
         nameEN,
       })
         .then((res) => {
-          console.log('res :>> ', res);
+          console.log(res);
         })
         .catch((err) => {
           console.log(err);
           setCardLike(false);
         });
-
-      console.log('card :>> ', card);
-
-      // localStorage.setItem('savedMovies', savedMovies);
     }
-  };
-
-  const handleCardDelete = () => {
-    const stringCardsFromApi = localStorage.getItem('movies');
-    const jsonCardsFromApi = JSON.parse(stringCardsFromApi);
-
-    setCardLike(false);
-
-    // savedMovies.map((movie) => {
-
-    // });
-
-    // apiMain.deleteMovie(id)
-    //   .then((result) => {
-    //     console.log('result :>> ', result);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setCardLike(true);
-    //   });
-  };
+  }
 
   return (
     <li className="movies-card">
