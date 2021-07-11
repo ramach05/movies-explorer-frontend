@@ -77,17 +77,14 @@ function Register() {
         apiMain
           .login({
             email: res.email,
-            password: res.password,
+            password: inputPasswordRef.current.value,
           })
           .then((data) => {
             if (data.token) {
               localStorage.setItem('token', data.token);
               setIsLogged(true);
+              history.push('/movies');
             }
-            return data;
-          })
-          .then(() => {
-            history.push('/movies');
           })
           .catch((err) => {
             setButtonError(err);
@@ -101,6 +98,7 @@ function Register() {
         console.log(err);
         setButtonError(err);
         setIsLoading(false);
+        setIsButtonDisabled(false);
       });
   }
 
