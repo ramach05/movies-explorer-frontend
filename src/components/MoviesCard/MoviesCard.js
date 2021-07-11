@@ -8,6 +8,7 @@ import './MoviesCard.css';
 function MoviesCard({ card }) {
   const { savedMovies, setSavedMovies } = useAppContext();
   const [cardLike, setCardLike] = useState(false);
+  const [correctDuration, setCorrectDuration] = useState('0');
   const location = useLocation();
 
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
@@ -17,8 +18,15 @@ function MoviesCard({ card }) {
     image, trailer, thumbnail, id, nameRU, nameEN,
   } = card;
 
-  const stringCardsFromApi = localStorage.getItem('movies');
-  const jsonCardsFromApi = JSON.parse(stringCardsFromApi);
+  useEffect(() => {
+    if (duration < 60) {
+      setCorrectDuration(`${duration}м`);
+    } else {
+      const durationOfMinutes = duration % 60;
+      const durationOfHours = (duration - durationOfMinutes) / 60;
+      setCorrectDuration(`${durationOfHours}ч ${durationOfMinutes}м`);
+    }
+  }, [duration]);
 
   useEffect(() => {
     if (savedMovies.some((movie) => movie.movieId === card.id)) {
@@ -116,7 +124,7 @@ function MoviesCard({ card }) {
 
       <div className="movies-card__text">
         <p className="movies-card__text__title">{nameRU}</p>
-        <p className="movies-card__text__duration">{duration}</p>
+        <p className="movies-card__text__duration">{correctDuration}</p>
       </div>
 
       {!savedMoviesRoute ? (

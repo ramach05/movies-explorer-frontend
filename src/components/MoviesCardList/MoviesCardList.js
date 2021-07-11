@@ -22,7 +22,7 @@ function MoviesCardList() {
   } = useAppContext();
   const [isMoreButton, setIsMoreButton] = useState(true);
   const [initialСardsCount, setInitialСardsCount] = useState(0);
-  const [cardsCount, setCardsCount] = useState(3); // начальное количество карт на странице = 3
+  const [cardsCount, setCardsCount] = useState(4); // начальное количество карт на странице = 3
 
   const location = useLocation();
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
@@ -80,8 +80,8 @@ function MoviesCardList() {
 
   function handleMoreButton(e) {
     e.preventDefault();
-    setInitialСardsCount(initialСardsCount + 3);
-    setCardsCount(cardsCount + 3);
+    setInitialСardsCount(initialСardsCount + 4);
+    setCardsCount(cardsCount + 4);
   }
 
   function renderCards() {
