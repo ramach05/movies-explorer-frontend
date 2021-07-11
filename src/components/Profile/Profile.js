@@ -100,7 +100,7 @@ function Profile() {
 
   function handleSingOut(e) {
     e.preventDefault();
-    localStorage.removeItem('token');
+    localStorage.clear();
     setIsLogged(false);
     history.push('/');
   }

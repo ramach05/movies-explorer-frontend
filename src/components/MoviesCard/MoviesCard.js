@@ -27,11 +27,11 @@ function MoviesCard({ card }) {
   }, [card.id, savedMovies]);
 
   function handleCardDelete() {
-    setCardLike(false);
-
     if (savedMoviesRoute) {
       apiMain.deleteMovie(card._id)
-        .then(() => {
+        .then((res) => {
+          console.log(res.movie);
+
           apiMain.getMovies()
             .then((result) => {
               setSavedMovies(result.movies);
@@ -40,14 +40,20 @@ function MoviesCard({ card }) {
         })
         .catch((err) => {
           console.log(err);
-          setCardLike(true);
         });
     } else {
       savedMovies.map((movie) => {
         if (card.id === movie.movieId) {
           apiMain.deleteMovie(movie._id)
             .then((res) => {
-              console.log(res);
+              console.log(res.movie);
+
+              apiMain.getMovies()
+                .then((result) => {
+                  setSavedMovies(result.movies);
+                  setCardLike(false);
+                })
+                .catch((err) => console.log(err));
             })
             .catch((err) => {
               console.log(err);
@@ -61,14 +67,8 @@ function MoviesCard({ card }) {
 
   function handleCardSave(e) {
     if (e.target.classList.value.includes('active')) {
-      console.log('includ');
-
       handleCardDelete();
     } else {
-      console.log('dont includ');
-
-      setCardLike(true);
-
       apiMain.createMovie({
         country,
         director,
@@ -83,7 +83,14 @@ function MoviesCard({ card }) {
         nameEN,
       })
         .then((res) => {
-          console.log(res);
+          console.log(res.movie);
+          setCardLike(true);
+
+          apiMain.getMovies()
+            .then((result) => {
+              setSavedMovies(result.movies);
+            })
+            .catch((err) => console.log(err));
         })
         .catch((err) => {
           console.log(err);

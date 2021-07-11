@@ -40,39 +40,43 @@ function MoviesCardList() {
   }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    setIsLoadingMovies(true);
+    if (!localStorage.movies) {
+      setIsLoadingMovies(true);
 
-    apiMovies.getInitialMovies()
-      .then((cardsFromApi) => {
-        localStorage.setItem('movies', JSON.stringify(cardsFromApi));
+      apiMovies.getInitialMovies()
+        .then((cardsFromApi) => {
+          localStorage.setItem('movies', JSON.stringify(cardsFromApi));
+        })
+        .then(() => {
+          setIsLoadingMovies(false);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      const cardsFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
 
-        const requiredAmountCards = cardsFromApi.slice(initialСardsCount, cardsCount);
+      const requiredAmountCards = cardsFromLocalStorage.slice(initialСardsCount, cardsCount);
 
-        const renderedCardFromApi = requiredAmountCards.map((card) => ({
-          id: card.id,
-          nameRU: card.nameRU,
-          nameEN: card.nameEN,
-          director: card.director,
-          country: card.country,
-          year: card.year,
-          duration: card.duration,
-          description: card.description,
-          trailer: card.trailerLink,
-          image: `https://api.nomoreparties.co${card.image.url}`,
-          thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
-        }));
+      const renderedCardsFromLocalStorage = requiredAmountCards.map((card) => ({
+        id: card.id,
+        nameRU: card.nameRU,
+        nameEN: card.nameEN,
+        director: card.director,
+        country: card.country,
+        year: card.year,
+        duration: card.duration,
+        description: card.description,
+        trailer: card.trailerLink,
+        image: `https://api.nomoreparties.co${card.image.url}`,
+        thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
+      }));
 
-        setMovies((prevMovies) => [...prevMovies, ...renderedCardFromApi]);
+      setMovies((prevMovies) => [...prevMovies, ...renderedCardsFromLocalStorage]);
 
-        if (movies.length === cardsFromApi.length) {
-          setIsMoreButton(false);
-        }
-      })
-      .then(() => {
-        setIsLoadingMovies(false);
-      })
-      .catch((err) => console.log(err));
-  }, [cardsCount, initialСardsCount]); // eslint-disable-line react-hooks/exhaustive-deps
+      if (movies.length === cardsFromLocalStorage.length) {
+        setIsMoreButton(false);
+      }
+    }
+  }, [isLoadingMovies, cardsCount, initialСardsCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleMoreButton(e) {
     e.preventDefault();
