@@ -9,7 +9,7 @@ import { HeaderLogo } from '../../utils/utils';
 import './Register.css';
 
 function Register() {
-  const { isLogged, setIsLogged } = useAppContext();
+  const { setIsLogged } = useAppContext();
   const history = useHistory();
   const formRef = useRef();
   const inputNameRef = useRef();

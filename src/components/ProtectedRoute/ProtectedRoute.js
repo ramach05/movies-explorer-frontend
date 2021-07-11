@@ -12,7 +12,7 @@ const ProtectedRoute = ({
   profileRoute,
   authentificationRoute,
 }) => {
-  const { isLogged, setIsLogged } = useAppContext();
+  const { isLogged } = useAppContext();
 
   if (!isLogged) {
     if (menuRoute || profileRoute) {

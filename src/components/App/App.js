@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react';
 import { Route, Switch, useLocation } from 'react-router';
-import { useHistory } from 'react-router-dom';
 
 import './App.css';
 
@@ -26,7 +25,6 @@ function App() {
   const [isCheckToken, setIsCheckToken] = useState(false);
   const [isOpenNavigation, setIsOpenNavigation] = useState(false);
   const location = useLocation();
-  const history = useHistory();
 
   const authentificationRoute = ['/signin', '/signup'].includes(location.pathname);
   const profileRoute = ['/profile'].includes(location.pathname);

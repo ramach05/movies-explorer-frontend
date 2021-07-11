@@ -9,7 +9,7 @@ import { HeaderLogo } from '../../utils/utils';
 
 function Login() {
   const {
-    isLogged, setIsLogged, currentUser, setCurrentUser,
+    setIsLogged, setCurrentUser,
   } = useAppContext();
   const history = useHistory();
   const formRef = useRef();

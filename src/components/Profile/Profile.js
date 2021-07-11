@@ -9,7 +9,7 @@ import apiMain from '../../utils/MainApi';
 
 function Profile() {
   const {
-    isLogged, setIsLogged, currentUser, setCurrentUser,
+    setIsLogged, currentUser, setCurrentUser,
   } = useAppContext();
   const formRef = useRef();
   const history = useHistory();

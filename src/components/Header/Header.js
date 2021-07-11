@@ -6,7 +6,7 @@ import { HeaderLogo } from '../../utils/utils';
 import { useAppContext } from '../../utils/AppContext';
 
 function Header({ setIsOpenNavigation, menuRoute, handleClosePopup }) {
-  const { isLogged, setIsLogged } = useAppContext();
+  const { isLogged } = useAppContext();
   const history = useHistory();
 
   function handleBurger() {

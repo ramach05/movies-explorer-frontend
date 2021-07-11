@@ -8,10 +8,7 @@ import { useAppContext } from '../../utils/AppContext';
 
 function SearchForm() {
   const {
-    movies, setMovies, savedMovies,
-    setSavedMovies, filteredMovies,
-    setFilteredMovies, isNoCards,
-    setIsNoCards,
+    movies, savedMovies, setFilteredMovies, setIsNoCards,
   } = useAppContext([]);
   const [inputValue, setInputValue] = useState('');
   const formRef = useRef();
@@ -33,8 +30,6 @@ function SearchForm() {
       setFilteredMovies(filteredCards);
 
       if (filteredCards.length === 0) {
-        console.log(424);
-
         setIsNoCards(true);
       } else {
         setIsNoCards(false);
@@ -44,8 +39,6 @@ function SearchForm() {
       setFilteredMovies(filteredCardsByTime);
 
       if (filteredCardsByTime.length === 0) {
-        console.log(5555);
-
         setIsNoCards(true);
       } else {
         setIsNoCards(false);

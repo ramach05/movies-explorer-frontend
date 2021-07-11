@@ -5,7 +5,7 @@ import { useAppContext } from '../../utils/AppContext';
 import './Navigation.css';
 
 function Navigation({ isOpenNavigation, setIsOpenNavigation, handleClosePopup }) {
-  const { isLogged, setIsLogged } = useAppContext();
+  const { isLogged } = useAppContext();
   const history = useHistory();
 
   function handleNavigationLink() {

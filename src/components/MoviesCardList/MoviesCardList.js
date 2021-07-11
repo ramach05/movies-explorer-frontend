@@ -16,9 +16,7 @@ function MoviesCardList() {
     savedMovies,
     setSavedMovies,
     filteredMovies,
-    setFilteredMovies,
     isNoCards,
-    setIsNoCards,
   } = useAppContext();
   const [isMoreButton, setIsMoreButton] = useState(true);
   const [initialСardsCount, setInitialСardsCount] = useState(0);
