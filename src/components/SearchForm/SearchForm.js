@@ -10,7 +10,8 @@ function SearchForm() {
   const {
     movies, setMovies, savedMovies,
     setSavedMovies, filteredMovies,
-    setFilteredMovies,
+    setFilteredMovies, isNoCards,
+    setIsNoCards,
   } = useAppContext([]);
   const [inputValue, setInputValue] = useState('');
   const formRef = useRef();
@@ -30,9 +31,25 @@ function SearchForm() {
 
     if (!checkboxRef.current.checked) {
       setFilteredMovies(filteredCards);
+
+      if (filteredCards.length === 0) {
+        console.log(424);
+
+        setIsNoCards(true);
+      } else {
+        setIsNoCards(false);
+      }
     } else {
       const filteredCardsByTime = filteredCards.filter((card) => card.duration <= 40);
       setFilteredMovies(filteredCardsByTime);
+
+      if (filteredCardsByTime.length === 0) {
+        console.log(5555);
+
+        setIsNoCards(true);
+      } else {
+        setIsNoCards(false);
+      }
     }
   }
 
@@ -47,6 +64,7 @@ function SearchForm() {
         filterCards(savedMovies);
       }
     } else if (inputValue === '') {
+      setIsNoCards(false);
       inputRef.current.placeholder = 'Нужно ввести ключевое слово';
 
       if (!checkboxRef.current.checked) {

@@ -9,6 +9,7 @@ export const AppContext = ({ children }) => {
   const [savedMovies, setSavedMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const [isNoCards, setIsNoCards] = useState(false);
 
   return (
     <context.Provider value={{
@@ -29,6 +30,9 @@ export const AppContext = ({ children }) => {
 
       currentUser,
       setCurrentUser,
+
+      isNoCards,
+      setIsNoCards,
     }}
     >
       {children}

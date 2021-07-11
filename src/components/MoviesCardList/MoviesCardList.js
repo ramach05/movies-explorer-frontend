@@ -8,7 +8,6 @@ import apiMain from '../../utils/MainApi';
 import { useAppContext } from '../../utils/AppContext';
 
 function MoviesCardList() {
-  const location = useLocation();
   const {
     isLoadingMovies,
     setIsLoadingMovies,
@@ -18,11 +17,14 @@ function MoviesCardList() {
     setSavedMovies,
     filteredMovies,
     setFilteredMovies,
+    isNoCards,
+    setIsNoCards,
   } = useAppContext();
   const [isMoreButton, setIsMoreButton] = useState(true);
   const [initialСardsCount, setInitialСardsCount] = useState(0);
   const [cardsCount, setCardsCount] = useState(3); // начальное количество карт на странице = 3
 
+  const location = useLocation();
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
   useEffect(() => {
@@ -112,7 +114,7 @@ function MoviesCardList() {
   }
 
   function renderMoreButton() {
-    if (movies.length !== 0 && isMoreButton && !savedMoviesRoute) {
+    if (movies.length !== 0 && isMoreButton && !savedMoviesRoute && !filteredMovies) {
       if (isLoadingMovies) {
         return (
           <button
@@ -140,9 +142,13 @@ function MoviesCardList() {
 
   return (
     <article className="movies-card-list">
-      <ul className="movies-card-list__ul">
-        {renderCards()}
-      </ul>
+      { !isNoCards
+        ? (
+          <ul className="movies-card-list__ul">
+            {renderCards()}
+          </ul>
+        )
+        : <div className="movies-card__text__title">Ничего не найдено</div> }
 
       <div className="movies-card-list__button-wrapper">
         {renderMoreButton()}
