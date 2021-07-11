@@ -68,6 +68,17 @@ function App() {
     }
   }, [currentUser]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  function handleClosePopup(e) {
+    if (
+      e.target.classList.contains('navigation_open')
+      || e.target.classList.contains('navigation__close-button')
+      || e.key === 'Escape'
+    ) {
+      setIsOpenNavigation(false);
+      window.removeEventListener('keydown', handleClosePopup);
+    }
+  }
+
   return isCheckToken ? (
     <div className="body">
       <div className="page">
@@ -79,12 +90,14 @@ function App() {
                 <Header
                   setIsOpenNavigation={setIsOpenNavigation}
                   menuRoute={menuRoute}
+                  handleClosePopup={handleClosePopup}
                 />
               ) : null}
 
               <Navigation
                 isOpenNavigation={isOpenNavigation}
                 setIsOpenNavigation={setIsOpenNavigation}
+                handleClosePopup={handleClosePopup}
               />
 
               <Switch>
@@ -121,6 +134,7 @@ function App() {
                 <Header
                   setIsOpenNavigation={setIsOpenNavigation}
                   menuRoute={menuRoute}
+                  handleClosePopup={handleClosePopup}
                 />
               ) : null }
 

@@ -25,6 +25,14 @@
   position: absolute;
   right: 0;
   width: 100%;
+
+  animation: appearPopup 250ms ease;
+}
+
+@keyframes appearPopup {
+  0% {
+    transform: translate(100%);
+  }
 }
 
 .navigation__close-button {

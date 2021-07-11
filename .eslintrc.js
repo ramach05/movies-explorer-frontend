@@ -36,5 +36,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 1,
     'no-nested-ternary': 0,
     'max-len': 1,
+    'jsx-a11y/no-noninteractive-element-interactions': 1,
+    'jsx-a11y/click-events-have-key-events': 0,
   },
 };

@@ -5,15 +5,17 @@ import './Header.css';
 import { HeaderLogo } from '../../utils/utils';
 import { useAppContext } from '../../utils/AppContext';
 
-function Header({ setIsOpenNavigation, menuRoute }) {
+function Header({ setIsOpenNavigation, menuRoute, handleClosePopup }) {
   const { isLogged, setIsLogged } = useAppContext();
   const history = useHistory();
 
-  function handleHeaderButton() {
-    history.push('/signin');
-  }
   function handleBurger() {
     setIsOpenNavigation(true);
+    window.addEventListener('keydown', handleClosePopup);
+  }
+
+  function handleHeaderButton() {
+    history.push('/signin');
   }
 
   return (
