@@ -57,14 +57,8 @@ function MoviesCardList() {
     return result;
   }
 
-  // console.log('movies :>> ', movies);
-  // console.log('initialСardsCount :>> ', initialСardsCount);
-  // console.log('cardsCount :>> ', cardsCount);
-
   useEffect(() => {
     if (!localStorage.movies) {
-      console.log('1 :>> ', 1);
-
       setIsLoadingMovies(true);
 
       apiMovies.getInitialMovies()
@@ -76,8 +70,6 @@ function MoviesCardList() {
         })
         .catch((err) => console.log(err));
     } else if (localStorage.renderedMovies) {
-      console.log('2 :>> ', 2);
-
       if (isHandleMoreButton === 0) {
         const requiredAmountCards = JSON.parse(localStorage.getItem('renderedMovies'));
         const renderedMovies = renderRequiredAmountCards([...requiredAmountCards]);
@@ -93,10 +85,6 @@ function MoviesCardList() {
         const requiredAmountCards = cardsFromLocalStorage.slice(initialСardsCount, cardsCount);
         const listRequiredAmountCards = renderRequiredAmountCards([...requiredAmountCards]);
 
-        // console.log('renderedMovies :>> ', ...renderedMovies);
-        // console.log('listRequiredAmountCards :>> ', ...listRequiredAmountCards);
-        // console.log('cardsFromLocalStorage :>> ', cardsFromLocalStorage);
-
         localStorage.setItem('renderedMovies', JSON.stringify([...renderedMovies, ...requiredAmountCards]));
 
         setMovies((prev) => [...prev, ...listRequiredAmountCards]);
@@ -106,8 +94,6 @@ function MoviesCardList() {
         }
       }
     } else {
-      console.log('3 :>> ', 3);
-
       const cardsFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
       const requiredAmountCards = cardsFromLocalStorage.slice(initialСardsCount, cardsCount);
       const listRequiredAmountCards = renderRequiredAmountCards([...requiredAmountCards]);
@@ -117,8 +103,6 @@ function MoviesCardList() {
       setMovies(listRequiredAmountCards);
     }
   }, [isLoadingMovies, isHandleMoreButton]);// eslint-disable-line react-hooks/exhaustive-deps
-
-  // console.log('isHandleMoreButton :>> ', isHandleMoreButton);
 
   function handleMoreButton(e) {
     e.preventDefault();
@@ -159,9 +143,6 @@ function MoviesCardList() {
       />
     ));
   }
-
-  console.log('filteredMovies :>> ', filteredMovies);
-  console.log(' :>> ', !filteredMovies);
 
   function renderMoreButton() {
     if (movies.length !== 0
