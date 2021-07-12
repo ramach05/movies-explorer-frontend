@@ -46,6 +46,22 @@ function SearchForm() {
     }
   }
 
+  function handleChangeCheckboxButton() {
+    if (!checkboxRef.current.checked) {
+      setFilteredMovies(false);
+
+      if (!savedMoviesRoute) {
+        filterCards(movies);
+      } else {
+        filterCards(savedMovies);
+      }
+    } else if (!savedMoviesRoute) {
+      filterCards(movies);
+    } else {
+      filterCards(savedMovies);
+    }
+  }
+
   function handleSubmitSearchForm(e) {
     e.preventDefault();
     if (inputValue !== '') {
@@ -60,9 +76,7 @@ function SearchForm() {
       setIsNoCards(false);
       inputRef.current.placeholder = 'Нужно ввести ключевое слово';
 
-      if (!checkboxRef.current.checked) {
-        setFilteredMovies(false);
-      } else if (!savedMoviesRoute) {
+      if (!savedMoviesRoute) {
         filterCards(movies);
       } else {
         filterCards(savedMovies);
@@ -102,6 +116,7 @@ function SearchForm() {
           id="search-form-checkbox"
           name="search-form-checkbox"
           ref={checkboxRef}
+          onChange={handleChangeCheckboxButton}
         />
         <span className="search-form__checkbox-switch">
         </span>
