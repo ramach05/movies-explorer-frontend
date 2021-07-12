@@ -47,13 +47,6 @@
   opacity: 0.6;
   cursor: pointer;
 }
-.movies-card-list__button_disabled {
-  opacity: 0.6;
-}
-.movies-card-list__button_disabled:hover {
-  cursor: auto;
-}
-
 
 @media screen and (min-width: 768px) {
   .movies-card-list__ul {

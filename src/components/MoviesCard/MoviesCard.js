@@ -19,7 +19,7 @@ function MoviesCard({ card }) {
   } = card;
 
   useEffect(() => {
-    if (duration < 60) {
+    if (duration <= 60) {
       setCorrectDuration(`${duration}м`);
     } else {
       const durationOfMinutes = duration % 60;

@@ -10,6 +10,8 @@ export const AppContext = ({ children }) => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [isNoCards, setIsNoCards] = useState(false);
+  const [isInitialMoreButton,
+    setIsInitialMoreButton] = useState(false);
 
   return (
     <context.Provider value={{
@@ -33,6 +35,9 @@ export const AppContext = ({ children }) => {
 
       isNoCards,
       setIsNoCards,
+
+      isInitialMoreButton,
+      setIsInitialMoreButton,
     }}
     >
       {children}

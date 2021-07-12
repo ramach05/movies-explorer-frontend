@@ -8,7 +8,7 @@ import { useAppContext } from '../../utils/AppContext';
 
 function SearchForm() {
   const {
-    movies, savedMovies, setFilteredMovies, setIsNoCards,
+    movies, savedMovies, setFilteredMovies, setIsNoCards, setIsInitialMoreButton,
   } = useAppContext([]);
   const [inputValue, setInputValue] = useState('');
   const formRef = useRef();
@@ -26,6 +26,8 @@ function SearchForm() {
     const filteredCards = cards.filter((card) => card.nameRU.toLowerCase()
       .includes(inputRef.current.value.toLowerCase()));
 
+    setIsInitialMoreButton(false);
+
     if (!checkboxRef.current.checked) {
       setFilteredMovies(filteredCards);
 
@@ -33,6 +35,10 @@ function SearchForm() {
         setIsNoCards(true);
       } else {
         setIsNoCards(false);
+
+        if (inputRef.current.value === '') {
+          setIsInitialMoreButton(true);
+        }
       }
     } else {
       const filteredCardsByTime = filteredCards.filter((card) => card.duration <= 40);
