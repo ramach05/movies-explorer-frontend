@@ -50,8 +50,8 @@ function MoviesCardList() {
       duration: card.duration,
       description: card.description,
       trailer: card.trailerLink,
-      image: `https://api.nomoreparties.co${card.image.url}`,
-      thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
+      image: card.image,
+      // thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
     }));
 
     return result;

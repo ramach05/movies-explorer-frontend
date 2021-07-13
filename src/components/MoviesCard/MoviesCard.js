@@ -15,8 +15,22 @@ function MoviesCard({ card }) {
 
   const {
     country, director, duration, year, description,
-    image, trailer, thumbnail, id, nameRU, nameEN,
+    image, trailerLink, id, nameRU, nameEN,
   } = card;
+
+  let imageMovie;
+  let thumbnail;
+
+  if (typeof image === 'string') {
+    imageMovie = image;
+    thumbnail = card.thumbnail;
+  } else {
+    imageMovie = `https://api.nomoreparties.co${image.url}`;
+    thumbnail = `https://api.nomoreparties.co${image.formats.thumbnail.url}`;
+  }
+  const trailer = trailerLink || card.trailer;
+
+  console.log('42 :>> ', 42);
 
   useEffect(() => {
     if (duration <= 60) {
@@ -83,7 +97,7 @@ function MoviesCard({ card }) {
         duration,
         year,
         description,
-        image,
+        image: imageMovie,
         trailer,
         thumbnail,
         movieId: id,
@@ -116,7 +130,7 @@ function MoviesCard({ card }) {
         className="movies-card__pic-wrapper"
       >
         <img
-          src={image}
+          src={imageMovie}
           alt="movies-card pic"
           className="movies-card__pic"
         />

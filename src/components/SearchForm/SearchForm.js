@@ -18,6 +18,10 @@ function SearchForm() {
   const location = useLocation();
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
 
+  const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
+
+  console.log('moviesFromLocalStorage :>> ', moviesFromLocalStorage);
+
   useEffect(() => {
     setFilteredMovies(false);
   }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -62,7 +66,7 @@ function SearchForm() {
         filterCards(savedMovies);
       }
     } else if (!savedMoviesRoute) {
-      filterCards(movies);
+      filterCards(moviesFromLocalStorage);
     } else {
       filterCards(savedMovies);
     }
@@ -70,11 +74,12 @@ function SearchForm() {
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
+
     if (inputValue !== '') {
       inputRef.current.placeholder = 'Фильм';
 
       if (!savedMoviesRoute) {
-        filterCards(movies);
+        filterCards(moviesFromLocalStorage);
       } else {
         filterCards(savedMovies);
       }
