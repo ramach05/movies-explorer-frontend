@@ -72,11 +72,12 @@ function MoviesCardList() {
     setIsHandleMoreButton((prev) => prev + 1);
     setIsInitialMoreButton(false);
     setFilteredMovies(false);
+    localStorage.removeItem('filteredMovies');
   }
 
   function renderCards() {
     if (!savedMoviesRoute) {
-      if (filteredMovies) {
+      if (filteredMovies.length > 0) {
         addFilteredMoviesToLocalStorageRenderedMovies(filteredMovies);
 
         return filteredMovies.map((movie) => (
@@ -141,6 +142,12 @@ function MoviesCardList() {
         setSavedMovies(res.movies);
       })
       .catch((err) => console.log(err));
+
+    if (localStorage.filteredMovies) {
+      const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
+
+      setFilteredMovies([...filteredMoviesFromLocalStorage]);
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
