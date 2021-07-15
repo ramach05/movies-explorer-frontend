@@ -20,6 +20,7 @@ function MoviesCard({ card }) {
 
   let imageMovie;
   let thumbnail;
+  const trailer = trailerLink || card.trailer;
 
   if (typeof image === 'string') {
     imageMovie = image;
@@ -28,9 +29,6 @@ function MoviesCard({ card }) {
     imageMovie = `https://api.nomoreparties.co${image.url}`;
     thumbnail = `https://api.nomoreparties.co${image.formats.thumbnail.url}`;
   }
-  const trailer = trailerLink || card.trailer;
-
-  console.log('42 :>> ', 42);
 
   useEffect(() => {
     if (duration <= 60) {

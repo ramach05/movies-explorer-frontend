@@ -16,28 +16,18 @@ function MoviesCardList() {
     savedMovies,
     setSavedMovies,
     filteredMovies,
+    setFilteredMovies,
     isNoCards,
     isInitialMoreButton,
+    setIsInitialMoreButton,
   } = useAppContext();
   const [isMoreButton, setIsMoreButton] = useState(true);
   const [isHandleMoreButton, setIsHandleMoreButton] = useState(0);
-  const [initialСardsCount, setInitialСardsCount] = useState(0);
-  const [cardsCount, setCardsCount] = useState(4); // начальное количество карт на странице = 3
+  // const [initialСardsCount, setInitialСardsCount] = useState(0);
+  // const [cardsCount, setCardsCount] = useState(4); // начальное количество карт на странице = 3
 
   const location = useLocation();
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
-
-  useEffect(() => {
-    apiMain.getMovies()
-      .then((res) => {
-        setSavedMovies(res.movies);
-      })
-      .catch((err) => console.log(err));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    setMovies([]);
-  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function renderRequiredAmountCards(requiredAmountCards) {
     const result = requiredAmountCards.map((card) => ({
@@ -51,69 +41,44 @@ function MoviesCardList() {
       description: card.description,
       trailer: card.trailerLink,
       image: card.image,
-      // thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
     }));
 
     return result;
   }
 
-  useEffect(() => {
-    if (!localStorage.movies) {
-      setIsLoadingMovies(true);
+  function addFilteredMoviesToLocalStorageRenderedMovies(selectedFilteredMovies) {
+    if (selectedFilteredMovies.length !== 0) {
+      const initialLocalStorageRenderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
 
-      apiMovies.getInitialMovies()
-        .then((cardsFromApi) => {
-          localStorage.setItem('movies', JSON.stringify(cardsFromApi));
-        })
-        .then(() => {
-          setIsLoadingMovies(false);
-        })
-        .catch((err) => console.log(err));
-    } else if (localStorage.renderedMovies) {
-      if (isHandleMoreButton === 0) {
-        const requiredAmountCards = JSON.parse(localStorage.getItem('renderedMovies'));
-        const renderedMovies = renderRequiredAmountCards([...requiredAmountCards]);
+      selectedFilteredMovies.forEach((filteredMovie) => {
+        const isSome = initialLocalStorageRenderedMovies
+          .some((renderedMovie) => filteredMovie.id === renderedMovie.id);
 
-        setInitialСardsCount(requiredAmountCards.length - 4);
-        setCardsCount(requiredAmountCards.length);
+        if (!isSome) {
+          const localStorageRenderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
 
-        setMovies((prevMovies) => [...prevMovies, ...renderedMovies,
-        ]);
-      } else {
-        const renderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
-        const cardsFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
-        const requiredAmountCards = cardsFromLocalStorage.slice(initialСardsCount, cardsCount);
-        const listRequiredAmountCards = renderRequiredAmountCards([...requiredAmountCards]);
-
-        localStorage.setItem('renderedMovies', JSON.stringify([...renderedMovies, ...requiredAmountCards]));
-
-        setMovies((prev) => [...prev, ...listRequiredAmountCards]);
-
-        if (cardsFromLocalStorage.length === movies.length) {
-          setIsMoreButton(false);
+          localStorage.setItem('renderedMovies', JSON.stringify([...localStorageRenderedMovies, filteredMovie]));
         }
-      }
-    } else {
-      const cardsFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
-      const requiredAmountCards = cardsFromLocalStorage.slice(initialСardsCount, cardsCount);
-      const listRequiredAmountCards = renderRequiredAmountCards([...requiredAmountCards]);
-
-      localStorage.setItem('renderedMovies', JSON.stringify(requiredAmountCards));
-
-      setMovies(listRequiredAmountCards);
+      });
     }
-  }, [isLoadingMovies, isHandleMoreButton]);// eslint-disable-line react-hooks/exhaustive-deps
+  }
 
   function handleMoreButton(e) {
+    console.log('isHandleMoreButton :>> ', isHandleMoreButton);
+
     e.preventDefault();
-    setInitialСardsCount((prev) => prev + 4);
-    setCardsCount((prev) => (prev + 4));
+    // setInitialСardsCount((prev) => prev + 4);
+    // setCardsCount((prev) => (prev + 4));
     setIsHandleMoreButton((prev) => prev + 1);
+    setIsInitialMoreButton(false);
+    setFilteredMovies(false);
   }
 
   function renderCards() {
     if (!savedMoviesRoute) {
       if (filteredMovies) {
+        addFilteredMoviesToLocalStorageRenderedMovies(filteredMovies);
+
         return filteredMovies.map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -145,8 +110,8 @@ function MoviesCardList() {
   }
 
   function renderMoreButton() {
-    if (movies.length !== 0
-      && !filteredMovies && isMoreButton && !savedMoviesRoute && !isLoadingMovies) {
+    if (movies.length !== 0 && (filteredMovies.length > 0 || !filteredMovies)
+      && isMoreButton && !savedMoviesRoute && !isLoadingMovies) {
       return (
         <button
           type="button"
@@ -169,6 +134,88 @@ function MoviesCardList() {
     }
     return null;
   }
+
+  useEffect(() => {
+    apiMain.getMovies()
+      .then((res) => {
+        setSavedMovies(res.movies);
+      })
+      .catch((err) => console.log(err));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    setMovies([]);
+  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!localStorage.movies) {
+      setIsLoadingMovies(true);
+
+      apiMovies.getInitialMovies()
+        .then((cardsFromApi) => {
+          localStorage.setItem('movies', JSON.stringify(cardsFromApi));
+        })
+        .then(() => {
+          setIsLoadingMovies(false);
+        })
+        .catch((err) => console.log(err));
+    } else if (localStorage.renderedMovies) {
+      if (isHandleMoreButton === 0) {
+        const requiredAmountCards = JSON.parse(localStorage.getItem('renderedMovies'));
+        const renderedMovies = renderRequiredAmountCards([...requiredAmountCards]);
+
+        // setInitialСardsCount(requiredAmountCards.length - 4);
+        // setCardsCount(requiredAmountCards.length);
+
+        setMovies((prevMovies) => [...prevMovies, ...renderedMovies]);
+      } else {
+        const renderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
+        const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
+
+        // let countCards = 0;
+
+        const listRequiredAmountCards = [];
+
+        moviesFromLocalStorage
+          .map((movieFromLocalStorage) => {
+            const isSome = renderedMovies
+              .some((renderedMovie) => renderedMovie.id === movieFromLocalStorage.id);
+
+            if (!isSome) {
+              listRequiredAmountCards.push(movieFromLocalStorage);
+              return true;
+            }
+            return false;
+          });
+
+        const requiredAmountCards = listRequiredAmountCards.slice(0, 4);
+
+        localStorage.setItem('renderedMovies', JSON.stringify([...renderedMovies, ...requiredAmountCards]));
+
+        setMovies([...renderedMovies, ...requiredAmountCards]);
+      }
+    } else {
+      const cardsFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
+      const requiredAmountCards = cardsFromLocalStorage.slice(0, 4);
+      const listRequiredAmountCards = renderRequiredAmountCards([...requiredAmountCards]);
+
+      localStorage.setItem('renderedMovies', JSON.stringify(requiredAmountCards));
+
+      setMovies(listRequiredAmountCards);
+    }
+  }, [isLoadingMovies, isHandleMoreButton]);// eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (movies.length > 0) {
+      const cardsFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
+
+      if (cardsFromLocalStorage.length > 0 && movies.length >= cardsFromLocalStorage.length) {
+        setIsMoreButton(false);
+      }
+    }
+  }, [movies]);
+
+  console.log('movies :>> ', movies);
 
   return (
     <article className="movies-card-list">

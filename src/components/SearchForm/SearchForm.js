@@ -20,8 +20,6 @@ function SearchForm() {
 
   const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
 
-  console.log('moviesFromLocalStorage :>> ', moviesFromLocalStorage);
-
   useEffect(() => {
     setFilteredMovies(false);
   }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -61,7 +59,9 @@ function SearchForm() {
       setFilteredMovies(false);
 
       if (!savedMoviesRoute) {
-        filterCards(movies);
+        const localStorageRenderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
+
+        filterCards(localStorageRenderedMovies);
       } else {
         filterCards(savedMovies);
       }
@@ -88,7 +88,9 @@ function SearchForm() {
       inputRef.current.placeholder = 'Нужно ввести ключевое слово';
 
       if (!savedMoviesRoute) {
-        filterCards(movies);
+        const localStorageRenderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
+
+        filterCards(localStorageRenderedMovies);
       } else {
         filterCards(savedMovies);
       }
