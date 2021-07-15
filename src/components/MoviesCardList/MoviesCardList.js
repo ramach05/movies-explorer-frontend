@@ -72,6 +72,7 @@ function MoviesCardList() {
     setIsHandleMoreButton((prev) => prev + 1);
     setIsInitialMoreButton(false);
     setFilteredMovies(false);
+    setIsMoreButton(true);
     localStorage.removeItem('filteredMovies');
   }
 
@@ -110,9 +111,11 @@ function MoviesCardList() {
     ));
   }
 
+  console.log('isMoreButton :>> ', isMoreButton);
+
   function renderMoreButton() {
     if (movies.length !== 0 && (filteredMovies.length > 0 || !filteredMovies)
-      && isMoreButton && !savedMoviesRoute && !isLoadingMovies) {
+      && isMoreButton && !savedMoviesRoute && !isLoadingMovies && !localStorage.filteredMovies) {
       return (
         <button
           type="button"
@@ -147,6 +150,7 @@ function MoviesCardList() {
       const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
 
       setFilteredMovies([...filteredMoviesFromLocalStorage]);
+      setIsMoreButton(false);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -221,8 +225,6 @@ function MoviesCardList() {
       }
     }
   }, [movies]);
-
-  console.log('movies :>> ', movies);
 
   return (
     <article className="movies-card-list">
