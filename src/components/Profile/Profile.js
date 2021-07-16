@@ -109,6 +109,13 @@ function Profile() {
     history.push('/');
   }
 
+  function renderErrorUpdate() {
+    if (errorUpdate === 'ОШИБКА: 409') {
+      return 'ОШИБКА: Почтовый ящик принадлежит другому юзеру';
+    }
+    return `${errorUpdate}`;
+  }
+
   return (
     <main className="profile">
       <h1 className="profile__title">
@@ -156,7 +163,7 @@ function Profile() {
         </ul>
 
         <span className="register__input-error profile__input-error">
-          {errorUpdate && `${errorUpdate}`}
+          {errorUpdate && renderErrorUpdate()}
         </span>
 
         <button
