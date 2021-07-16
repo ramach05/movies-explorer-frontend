@@ -57,7 +57,6 @@ function MoviesCard({ card }) {
               apiMain.getMovies()
                 .then((result) => {
                   setSavedMovies(result.movies);
-                  // setFilteredMovies([]);
                   setCardLike(false);
                 })
                 .catch((err) => console.log(err));
@@ -71,8 +70,6 @@ function MoviesCard({ card }) {
       });
     }
   }
-
-  console.log('filteredMovies :>> ', filteredMovies);
 
   function handleCardSave(e) {
     if (e.target.classList.value.includes('active')) {
