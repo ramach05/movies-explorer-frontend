@@ -67,13 +67,11 @@ function MoviesCardList() {
     console.log('isHandleMoreButton :>> ', isHandleMoreButton);
 
     e.preventDefault();
-    // setInitialСardsCount((prev) => prev + 4);
-    // setCardsCount((prev) => (prev + 4));
     setIsHandleMoreButton((prev) => prev + 1);
     setIsInitialMoreButton(false);
     setFilteredMovies(false);
     setIsMoreButton(true);
-    localStorage.removeItem('filteredMovies');
+    // localStorage.removeItem('filteredMovies');
   }
 
   function renderCards() {
@@ -113,8 +111,8 @@ function MoviesCardList() {
   console.log('isMoreButton :>> ', isMoreButton);
 
   function renderMoreButton() {
-    if (movies.length !== 0 && (filteredMovies.length > 0 || !filteredMovies)
-      && isMoreButton && !savedMoviesRoute && !isLoadingMovies && !localStorage.filteredMovies) {
+    if (movies.length > 0 && (filteredMovies.length > 0 || !filteredMovies)
+      && isMoreButton && !savedMoviesRoute && !isLoadingMovies) {
       return (
         <button
           type="button"
@@ -140,7 +138,7 @@ function MoviesCardList() {
 
   useEffect(() => {
     setMovies([]);
-  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!localStorage.movies) {
@@ -211,12 +209,12 @@ function MoviesCardList() {
   }, [movies]);
 
   useEffect(() => {
-    if (localStorage.filteredMovies && !savedMoviesRoute) {
-      const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
+    if (savedMoviesRoute) {
+    //   // const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
 
-      setFilteredMovies([...filteredMoviesFromLocalStorage]);
-      setIsMoreButton(false);
-    } else {
+      //   setFilteredMovies([...filteredMoviesFromLocalStorage]);
+      //   setIsMoreButton(false);
+      // } else {
       apiMain.getMovies()
         .then((res) => {
           setSavedMovies(res.movies);

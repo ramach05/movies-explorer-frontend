@@ -28,7 +28,7 @@ function SearchForm() {
 
     if (!checkboxRef.current.checked) {
       setFilteredMovies(filteredCards);
-      localStorage.setItem('filteredMovies', JSON.stringify(filteredCards));
+      // localStorage.setItem('filteredMovies', JSON.stringify(filteredCards));
 
       if (filteredCards.length === 0) {
         setIsNoCards(true);
@@ -42,7 +42,7 @@ function SearchForm() {
     } else {
       const filteredCardsByTime = filteredCards.filter((card) => card.duration <= 40);
       setFilteredMovies(filteredCardsByTime);
-      localStorage.setItem('filteredMovies', JSON.stringify(filteredCardsByTime));
+      // localStorage.setItem('filteredMovies', JSON.stringify(filteredCardsByTime));
 
       if (filteredCardsByTime.length === 0) {
         setIsNoCards(true);
@@ -55,7 +55,7 @@ function SearchForm() {
   function handleChangeCheckboxButton() {
     if (!checkboxRef.current.checked) {
       setFilteredMovies(false);
-      localStorage.removeItem('filteredMovies');
+      // localStorage.removeItem('filteredMovies');
 
       if (!savedMoviesRoute) {
         const localStorageRenderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
@@ -101,13 +101,13 @@ function SearchForm() {
   }
 
   useEffect(() => {
-    console.log('location :>> ', location);
+    // if (localStorage.filteredMovies) {
+    // const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
 
-    if (localStorage.filteredMovies) {
-      // const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
-
-      setFilteredMovies([]);
-    }
+    setFilteredMovies([]);
+    setIsInitialMoreButton(true);
+    setIsNoCards(false);
+    // }
   }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
