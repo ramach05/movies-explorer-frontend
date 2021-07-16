@@ -6,7 +6,9 @@ import apiMain from '../../utils/MainApi';
 import './MoviesCard.css';
 
 function MoviesCard({ card }) {
-  const { savedMovies, setSavedMovies, setFilteredMovies } = useAppContext();
+  const {
+    savedMovies, setSavedMovies, filteredMovies, setFilteredMovies,
+  } = useAppContext();
   const [cardLike, setCardLike] = useState(false);
   const [correctDuration, setCorrectDuration] = useState('0');
   const location = useLocation();
@@ -55,7 +57,6 @@ function MoviesCard({ card }) {
               apiMain.getMovies()
                 .then((result) => {
                   setSavedMovies(result.movies);
-                  setFilteredMovies([]);
                   setCardLike(false);
                 })
                 .catch((err) => console.log(err));
@@ -75,17 +76,17 @@ function MoviesCard({ card }) {
       handleCardDelete();
     } else {
       apiMain.createMovie({
-        country,
+        country: country || '-',
         director,
         duration,
         year,
         description,
         image: imageMovie,
-        trailer,
+        trailer: trailer || 'https://movies-explorer-roman.nomoredomains.icu/',
         thumbnail,
         movieId: id,
         nameRU,
-        nameEN,
+        nameEN: nameEN || '-',
       })
         .then((res) => {
           console.log(res.movie);

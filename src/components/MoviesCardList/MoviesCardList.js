@@ -20,11 +20,11 @@ function MoviesCardList() {
     isNoCards,
     isInitialMoreButton,
     setIsInitialMoreButton,
+    isMoreButton,
+    setIsMoreButton,
   } = useAppContext();
-  const [isMoreButton, setIsMoreButton] = useState(true);
+
   const [isHandleMoreButton, setIsHandleMoreButton] = useState(0);
-  // const [initialСardsCount, setInitialСardsCount] = useState(0);
-  // const [cardsCount, setCardsCount] = useState(4); // начальное количество карт на странице = 3
 
   const location = useLocation();
   const savedMoviesRoute = ['/saved-movies'].includes(location.pathname);
@@ -64,14 +64,11 @@ function MoviesCardList() {
   }
 
   function handleMoreButton(e) {
-    console.log('isHandleMoreButton :>> ', isHandleMoreButton);
-
     e.preventDefault();
     setIsHandleMoreButton((prev) => prev + 1);
     setIsInitialMoreButton(false);
     setFilteredMovies(false);
     setIsMoreButton(true);
-    // localStorage.removeItem('filteredMovies');
   }
 
   function renderCards() {
@@ -107,8 +104,6 @@ function MoviesCardList() {
       />
     ));
   }
-
-  console.log('isMoreButton :>> ', isMoreButton);
 
   function renderMoreButton() {
     if (movies.length > 0 && (filteredMovies.length > 0 || !filteredMovies)
@@ -157,15 +152,10 @@ function MoviesCardList() {
         const requiredAmountCards = JSON.parse(localStorage.getItem('renderedMovies'));
         const renderedMovies = renderRequiredAmountCards([...requiredAmountCards]);
 
-        // setInitialСardsCount(requiredAmountCards.length - 4);
-        // setCardsCount(requiredAmountCards.length);
-
         setMovies((prevMovies) => [...prevMovies, ...renderedMovies]);
       } else {
         const renderedMovies = JSON.parse(localStorage.getItem('renderedMovies'));
         const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
-
-        // let countCards = 0;
 
         const listRequiredAmountCards = [];
 
@@ -206,15 +196,10 @@ function MoviesCardList() {
         setIsMoreButton(false);
       }
     }
-  }, [movies]);
+  }, [movies, setIsMoreButton]);
 
   useEffect(() => {
     if (savedMoviesRoute) {
-    //   // const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
-
-      //   setFilteredMovies([...filteredMoviesFromLocalStorage]);
-      //   setIsMoreButton(false);
-      // } else {
       apiMain.getMovies()
         .then((res) => {
           setSavedMovies(res.movies);
