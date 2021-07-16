@@ -16,6 +16,7 @@ function Profile() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isButtonUpdate, setIsButtonUpdate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorUpdate, setErrorUpdate] = useState('');
 
   const [inputValue, setInputValue] = useState({
     name: currentUser.name,
@@ -89,9 +90,12 @@ function Profile() {
     })
       .then((res) => {
         setCurrentUser(res.updateUser);
+        setErrorUpdate('');
       })
       .catch((err) => {
         console.log(err);
+        setIsButtonUpdate(false);
+        setErrorUpdate(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -150,6 +154,10 @@ function Profile() {
             <label htmlFor="profile-input-email" className="profile__input__label">E-mail</label>
           </li>
         </ul>
+
+        <span className="register__input-error profile__input-error">
+          {errorUpdate && `${errorUpdate}`}
+        </span>
 
         <button
           type="submit"
