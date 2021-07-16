@@ -8,15 +8,15 @@
   min-height: 100vh;
 }
 
-.register__logo__wrapper {
+.register__logo-wrapper {
   margin: 56px auto 50px;
 }
 
-.register__logo-hover {
+.register__logo-link {
   display: block;
   transition: opacity 0.2s ease;
 }
-.register__logo-hover:hover {
+.register__logo-link:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -78,8 +78,12 @@
   line-height: 12px;
   color: #ee3465;
 
-  margin: 0 0 24px;
+  margin: 0 0 12px;
   padding: 0;
+  min-height: 24px;
+}
+.register__input-error_button {
+  text-align: center;
 }
 
 .register__button-submit {
@@ -91,7 +95,7 @@
   text-align: center;
   color: #ffffff;
 
-  margin: 0;
+  margin: 0 0 6px;
   padding: 0;
   align-self: flex-end;
   background: #4285f4;
@@ -103,6 +107,14 @@
 .register__button-submit:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+.register__button-submit_disabled {
+  color: #ffffff6c;
+  background: #ffffff23;
+}
+.register__button-submit_disabled:hover {
+  opacity: 1;
+  cursor: auto;
 }
 
 .register__container {
@@ -146,10 +158,13 @@
 @media screen and (min-width: 768px) {
   .register {
     padding: 0 calc(186 * 100vw / 768) 0;
+    max-width: 396px;
+    width: 100%;
+    margin: 0 auto;
   }
 
-  .register__logo__wrapper {
-    margin: 232px 0 40px;
+  .register__logo-wrapper {
+    margin: 20% 0 40px;
     justify-self: start;
   }
 
@@ -167,7 +182,7 @@
     font-size: 14px;
     line-height: 17px;
     max-width: 396px;
-    margin: 0 auto;
+    margin: 0 auto 6px;
     width: 100%;
   }
 

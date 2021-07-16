@@ -50,10 +50,13 @@
   text-decoration: none;
   margin: 0 0 30px;
   padding: 0;
+  border: none;
+  background: transparent;
   transition: opacity 0.2s ease;
 }
 .not-found-page__link:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

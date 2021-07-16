@@ -43,24 +43,24 @@
 }
 
 .promo__button {
-  background: transparent;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  cursor: pointer;
-  width: 129px;
-  height: 36px;
-  transition: opacity 0.2s ease;
-  margin: 0 0 30px;
-  padding: 0;
-
-  border: 1px solid hsla(0, 0%, 100%, 0.6);
   font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
-
   color: #ffffff;
+
+  line-height: 36px;
+  border: 1px solid hsla(0, 0%, 100%, 0.6);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 129px;
+  height: 36px;
+  margin: 0 0 30px;
+  padding: 0;
+  text-align: center;
+  transition: opacity 0.2s ease;
 }
 .promo__button:hover {
   opacity: 0.6;

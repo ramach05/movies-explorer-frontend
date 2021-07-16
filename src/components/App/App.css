@@ -5,6 +5,11 @@
   /* box-shadow: 0px 0px 0px 1px red; */
 }
 
+html {
+  /* для плавной прокрутки */
+  scroll-behavior: smooth;
+}
+
 .body {
   background-color: #202020;
   color: #ffffff;
@@ -17,4 +22,13 @@
   justify-content: center;
   align-content: flex-start;
   min-height: 100vh;
+}
+
+.initial-preloader {
+  background: #202020;
+  height: 100vh;
+  display: grid;
+}
+.initial-preloader .preloader {
+  padding: 0;
 }

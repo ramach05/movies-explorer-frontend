@@ -1,28 +1,36 @@
 import { React } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useAppContext } from '../../utils/AppContext';
 
 import './Navigation.css';
 
-function Navigation({ isOpenNavigation, setIsOpenNavigation, menuRoute }) {
+function Navigation({ isOpenNavigation, setIsOpenNavigation, handleClosePopup }) {
+  const { isLogged } = useAppContext();
   const history = useHistory();
 
-  const handleCloseNavigation = () => {
+  function handleNavigationLink() {
     setIsOpenNavigation(false);
-  };
+    window.removeEventListener('keydown', handleClosePopup);
+  }
 
-  const handleAccountButton = () => {
+  function handleAccountButton() {
     history.push('/profile');
-    setIsOpenNavigation(false);
-  };
+    handleNavigationLink();
+  }
 
-  if (!menuRoute) { return null; }
+  if (!isLogged) {
+    return null;
+  }
   return (
-    <aside className={!isOpenNavigation ? 'navigation' : 'navigation navigation_open'}>
+    <aside
+      className={!isOpenNavigation ? 'navigation' : 'navigation navigation_open'}
+      onClick={handleClosePopup}
+    >
       <div className="navigation__container">
         <button
           type="button"
           className="navigation__close-button"
-          onClick={handleCloseNavigation}
+          onClick={handleClosePopup}
         >
         </button>
 
@@ -32,7 +40,7 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation, menuRoute }) {
               <Link
                 to="/"
                 className="navigation__link"
-                onClick={handleCloseNavigation}
+                onClick={handleNavigationLink}
               >
                 Главная
               </Link>
@@ -41,7 +49,7 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation, menuRoute }) {
               <Link
                 to="/movies"
                 className="navigation__link"
-                onClick={handleCloseNavigation}
+                onClick={handleNavigationLink}
               >
                 Фильмы
               </Link>
@@ -49,8 +57,8 @@ function Navigation({ isOpenNavigation, setIsOpenNavigation, menuRoute }) {
             <li className="navigation__link-wrapper">
               <Link
                 to="/saved-movies"
-                onClick={handleCloseNavigation}
                 className="navigation__link"
+                onClick={handleNavigationLink}
               >
                 Сохранённые фильмы
               </Link>

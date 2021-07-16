@@ -6,7 +6,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(32, 32, 32, 0.3);
+  background: rgba(32, 32, 32, 0.5);
 }
 .navigation_open {
   display: grid;
@@ -25,6 +25,14 @@
   position: absolute;
   right: 0;
   width: 100%;
+
+  animation: appearPopup 250ms ease;
+}
+
+@keyframes appearPopup {
+  0% {
+    transform: translate(100%);
+  }
 }
 
 .navigation__close-button {
@@ -34,7 +42,7 @@
   height: 25px;
   border: none;
   cursor: pointer;
-  margin: 15px 25px 100px 0;
+  margin: 25px 23px 100px 0;
   padding: 0;
   justify-self: end;
   transition: opacity 0.2s ease;
@@ -153,6 +161,9 @@
   .navigation__container {
     width: 520px;
     margin-left: auto;
+  }
+  .navigation__close-button {
+    margin: 25px 40px 100px 0;
   }
 }
 

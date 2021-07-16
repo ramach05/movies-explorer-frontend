@@ -2,26 +2,36 @@ import { Link, useHistory } from 'react-router-dom';
 import { React } from 'react';
 
 import './Header.css';
-import HederLogo from '../../images/svg/header-logo.svg';
+import { HeaderLogo } from '../../utils/utils';
+import { useAppContext } from '../../utils/AppContext';
 
-function Header({ setIsOpenNavigation, menuRoute }) {
+function Header({ setIsOpenNavigation, menuRoute, handleClosePopup }) {
+  const { isLogged } = useAppContext();
   const history = useHistory();
+
+  function handleBurger() {
+    setIsOpenNavigation(true);
+    window.addEventListener('keydown', handleClosePopup);
+  }
 
   function handleHeaderButton() {
     history.push('/signin');
   }
-  function handleBurger() {
-    setIsOpenNavigation(true);
-  }
 
   return (
     <div className={!menuRoute ? 'header' : 'header header__burger-bg'}>
-      <Link to="/">
-        <img src={HederLogo} alt="logo" className="header__logo" />
-      </Link>
+      {!menuRoute
+        ? (
+          <img src={HeaderLogo} alt="logo" className="header__logo header__logo_disable" />
+        )
+        : (
+          <Link to="/">
+            <img src={HeaderLogo} alt="logo" className="header__logo" />
+          </Link>
+        )}
 
       <nav className="header__nav">
-        {!menuRoute ? (
+        {!isLogged ? (
           <>
             <Link to="/signup" className="header__link">
               Регистрация
