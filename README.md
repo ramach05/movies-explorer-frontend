@@ -8,4 +8,4 @@
 
 ---
 
-[ССЫЛКА](https://movies-explorer-roman.nomoredomains.icu/ "Проект Movies-Explorer") на сайт.
+[ССЫЛКА](https://movies-explorer-roman.nomoredomains.icu/ "Сайт Movies-Explorer") на сайт.
