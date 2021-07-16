@@ -20,14 +20,6 @@ function SearchForm() {
 
   const moviesFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
 
-  useEffect(() => {
-    if (localStorage.filteredMovies) {
-      const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
-
-      setFilteredMovies([...filteredMoviesFromLocalStorage]);
-    }
-  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
-
   function filterCards(cards) {
     const filteredCards = cards.filter((card) => card.nameRU.toLowerCase()
       .includes(inputRef.current.value.toLowerCase()));
@@ -107,6 +99,16 @@ function SearchForm() {
   function handleChangeInput(e) {
     setInputValue(e.target.value);
   }
+
+  useEffect(() => {
+    console.log('location :>> ', location);
+
+    if (localStorage.filteredMovies) {
+      // const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
+
+      setFilteredMovies([]);
+    }
+  }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <form className="search-form" ref={formRef}>

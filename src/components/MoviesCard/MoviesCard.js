@@ -30,22 +30,6 @@ function MoviesCard({ card }) {
     thumbnail = `https://api.nomoreparties.co${image.formats.thumbnail.url}`;
   }
 
-  useEffect(() => {
-    if (duration <= 60) {
-      setCorrectDuration(`${duration}м`);
-    } else {
-      const durationOfMinutes = duration % 60;
-      const durationOfHours = (duration - durationOfMinutes) / 60;
-      setCorrectDuration(`${durationOfHours}ч ${durationOfMinutes}м`);
-    }
-  }, [duration]);
-
-  useEffect(() => {
-    if (savedMovies.some((movie) => movie.movieId === card.id)) {
-      setCardLike(true);
-    }
-  }, [card.id, savedMovies]);
-
   function handleCardDelete() {
     if (savedMoviesRoute) {
       apiMain.deleteMovie(card._id)
@@ -71,6 +55,7 @@ function MoviesCard({ card }) {
               apiMain.getMovies()
                 .then((result) => {
                   setSavedMovies(result.movies);
+                  setFilteredMovies([]);
                   setCardLike(false);
                 })
                 .catch((err) => console.log(err));
@@ -118,6 +103,22 @@ function MoviesCard({ card }) {
         });
     }
   }
+
+  useEffect(() => {
+    if (duration <= 60) {
+      setCorrectDuration(`${duration}м`);
+    } else {
+      const durationOfMinutes = duration % 60;
+      const durationOfHours = (duration - durationOfMinutes) / 60;
+      setCorrectDuration(`${durationOfHours}ч ${durationOfMinutes}м`);
+    }
+  }, [duration]);
+
+  useEffect(() => {
+    if (savedMovies.some((movie) => movie.movieId === card.id)) {
+      setCardLike(true);
+    }
+  }, [card.id, savedMovies]);
 
   return (
     <li className="movies-card">
