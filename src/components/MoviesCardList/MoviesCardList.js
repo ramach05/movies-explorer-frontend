@@ -192,7 +192,8 @@ function MoviesCardList() {
     if (movies.length > 0) {
       const cardsFromLocalStorage = JSON.parse(localStorage.getItem('movies'));
 
-      if (cardsFromLocalStorage.length > 0 && movies.length >= cardsFromLocalStorage.length) {
+      if (cardsFromLocalStorage && cardsFromLocalStorage.length > 0
+        && movies.length >= cardsFromLocalStorage.length) {
         setIsMoreButton(false);
       }
     }
