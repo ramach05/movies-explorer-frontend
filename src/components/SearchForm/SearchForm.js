@@ -8,7 +8,7 @@ import { useAppContext } from '../../utils/AppContext';
 
 function SearchForm() {
   const {
-    movies, savedMovies, setFilteredMovies, setIsNoCards, setIsInitialMoreButton,
+    movies, savedMovies, setFilteredMovies, setIsNoCards, setIsInitialMoreButton, setIsMoreButton,
   } = useAppContext([]);
   const [inputValue, setInputValue] = useState('');
   const formRef = useRef();
@@ -65,6 +65,7 @@ function SearchForm() {
         filterCards(savedMovies);
       }
     } else if (!savedMoviesRoute) {
+      setIsMoreButton(false);
       filterCards(moviesFromLocalStorage);
     } else {
       filterCards(savedMovies);

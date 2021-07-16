@@ -20,8 +20,10 @@ function MoviesCardList() {
     isNoCards,
     isInitialMoreButton,
     setIsInitialMoreButton,
+    isMoreButton,
+    setIsMoreButton,
   } = useAppContext();
-  const [isMoreButton, setIsMoreButton] = useState(true);
+
   const [isHandleMoreButton, setIsHandleMoreButton] = useState(0);
   // const [initialСardsCount, setInitialСardsCount] = useState(0);
   // const [cardsCount, setCardsCount] = useState(4); // начальное количество карт на странице = 3
@@ -206,7 +208,7 @@ function MoviesCardList() {
         setIsMoreButton(false);
       }
     }
-  }, [movies]);
+  }, [movies, setIsMoreButton]);
 
   useEffect(() => {
     if (savedMoviesRoute) {

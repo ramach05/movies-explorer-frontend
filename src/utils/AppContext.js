@@ -12,6 +12,7 @@ export const AppContext = ({ children }) => {
   const [isNoCards, setIsNoCards] = useState(false);
   const [isInitialMoreButton,
     setIsInitialMoreButton] = useState(false);
+  const [isMoreButton, setIsMoreButton] = useState(true);
 
   return (
     <context.Provider value={{
@@ -38,6 +39,9 @@ export const AppContext = ({ children }) => {
 
       isInitialMoreButton,
       setIsInitialMoreButton,
+
+      isMoreButton,
+      setIsMoreButton,
     }}
     >
       {children}
