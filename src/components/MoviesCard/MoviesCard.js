@@ -6,7 +6,7 @@ import apiMain from '../../utils/MainApi';
 import './MoviesCard.css';
 
 function MoviesCard({ card }) {
-  const { savedMovies, setSavedMovies } = useAppContext();
+  const { savedMovies, setSavedMovies, setFilteredMovies } = useAppContext();
   const [cardLike, setCardLike] = useState(false);
   const [correctDuration, setCorrectDuration] = useState('0');
   const location = useLocation();

@@ -96,7 +96,15 @@ function MoviesCardList() {
       ));
     }
     if (filteredMovies) {
-      return filteredMovies.map((movie) => (
+      if (filteredMovies.length > 0) {
+        return filteredMovies.map((movie) => (
+          <MoviesCard
+            key={movie._id}
+            card={movie}
+          />
+        ));
+      }
+      return savedMovies.map((movie) => (
         <MoviesCard
           key={movie._id}
           card={movie}
@@ -140,17 +148,17 @@ function MoviesCardList() {
   }
 
   useEffect(() => {
-    apiMain.getMovies()
-      .then((res) => {
-        setSavedMovies(res.movies);
-      })
-      .catch((err) => console.log(err));
-
-    if (localStorage.filteredMovies) {
+    if (localStorage.filteredMovies && !savedMoviesRoute) {
       const filteredMoviesFromLocalStorage = JSON.parse(localStorage.getItem('filteredMovies'));
 
       setFilteredMovies([...filteredMoviesFromLocalStorage]);
       setIsMoreButton(false);
+    } else {
+      apiMain.getMovies()
+        .then((res) => {
+          setSavedMovies(res.movies);
+        })
+        .catch((err) => console.log(err));
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
