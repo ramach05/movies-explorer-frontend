@@ -12,6 +12,10 @@
 
 [ССЫЛКА](https://movies-explorer-roman.nomoredomains.icu/ "Сайт Movies-Explorer") на сайт.
 
+Публичный IP-адрес сервера: [178.154.241.213](https://178.154.241.213/ "https://178.154.241.213/").
+
+[Ссылка](https://api.movies-explorer-roman.nomoredomains.icu/ "Movie-Explorer бэкенд") на домен.
+
 <br>
 
 <div align="center">
