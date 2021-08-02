@@ -22,7 +22,7 @@ function Portfolio() {
           <li className="portfolio__list__item">
             <a
               className="portfolio__link"
-              href="https://"
+              href="https://github.com/ramach05/russian-travel"
               target="_blank"
               rel="noreferrer"
             >
