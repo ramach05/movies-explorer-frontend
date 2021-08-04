@@ -15,7 +15,7 @@ function Portfolio() {
               target="_blank"
               rel="noreferrer"
             >
-              Статичный сайт
+              Статичный сайт &apos;How-to-learn&apos;
               <span className="portfolio__link__icon" />
             </a>
           </li>
@@ -26,7 +26,18 @@ function Portfolio() {
               target="_blank"
               rel="noreferrer"
             >
-              Адаптивный сайт
+              Адаптивный сайт &apos;Russian-Travel&apos;
+              <span className="portfolio__link__icon" />
+            </a>
+          </li>
+          <li className="portfolio__list__item">
+            <a
+              className="portfolio__link"
+              href="https://github.com/ramach05/challenge-team-indigo"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Адаптивный сайт &apos;Freelancer&apos;
               <span className="portfolio__link__icon" />
             </a>
           </li>
@@ -37,7 +48,7 @@ function Portfolio() {
               target="_blank"
               rel="noreferrer"
             >
-              Одностраничное приложение
+              Одностраничное приложение &apos;Mesto&apos;
               <span className="portfolio__link__icon" />
             </a>
           </li>

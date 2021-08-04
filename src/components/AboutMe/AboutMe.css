@@ -118,7 +118,7 @@
     display: grid;
     align-content: flex-start;
     grid-template: repeat(3, auto) 1fr / 1fr;
-  }
+  } 
 
   .about-me__subtitle {
     font-size: 40px;
