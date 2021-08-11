@@ -2,15 +2,21 @@
 
 Репозиторий для Фронтенд-части приложения проекта Movies-Explorer. Реализован с помощью [![React.js](https://img.shields.io/badge/React.js-391468?style=flat&logo=React)](https://reactjs.org/).
 
-## Описание проекта
+## Функционал
 
 Многостраничный проект-портфолио Movies-Explorer на [![React.js](https://img.shields.io/badge/React.js-391468?style=flat&logo=React)](https://reactjs.org/) и [![Node.js](https://img.shields.io/badge/Node.js-391468?style=flat&logo=node.js)](https://nodejs.org/en/) с совмещением своего и стороннего Api, где имеется возможность регистрации, авторизации, перехода в раздел с фильмами и операций с ними и своим профилем.
 
 Для просмотра всего функционала необходимо зарегистрироваться или использовать для входа тестовый аккаунт `test123@gmail.com` и пароль `12345678`.
 
+## Используемый стэк технологий
+* JavaScript
+* HTML
+* CSS
+* React.js
+
 ---
 
-[ССЫЛКА](https://movies-explorer-roman.nomoredomains.icu/ "Сайт Movies-Explorer") на сайт.
+[ССЫЛКА](https://movies-explorer-roman.nomoredomains.icu/ "Сайт Movies-Explorer") на законченный проект.
 
 Публичный IP-адрес сервера: [178.154.241.213](https://178.154.241.213/ "https://178.154.241.213/").
 
