@@ -11,14 +11,15 @@ function Portfolio() {
           <li className="portfolio__list__item">
             <a
               className="portfolio__link"
-              href="https://github.com/ramach05/how-to-learn"
+              href="https://github.com/ramach05/react-mesto-api-full"
               target="_blank"
               rel="noreferrer"
             >
-              Статичный сайт &apos;How-to-learn&apos;
+              Одностраничное приложение &apos;Mesto&apos;
               <span className="portfolio__link__icon" />
             </a>
           </li>
+
           <li className="portfolio__list__item">
             <a
               className="portfolio__link"
@@ -30,6 +31,7 @@ function Portfolio() {
               <span className="portfolio__link__icon" />
             </a>
           </li>
+
           <li className="portfolio__list__item">
             <a
               className="portfolio__link"
@@ -41,14 +43,15 @@ function Portfolio() {
               <span className="portfolio__link__icon" />
             </a>
           </li>
+
           <li className="portfolio__list__item">
             <a
               className="portfolio__link"
-              href="https://github.com/ramach05/react-mesto-api-full"
+              href="https://github.com/ramach05/how-to-learn"
               target="_blank"
               rel="noreferrer"
             >
-              Одностраничное приложение &apos;Mesto&apos;
+              Статичный сайт &apos;How-to-learn&apos;
               <span className="portfolio__link__icon" />
             </a>
           </li>
