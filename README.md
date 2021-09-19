@@ -13,6 +13,15 @@
 * HTML
 * CSS
 * React.js
+* React Hooks
+* Адаптивная верстка
+* БЭМ-методология
+* Анимация и трансформация
+* API
+* Promise
+* REST
+* Figma
+
 
 ---
 
