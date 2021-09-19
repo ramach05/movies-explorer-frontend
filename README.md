@@ -9,18 +9,20 @@
 Для просмотра всего функционала необходимо зарегистрироваться или использовать для входа тестовый аккаунт `test123@gmail.com` и пароль `12345678`.
 
 ## Используемый стэк технологий
-* JavaScript
-* HTML
-* CSS
+* JavaScript ES6+
+* HTML5
+* CSS3
 * React.js
+* Функциональные компоненты
 * React Hooks
-* Адаптивная верстка
 * БЭМ-методология
+* Адаптивная семантическая верстка
+* Flex и Grid Layout
 * Анимация и трансформация
-* API
-* Promise
-* REST
-* Figma
+* Promise, Fetch
+* REST API
+* localStorage
+* Figma (PixelPerfect)
 
 
 ---
