@@ -1,3 +1,13 @@
+# Movies-Explorer Frontend
+
+React SPA for searching movies in a third-party database with a personal collection stored in my own backend ([movies-explorer-api](https://github.com/ramach05/movies-explorer-api)): registration and login, saving and removing movies, profile editing, responsive BEM layout. Built in 2021 as a frontend learning project.
+
+**Stack**: React 17 · React Router · Fetch / REST · localStorage · BEM · CSS3 (flex/grid) · Figma (pixel-perfect)
+
+The full project description (Russian) and demo links are below.
+
+---
+
 # **Проект Movies-Explorer**
 
 Репозиторий для Фронтенд-части приложения проекта Movies-Explorer. Реализован с помощью [![React.js](https://img.shields.io/badge/React.js-391468?style=flat&logo=React)](https://reactjs.org/).
